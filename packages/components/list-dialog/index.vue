@@ -2,9 +2,9 @@
   <nm-dialog class="nm-list-dialog" v-bind="dialog" v-on="on" :visible.sync="visible_">
     <template v-slot:toolbar>
       <!--刷新按钮-->
-      <nm-button icon="refresh" @click="refresh"/>
+      <nm-button icon="refresh" @click="refresh" />
     </template>
-    <slot/>
+    <slot />
   </nm-dialog>
 </template>
 <script>
@@ -45,7 +45,7 @@ export default {
     /** 是否可以通过点击 modal 关闭 Dialog */
     closeOnClickModal: {
       type: Boolean,
-      default: true
+      default: null
     },
     /** 是否可拖拽 */
     draggable: {

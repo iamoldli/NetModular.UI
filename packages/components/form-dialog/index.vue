@@ -55,7 +55,7 @@ export default {
     /** 是否可以通过点击 modal 关闭 Dialog */
     closeOnClickModal: {
       type: Boolean,
-      default: true
+      default: null
     },
     /** 是否显示全屏按钮 */
     fullscreen: Boolean,
