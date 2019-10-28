@@ -31,7 +31,7 @@ export default {
     /** 占位符 */
     placeholder: {
       type: String,
-      default: '请选择'
+      default: '请选择...'
     },
     /** 是否默认选中第一个 */
     checkedFirst: Boolean,
@@ -111,53 +111,144 @@ export default {
     }
   },
   render(h) {
-    return (
-      <div
-        class="nm-select"
-        v-loading={this.loading}
-        element-loading-background="rgba(255, 255, 255, 0.5)"
-      >
-        <div class="nm-select-input">
-          <el-select
-            placeholder="请选择..."
-            value={this.value_}
-            clearable={this.clearable}
-            multiple={this.multiple}
-            disabled={this.disabled}
-            size={this.fontSize}
-            filterable={this.filterable}
-            multipleLimit={this.multipleLimit}
-            placeholder={this.placeholder}
-            vOn:change={this.onChange}
-            vOn:visible-change={this.onVisibleChange}
-            vOn:remove-tag={this.onRemoveTag}
-            vOn:clear={this.onClear}
-            vOn:blur={this.onBlur}
-            vOn:focus={this.onFocus}
-          >
-            {this.$scopedSlots.default
-              ? this.$scopedSlots.default({ options: this.options })
-              : this.options.map(item => {
-                  return (
-                    <el-option
-                      label={item.label}
-                      value={item.value}
-                      disabled={item.disabled}
-                    />
-                  )
-                })}
-            {this.icon ? <nm-icon name={this.icon} slot="prefix" /> : ''}
-          </el-select>
-        </div>
-        <div class="nm-select-button">
-          <nm-button
-            v-show={this.showRefresh}
-            icon="refresh"
-            class="nm-select-botton-refresh"
-            vOn:click={this.refresh}
-          />
-        </div>
-      </div>
+    let options = []
+    if (this.$scopedSlots.default) {
+      options = [this.$scopedSlots.default({ options: this.options })]
+    } else {
+      options = this.options.map(item => {
+        return h('el-option', {
+          props: {
+            label: item.label,
+            value: item.value,
+            disabled: item.disabled
+          }
+        })
+      })
+    }
+    if (this.icon) {
+      options.push(h('nm-icon', { props: { name: this.icon }, slot: 'prefix' }))
+    }
+    return h(
+      'div',
+      {
+        class: 'nm-select',
+        attrs: {
+          'element-loading-background': 'rgba(255, 255, 255, 0.5)'
+        },
+        directives: [
+          {
+            name: 'loading',
+            value: this.loading
+          }
+        ]
+      },
+      [
+        h(
+          'div',
+          {
+            class: 'nm-select-input'
+          },
+          [
+            h(
+              'el-select',
+              {
+                props: {
+                  value: this.value_,
+                  clearable: this.clearable,
+                  multiple: this.multiple,
+                  disabled: this.disabled,
+                  size: this.fontSize,
+                  filterable: this.filterable,
+                  multipleLimit: this.multipleLimit,
+                  placeholder: this.placeholder
+                },
+                on: {
+                  change: this.onChange,
+                  'visible-change': this.onVisibleChange,
+                  'remove-tag': this.onRemoveTag,
+                  clear: this.onClear,
+                  blur: this.onBlur,
+                  focus: this.onFocus
+                }
+              },
+              options
+            )
+          ]
+        ),
+        h(
+          'div',
+          {
+            class: 'nm-select-button'
+          },
+          [
+            h('nm-button', {
+              class: '',
+              props: {
+                icon: 'refresh'
+              },
+              directives: [
+                {
+                  name: 'show',
+                  value: this.showRefresh
+                }
+              ],
+              on: {
+                click: this.refresh
+              }
+            })
+          ]
+        )
+      ]
     )
+    /** JSX方式，老是存在编译不了的情况，取消该方式 */
+
+    // return (
+    //   <div
+    //     class="nm-select"
+    //     v-loading={this.loading}
+    //     element-loading-background="rgba(255, 255, 255, 0.5)"
+    //   >
+    //     <div class="nm-select-input">
+    //       <el-select
+    //         placeholder="请选择..."
+    //         value={this.value_}
+    //         clearable={this.clearable}
+    //         multiple={this.multiple}
+    //         disabled={this.disabled}
+    //         size={this.fontSize}
+    //         filterable={this.filterable}
+    //         multipleLimit={this.multipleLimit}
+    //         placeholder={this.placeholder}
+    //         vOn:change={this.onChange}
+    //         vOn:visible-change={this.onVisibleChange}
+    //         vOn:remove-tag={this.onRemoveTag}
+    //         vOn:clear={this.onClear}
+    //         vOn:blur={this.onBlur}
+    //         vOn:focus={this.onFocus}
+    //       >
+    //         {this.$scopedSlots.default
+    //           ? this.$scopedSlots.default({ options: this.options })
+    //           : this.options.map(item => {
+    //             return (
+    //               <el-option
+    //                 label={item.label}
+    //                 value={item.value}
+    //                 disabled={item.disabled}
+    //               />
+    //             )
+    //           })}
+    //         {this.icon ? <nm-icon name={this.icon} slot="prefix" /> : ''}
+    //       </el-select>
+    //     </div>
+    //     <div class="nm-select-button">
+    //       <nm-button
+    //         v-show={this.showRefresh}
+    //         icon="refresh"
+    //         class="nm-select-botton-refresh"
+    //         vOn:click={this.refresh}
+    //       />
+    //     </div>
+    //   </div>
+    // )
   }
 }

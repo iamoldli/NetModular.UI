@@ -11,7 +11,7 @@ export default {
   computed: {
     ...mapState('app/system', { loginOptions: s => s.loginOptions }),
     type() {
-      return this.loginOptions.type
+      return this.loginOptions.type || 'default'
     }
   }
 }

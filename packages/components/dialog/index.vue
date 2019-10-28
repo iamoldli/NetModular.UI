@@ -159,7 +159,6 @@ export default {
       return !this.draggable && this.modal
     },
     closeOnClickModal_() {
-      console.log(this.closeOnClickModal)
       if (this.closeOnClickModal === null) {
         return this.dialogCloseOnClickModal
       }
