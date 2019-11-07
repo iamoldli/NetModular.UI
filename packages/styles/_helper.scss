@@ -2,52 +2,81 @@
 
 /*页*/
 .page {
-    height: 100%;
+    height: 100% !important;
 }
 
-/*文本颜色*/
+/*文本*/
 #{$prefix}text {
+
+    /*颜色*/
     &-info {
-        color: $color-info;
+        color: $color-info !important;
     }
 
     &-primary {
-        color: $color-primary;
+        color: $color-primary !important;
     }
 
     &-success {
-        color: $color-success;
+        color: $color-success !important;
     }
 
     &-warning {
-        color: $color-warning;
+        color: $color-warning !important;
     }
 
     &-danger {
-        color: $color-danger;
+        color: $color-danger !important;
+    }
+
+    &-white {
+        color: #fff !important;
+    }
+
+    /*对齐*/
+    &-center {
+        text-align: center !important;
+    }
+
+    &-left {
+        text-align: left !important;
+    }
+
+    &-right {
+        text-align: right !important;
+    }
+
+    /*加粗*/
+    &-bold {
+        font-weight: bold !important;
+    }
+
+    /*换行*/
+    &-wrap {
+        white-space: normal !important;
     }
 }
 
 /*背景颜色*/
 #{$prefix}bg {
     &-info {
-        background-color: $color-info;
+        background-color: $color-info !important;
     }
 
     &-primary {
-        background-color: $color-primary;
+        background-color: $color-primary !important;
     }
 
     &-success {
-        background-color: $color-success;
+        background-color: $color-success !important;
     }
 
     &-warning {
-        background-color: $color-warning;
+        background-color: $color-warning !important;
     }
 
     &-danger {
-        background-color: $color-danger;
+        background-color: $color-danger !important;
     }
 }
 
@@ -104,15 +133,8 @@
     }
 }
 
-
-.nm-center {
-    text-align: center;
-}
-
-.nm-left {
-    text-align: left;
-}
-
-.nm-right {
-    text-align: right;
+/*阴影*/
+#{$prefix}box-shadow {
+    box-shadow: 0 0 8px 0 rgba(232, 237, 250, 0.6),
+        0 2px 4px 0 rgba(232, 237, 250, 0.5);
 }

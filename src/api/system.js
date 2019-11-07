@@ -8,6 +8,7 @@ const get = () => {
     logo,
     /** 默认页 */
     home: '/home',
+    permissionValidate: false,
     loginOptions: {
       type: 'default'
     },
