@@ -110,9 +110,21 @@ export default {
         callbacks.push(m.callback)
       }
 
+      // 登录组件例表
+      system.loginOptions.typeOptions = ['default']
+
       // 添加全局组件
       if (m.components) {
-        m.components.map(c => globalComponents.push(c))
+        m.components.map(c => {
+          globalComponents.push(c)
+
+          // 判断是否是登录组件
+          if (c.name.startsWith('nm-login-')) {
+            system.loginOptions.typeOptions.push(
+              c.name.replace('nm-login-', '')
+            )
+          }
+        })
       }
     })
 

@@ -1,13 +1,11 @@
 <template>
   <div>
-    <default v-if="type==='default'" />
+    <component v-bind:is="`nm-login-${type}`"></component>
   </div>
 </template>
 <script>
 import { mapState } from 'vuex'
-import Default from '../../components/login/default/'
 export default {
-  components: { Default },
   computed: {
     ...mapState('app/system', { loginOptions: s => s.loginOptions }),
     type() {

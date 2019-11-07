@@ -50,11 +50,13 @@
         </el-form>
       </div>
     </div>
+    <div class="copyright">{{copyright}}</div>
   </div>
 </template>
 <script>
 import { mapState, mapActions } from 'vuex'
 export default {
+  name: 'LoginDefault',
   data() {
     const _this = this
     return {
@@ -95,7 +97,8 @@ export default {
       title: s => s.title,
       logo: s => s.logo,
       loginOptions: s => s.loginOptions,
-      getVerifyCode: s => s.actions.getVerifyCode
+      getVerifyCode: s => s.actions.getVerifyCode,
+      copyright: s => s.copyright
     })
   },
   mounted() {
@@ -162,7 +165,7 @@ export default {
     left: 0;
     right: 0;
     opacity: 0.55;
-    background-image: url("./img/bg.jpg");
+    background-image: url("../../../public/images/bg3.jpg");
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -238,6 +241,15 @@ export default {
   }
   .el-input__inner {
     padding-left: 35px !important;
+  }
+
+  .copyright {
+    position: absolute;
+    bottom: 22px;
+    width: 100%;
+    text-align: center;
+    color: #b4783b;
+    font-size: 13px;
   }
 }
 </style>

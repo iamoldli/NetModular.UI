@@ -1,6 +1,6 @@
 import store from './store'
 import routes from './routes'
-
+import login from './views/login'
 export default {
   module: {
     name: 'nm-module-admin',
@@ -9,5 +9,11 @@ export default {
     description: '权限管理'
   },
   routes,
-  store
+  store,
+  components: [
+    {
+      name: 'nm-login-test',
+      component: login
+    }
+  ]
 }
