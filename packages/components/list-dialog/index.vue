@@ -26,7 +26,10 @@ export default {
     /** 标题 */
     title: String,
     /** 图标 */
-    icon: String,
+    icon: {
+      type: String,
+      default: 'list'
+    },
     /** Dialog 的宽度 */
     width: {
       type: String,

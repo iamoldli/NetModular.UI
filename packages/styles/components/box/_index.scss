@@ -84,6 +84,18 @@
             border-top: 1px solid $border-color1;
             text-align: right;
             box-sizing: border-box;
+
+            &.left {
+                text-align: left;
+            }
+
+            &.center {
+                text-align: center;
+            }
+
+            &.right {
+                text-align: right;
+            }
         }
     }
 

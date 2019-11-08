@@ -36,13 +36,13 @@ export default {
     }
   },
   props: {
-    /** 标题 */
-    title: String,
     /** 显示头部 */
     header: {
       type: Boolean,
       default: true
     },
+    /** 标题 */
+    title: String,
     /** box图标 */
     icon: {
       type: String,
@@ -60,12 +60,14 @@ export default {
       type: Function,
       required: true
     },
-    // 自定义验证
-    validate: Function,
+    /** 行内表单 */
+    inline: Boolean,
     /** 标签的宽度 */
     labelWidth: String,
     /** 表单域标签的位置，如果值为 left 或者 right 时，则需要设置 label-width */
     labelPosition: String,
+    // 自定义验证
+    validate: Function,
     /** 是否显示成功提示消息 */
     successMsg: {
       type: Boolean,
@@ -96,6 +98,8 @@ export default {
       type: Boolean,
       default: true
     },
+    /** 自定义重置操作 */
+    customResetFunction: Function,
     /** 是否显示全屏按钮 */
     fullscreen: {
       type: Boolean,
@@ -127,7 +131,9 @@ export default {
         validate: this.validate,
         successMsg: this.successMsg,
         successMsgText: this.successMsgText,
-        disabled: this.disabled
+        disabled: this.disabled,
+        inline: this.inline,
+        customResetFunction: this.customResetFunction
       }
     }
   },

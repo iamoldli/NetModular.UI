@@ -66,7 +66,9 @@ export default {
     /** 显示加载动画 */
     loading: Boolean,
     /** 不显示加载动画 */
-    noLoading: Boolean
+    noLoading: Boolean,
+    /** 自定义重置操作 */
+    customResetFunction: Function
   },
   computed: {
     showLoading() {
@@ -101,8 +103,12 @@ export default {
     },
     /** 重置 */
     reset() {
-      this.resetChildren(this.$refs.form)
-      this.$refs.form.resetFields()
+      if (this.customResetFunction) {
+        this.customResetFunction()
+      } else {
+        this.resetChildren(this.$refs.form)
+        this.$refs.form.resetFields()
+      }
       this.$emit('reset')
     },
     /** 重置子组件 */

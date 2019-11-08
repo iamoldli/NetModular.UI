@@ -4,19 +4,21 @@
       <el-input class="nm-icon-picker-panel-filter" v-model="filter" placeholder="请输入英文或中文名称" clearable></el-input>
     </template>
     <section class="nm-icon-picker-panel">
-      <div v-for="icon in iconList" :key="icon.code" class="nm-icon-picker-panel-item" @click="onSelect(icon)">
-        <nm-icon :name="icon.code" />
-      </div>
+      <el-tooltip v-for="icon in filterList" :key="icon" effect="dark" :content="icon" placement="top">
+        <div class="nm-icon-picker-panel-item" @click="onSelect(icon)">
+          <nm-icon :name="icon" />
+        </div>
+      </el-tooltip>
     </section>
   </nm-dialog>
 </template>
 <script>
 import dialog from '../../mixins/components/dialog.js'
-import iconData from './data'
 export default {
   mixins: [dialog],
   data() {
     return {
+      list: [],
       filter: '',
       dialog: {
         title: '选择图标',
@@ -34,19 +36,19 @@ export default {
     }
   },
   computed: {
-    iconList() {
-      if (!this.filter) { return iconData }
+    filterList() {
+      if (!this.filter) { return this.list }
 
       let list = []
-      iconData.forEach(icon => {
-        if (icon.name.indexOf(this.filter) > -1 || icon.code.indexOf(this.filter) > -1) { list.push(icon) }
+      this.list.forEach(icon => {
+        if (icon.indexOf(this.filter) > -1 || icon.indexOf(this.filter) > -1) { list.push(icon) }
       })
       return list
     }
   },
   methods: {
     onSelect(icon) {
-      this.$emit('success', icon.code)
+      this.$emit('success', icon)
       this.hide()
     },
     onOpen() {
@@ -61,6 +63,15 @@ export default {
     onClosed() {
       this.$emit('closed')
     }
+  },
+  created() {
+    var symbols = document.querySelectorAll('body>svg>symbol')
+    symbols.forEach(m => {
+      this.list.push(m.id.replace('icon-', ''))
+    })
+  },
+  destroyed() {
+    this.list = null
   }
 }
 </script>

@@ -2,7 +2,6 @@ import componentMenus from '../views/components/menus'
 let menus = []
 // 基础组件
 menus = menus.concat(componentMenus)
-
 const setId = (menus, parentId) => {
   menus.map((m, i) => {
     if (parentId) {

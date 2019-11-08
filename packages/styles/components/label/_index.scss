@@ -1,18 +1,17 @@
 #{$prefix}label {
-    margin: 0 3px;
-    padding: 2px 5px;
     display: inline-block;
-    height: 20px;
-    line-height: 20px;
     text-align: center;
     white-space: nowrap;
     color: #fff;
-    background: $color-info;
+    margin-right: 5px;
+    padding: 2px 10px;
+    font-size: 17px;
+    @include vertical-center(32px);
 
     &.arrowed,
     &.arrowed-in {
         position: relative;
-        margin-left: 5px;
+        margin-left: 10px;
 
         &::before {
             content: "";
@@ -20,28 +19,30 @@
             position: absolute;
             top: 0;
             border: 1px solid transparent;
-            border-right-color: $color-info;
-            border-width: 12px 6px;
+            border-width: 18px 8px;
         }
     }
 
     &.arrowed {
+        padding-left: 8px;
+
         &::before {
-            left: -12px;
+            left: -16px;
         }
     }
 
     &.arrowed-in {
+        padding-left: 8px;
+
         &::before {
-            left: -6px;
-            border-color: $color-info $color-info $color-info transparent;
+            left: -9px;
         }
     }
 
     &.arrowed-right,
     &.arrowed-right-in {
         position: relative;
-        margin-right: 5px;
+        margin-right: 12px;
 
         &::after {
             content: "";
@@ -49,136 +50,239 @@
             position: absolute;
             top: 0;
             border: 1px solid transparent;
-            border-left-color: $color-info;
-            border-width: 12px 6px;
+            border-width: 18px 8px;
         }
     }
 
     &.arrowed-right {
+        padding-right: 5px;
+
         &::after {
-            right: -12px;
+            right: -16px;
         }
     }
 
     &.arrowed-right-in {
+        padding-right: 5px;
+
         &::after {
-            right: -6px;
-            border-color: $color-info transparent $color-info $color-info;
+            right: -9px;
         }
     }
 
-    &-success {
-        background: $color-success;
+    @mixin label-type($color) {
+        background: $color;
 
         &.arrowed {
             &::before {
-                border-right-color: $color-success;
+                border-right-color: $color;
             }
         }
 
         &.arrowed-in {
             &::before {
-                border-color: $color-success $color-success $color-success transparent;
+                border-color: $color $color $color transparent;
             }
         }
 
         &.arrowed-right {
             &::after {
-                border-left-color: $color-success;
+                border-left-color: $color;
             }
         }
 
         &.arrowed-right-in {
             &::after {
-                right: -6px;
-                border-color: $color-success transparent $color-success $color-success;
+                border-color: $color transparent $color $color;
             }
         }
+    }
+
+    @include label-type($color-info);
+
+    &-success {
+        @include label-type($color-success);
     }
 
     &-primary {
-        background: $color-primary;
-
-        &.arrowed {
-            &::before {
-                border-right-color: $color-primary;
-            }
-        }
-
-        &.arrowed-in {
-            &::before {
-                border-color: $color-primary $color-primary $color-primary transparent;
-            }
-        }
-
-        &.arrowed-right {
-            &::after {
-                border-left-color: $color-primary;
-            }
-        }
-
-        &.arrowed-right-in {
-            &::after {
-                right: -6px;
-                border-color: $color-primary transparent $color-primary $color-primary;
-            }
-        }
+        @include label-type($color-primary);
     }
 
     &-warning {
-        background: $color-warning;
+        @include label-type($color-warning);
+    }
+
+    &-danger {
+        @include label-type($color-danger);
+    }
+
+    &.medium {
+        margin-right: 5px;
+        padding: 2px 10px;
+        font-size: 16px;
+        @include vertical-center(28px);
+
+        &.arrowed,
+        &.arrowed-in {
+            margin-left: 10px;
+
+            &::before {
+                border-width: 16px 8px;
+            }
+        }
 
         &.arrowed {
+            padding-left: 8px;
+
             &::before {
-                border-right-color: $color-warning;
+                left: -16px;
             }
         }
 
         &.arrowed-in {
+            padding-left: 8px;
+
             &::before {
-                border-color: $color-warning $color-warning $color-warning transparent;
+                left: -9px;
+            }
+        }
+
+        &.arrowed-right,
+        &.arrowed-right-in {
+            margin-right: 12px;
+
+            &::after {
+                border-width: 16px 8px;
             }
         }
 
         &.arrowed-right {
+            padding-right: 5px;
+
             &::after {
-                border-left-color: $color-warning;
+                right: -16px;
             }
         }
 
         &.arrowed-right-in {
+            padding-right: 5px;
+
             &::after {
-                right: -6px;
-                border-color: $color-warning transparent $color-warning $color-warning;
+                right: -9px;
             }
         }
     }
 
-    &-danger {
-        background: $color-danger;
+    &.small {
+        margin-right: 5px;
+        padding: 2px 10px;
+        font-size: 14px;
+        @include vertical-center(24px);
+
+        &.arrowed,
+        &.arrowed-in {
+            margin-left: 10px;
+
+            &::before {
+                border-width: 14px 6px;
+            }
+        }
 
         &.arrowed {
+            padding-left: 8px;
+
             &::before {
-                border-right-color: $color-danger;
+                left: -12px;
             }
         }
 
         &.arrowed-in {
+            padding-left: 5px;
+
             &::before {
-                border-color: $color-danger $color-danger $color-danger transparent;
+                left: -9px;
+            }
+        }
+
+        &.arrowed-right,
+        &.arrowed-right-in {
+            margin-right: 12px;
+
+            &::after {
+                border-width: 14px 6px;
             }
         }
 
         &.arrowed-right {
+            padding-right: 5px;
+
             &::after {
-                border-left-color: $color-danger;
+                right: -12px;
             }
         }
 
         &.arrowed-right-in {
+            padding-right: 5px;
+
             &::after {
-                right: -6px;
-                border-color: $color-danger transparent $color-danger $color-danger;
+                right: -9px;
+            }
+        }
+    }
+
+    &.mini {
+        margin-right: 5px;
+        padding: 2px 7px;
+        font-size: 12px;
+        @include vertical-center(20px);
+
+        &.arrowed,
+        &.arrowed-in {
+            margin-left: 10px;
+
+            &::before {
+                border-width: 12px 5px;
+            }
+        }
+
+        &.arrowed {
+            padding-left: 3px;
+
+            &::before {
+                left: -10px
+            }
+        }
+
+        &.arrowed-in {
+            padding-left: 3px;
+
+            &::before {
+                left: -9px;
+            }
+        }
+
+        &.arrowed-right,
+        &.arrowed-right-in {
+            margin-right: 12px;
+
+            &::after {
+                border-width: 12px 5px;
+            }
+        }
+
+        &.arrowed-right {
+            padding-right: 5px;
+
+            &::after {
+                right: -10px;
+            }
+        }
+
+        &.arrowed-right-in {
+            padding-right: 5px;
+
+            &::after {
+                right: -9px;
             }
         }
     }

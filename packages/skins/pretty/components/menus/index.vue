@@ -3,7 +3,7 @@
     <el-scrollbar>
       <el-menu :default-active="active" :unique-opened="menuUniqueOpened" :collapse="collapse" :collapse-transition="false">
         <template v-for="item in menus">
-          <menu-item v-if="item.show" :key="item.id" :menu="item"/>
+          <menu-item v-if="item.show" :key="item.id" :menu="item" />
         </template>
       </el-menu>
     </el-scrollbar>
@@ -20,7 +20,7 @@ export default {
     ...mapState('app/page', ['current']),
     ...mapState('app/skins/pretty/sidebar', ['collapse']),
     active: {
-      get () {
+      get() {
         if (this.current.name && this.routeMenus) {
           let routeMenu = this.routeMenus.get(this.current.name)
 
@@ -30,7 +30,7 @@ export default {
         }
         return '-1'
       },
-      set () { }
+      set() { }
     }
   }
 }

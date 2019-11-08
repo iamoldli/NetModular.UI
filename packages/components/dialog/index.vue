@@ -99,10 +99,10 @@ export default {
       type: [Number, String],
       default: '50%'
     },
-    /** 内边距 */
-    padding: Number,
     /** Dialog 的高度 */
     height: [Number, String],
+    /** 内边距 */
+    padding: Number,
     /** 显示尾部 */
     footer: Boolean,
     /** 是否需要遮罩层 */
@@ -125,10 +125,7 @@ export default {
     /** 是否显示全屏按钮 */
     fullscreen: Boolean,
     /** 不包含滚动条 */
-    noScrollbar: {
-      type: Boolean,
-      default: false
-    },
+    noScrollbar: Boolean,
     /** 显示加载动画 */
     loading: Boolean,
     /** 可拖拽的 */
@@ -175,15 +172,21 @@ export default {
     ...mapActions('app/dialog', ['open']),
     /** 全屏切换 */
     toggerFullscreen() {
-      this.hasFullscreen = !this.hasFullscreen
+      if (this.hasFullscreen) {
+        this.closeFullscreen()
+      } else {
+        this.openFullscreen()
+      }
     },
     /** 开启全屏 */
     openFullscreen() {
       this.hasFullscreen = true
+      this.$emit('fullscreen-change', this.hasFullscreen)
     },
     /** 关闭全屏 */
     closeFullscreen() {
       this.hasFullscreen = false
+      this.$emit('fullscreen-change', this.hasFullscreen)
     },
     /** 关闭对话框 */
     close() {
@@ -258,6 +261,8 @@ export default {
 
         // 防止鼠标选中抽屉中文字，造成拖动trigger触发浏览器原生拖动行为
         window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty()
+        on(document, 'mousemove', this.handleDragMove)
+        on(document, 'mouseup', this.handleDragUp)
       }
     },
     /**
@@ -288,6 +293,8 @@ export default {
      */
     handleDragUp(e) {
       this.isDragDown = false
+      off(document, 'mousemove', this.handleDragMove)
+      off(document, 'mouseup', this.handleDragUp)
     },
     onOpen() {
       this.$nextTick(() => {
@@ -332,8 +339,6 @@ export default {
     this.open().then(id => {
       this.id = 'nm-dialog-' + id
     })
-    on(document, 'mousemove', this.handleDragMove)
-    on(document, 'mouseup', this.handleDragUp)
   },
   destroyed() {
     off(document, 'mousemove', this.handleDragMove)

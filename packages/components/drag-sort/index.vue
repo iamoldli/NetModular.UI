@@ -38,7 +38,7 @@ export default {
         item.sort = index
       })
       this.$emit('input', this.list)
-      this.$emit('end')
+      this.$emit('end', this.list)
     }
   },
   watch: {

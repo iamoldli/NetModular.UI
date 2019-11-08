@@ -12,7 +12,7 @@ export default {
   store,
   components: [
     {
-      name: 'nm-login-test',
+      name: 'nm-login-auto',
       component: login
     }
   ]

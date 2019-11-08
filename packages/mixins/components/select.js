@@ -16,7 +16,10 @@ export default {
     // 多选
     multiple: Boolean,
     // 可清空
-    clearable: Boolean,
+    clearable: {
+      type: Boolean,
+      default: true
+    },
     // 禁用
     disabled: Boolean,
     // 是否可搜索
@@ -36,7 +39,7 @@ export default {
     /** 是否默认选中第一个 */
     checkedFirst: Boolean,
     /** 头部的图标 */
-    icon: ''
+    icon: String
   },
   computed: {
     selection() {

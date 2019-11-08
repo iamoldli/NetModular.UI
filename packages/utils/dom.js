@@ -16,24 +16,24 @@ const camelCase = function(name) {
 /**
  * @description 绑定事件
  */
-export const on = function() {
+export const on = (function() {
   return function(element, event, handler) {
     if (element && event && handler) {
       element.addEventListener(event, handler, false)
     }
   }
-}
+})()
 
 /**
  * @description 删除事件
  */
-export const off = function() {
+export const off = (function() {
   return function(element, event, handler) {
     if (element && event) {
       element.removeEventListener(event, handler, false)
     }
   }
-}
+})()
 
 /**
  * @description 绑定一次事件

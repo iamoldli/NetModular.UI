@@ -1,24 +1,24 @@
 <template>
   <nm-container>
-    <nm-box page header :title="title" :icon="icon">
+    <nm-box class="nm-tmpl" page header :title="title" :icon="icon">
       <div>
-        <slot/>
+        <slot />
       </div>
-      <nm-attributes v-if="attrs" :data="attrs"/>
+      <nm-attributes v-if="attrs" :data="attrs" />
       <div>
-        <slot name="after-attrs"/>
+        <slot name="after-attrs" />
       </div>
-      <nm-slots v-if="slots" :data="slots"/>
+      <nm-slots v-if="slots" :data="slots" />
       <div>
-        <slot name="after-slots"/>
+        <slot name="after-slots" />
       </div>
-      <nm-methods v-if="methods" :data="methods"/>
+      <nm-methods v-if="methods" :data="methods" />
       <div>
-        <slot name="after-methods"/>
+        <slot name="after-methods" />
       </div>
-      <nm-events v-if="events" :data="events"/>
+      <nm-events v-if="events" :data="events" />
       <div>
-        <slot name="after-events"/>
+        <slot name="after-events" />
       </div>
     </nm-box>
   </nm-container>
@@ -54,11 +54,24 @@ export default {
 }
 </script>
 <style lang="scss">
-.nm-tmpl-box {
-  margin-bottom: 30px;
-  &-title {
-    margin: 10px 0;
-    font-size: 25px;
+.nm-tmpl {
+  &-box {
+    margin-bottom: 30px;
+    &-title {
+      margin: 10px 0;
+      font-size: 25px;
+    }
+  }
+  .el-alert__title {
+    font-size: 17px;
+  }
+
+  .el-alert__description {
+    margin-top: 10px;
+    font-size: 15px;
+    p {
+      margin-bottom: 10px;
+    }
   }
 }
 </style>

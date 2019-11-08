@@ -8,34 +8,19 @@ export default {
   name: 'Label',
   props: {
     /** 显示文本 */
-    text: {
-      type: String,
-      default: ''
-    },
-    type: {
-      type: String,
-      default: ''
-    },
+    text: String,
+    /** 类型 */
+    type: String,
     /** 左边箭头 */
-    arrowed: {
-      type: Boolean,
-      default: false
-    },
+    arrowed: Boolean,
     /** 左侧内箭头 */
-    arrowedIn: {
-      type: Boolean,
-      default: false
-    },
+    arrowedIn: Boolean,
     /** 右侧箭头 */
-    arrowedRight: {
-      type: Boolean,
-      default: false
-    },
+    arrowedRight: Boolean,
     /** 右侧内箭头 */
-    arrowedRightIn: {
-      type: Boolean,
-      default: false
-    }
+    arrowedRightIn: Boolean,
+    /** 尺寸 */
+    size: String
   },
   computed: {
     class_() {
@@ -45,7 +30,8 @@ export default {
         this.arrowed ? 'arrowed' : '',
         this.arrowedIn ? 'arrowed-in' : '',
         this.arrowedRight ? 'arrowed-right' : '',
-        this.arrowedRightIn ? 'arrowed-right-in' : ''
+        this.arrowedRightIn ? 'arrowed-right-in' : '',
+        this.size || this.fontSize
       ]
     }
   }

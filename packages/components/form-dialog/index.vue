@@ -71,6 +71,11 @@ export default {
       type: Function,
       required: true
     },
+    /** 行内表单 */
+    inline: {
+      type: Boolean,
+      default: false
+    },
     /** 标签的宽度 */
     labelWidth: String,
     /** 表单域标签的位置，如果值为 left 或者 right 时，则需要设置 label-width */
@@ -156,7 +161,9 @@ export default {
         validate: this.validate,
         successMsg: this.successMsg,
         successMsgText: this.successMsgText,
-        disabled: this.disabled
+        disabled: this.disabled,
+        inline: this.inline,
+        customResetFunction: this.customResetFunction
       }
     },
     showLoading() {
@@ -171,11 +178,7 @@ export default {
     },
     /** 重置 */
     reset() {
-      if (this.customResetFunction) {
-        this.customResetFunction()
-      } else {
-        this.$refs.form.reset()
-      }
+      this.$refs.form.reset()
       this.$emit('reset')
     },
     /** 清除验证信息 */

@@ -1,6 +1,6 @@
 <template>
   <el-scrollbar ref="bar" :class="['nm-scrollbar',horizontal?'is-horizontal':'']">
-    <slot/>
+    <slot />
   </el-scrollbar>
 </template>
 <script>
@@ -11,7 +11,8 @@ export default {
     horizontal: Boolean
   },
   methods: {
-    update () {
+    // 重绘滚动条
+    update() {
       this.$refs.bar.update()
     }
   }

@@ -15,7 +15,6 @@ import echarts from 'echarts'
 import VCharts from 'v-charts'
 // 皮肤
 import SkinPretty from './skins/pretty/index'
-
 // 皮肤集合
 let skins = [SkinPretty]
 

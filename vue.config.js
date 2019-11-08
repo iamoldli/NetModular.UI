@@ -9,7 +9,7 @@ module.exports = {
   devServer: {
     port: 6220
   },
-  publicPath: './',
+  publicPath: '/docs/ui',
   transpileDependencies: ['nm-lib-.*', 'element-ui'],
   configureWebpack: {
     resolve: {
@@ -20,6 +20,14 @@ module.exports = {
         '@views': path.resolve(__dirname, './src/views'),
         vue$: 'vue/dist/vue.common'
       }
+    },
+    module: {
+      rules: [
+        {
+          test: /^demo.vue$/,
+          use: 'raw-loader'
+        }
+      ]
     }
   },
   chainWebpack: config => {

@@ -1,8 +1,8 @@
 <template>
   <nm-dialog v-bind="dialog" :visible.sync="visible_" @open="onOpen">
-    <nm-drag-sort v-model="model.options"/>
+    <nm-drag-sort v-model="model.options" />
     <template v-slot:footer>
-      <nm-button type="success" text="保存" @click="onUpdate"/>
+      <nm-button type="success" text="保存" @click="onUpdate" />
     </template>
   </nm-dialog>
 </template>
@@ -70,7 +70,7 @@ export default {
       this.loading = true
       this.updateAction(this.model).then(() => {
         this.loading = false
-        this.$emit('success')
+        this.$emit('success', this.model.options)
         this._success('保存成功', () => {
           if (this.closeOnSuccess) {
             this.visible_ = false

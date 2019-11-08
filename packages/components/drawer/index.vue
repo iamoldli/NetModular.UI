@@ -120,7 +120,7 @@ export default {
     },
     /** 自定义class */
     customClass: String,
-    /** 全屏按钮 */
+    /** 是否显示全屏按钮 */
     fullscreen: {
       type: Boolean,
       default: true
@@ -177,10 +177,9 @@ export default {
     /** 全屏事件 */
     onFullscreen() {
       if (this.fullscreen) {
-        this.fullscreen_ = !this.fullscreen_
-
-        // 全屏事件
-        this.$emit('fullscreen-change', this.fullscreen_)
+        this.closeFullscreen()
+      } else {
+        this.openFullscreen()
       }
     },
     onModalClick() {
@@ -190,9 +189,12 @@ export default {
     },
     /** 拖拽按钮鼠标按下事件 */
     onTriggerMousedown() {
+      if (!this.draggable) return
       this.canMove = true
       // 防止鼠标选中抽屉中文字，造成拖动trigger触发浏览器原生拖动行为
       window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty()
+      on(document, 'mousemove', this.onMousemove)
+      on(document, 'mouseup', this.onMouseup)
     },
     onMousemove(event) {
       if (!this.canMove || !this.draggable) return
@@ -210,12 +212,12 @@ export default {
     onMouseup() {
       if (!this.draggable) return
       this.canMove = false
+      off(document, 'mousemove', this.onMousemove)
+      off(document, 'mouseup', this.onMouseup)
     }
   },
   mounted() {
     this.append()
-    on(document, 'mousemove', this.onMousemove)
-    on(document, 'mouseup', this.onMouseup)
   },
   destroyed() {
     off(document, 'mousemove', this.onMousemove)

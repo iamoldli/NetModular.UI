@@ -23,22 +23,22 @@ export default {
   },
   props: {
     value: String,
+    /** 上传地址 */
+    action: {
+      type: String,
+      required: true
+    },
     name: String,
     /** 按钮类型 */
     btnType: {
       type: String,
       default: 'primary'
     },
-    /** 不显示按钮 */
+    /** 不显示图标 */
     noIcon: Boolean,
-    /** 上传地址 */
-    action: {
-      type: String,
-      required: true
-    },
     /** 额外的数据 */
     data: Object,
-    /** 文件最大值 */
+    /** 文件最大大小 */
     maxSize: String,
     /** 接受上传的文件类型 */
     accept: String

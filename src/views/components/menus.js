@@ -2,7 +2,32 @@ import { loadMenu } from '@/utils/menus-loader'
 
 // 基础组件菜单
 const propertyPath = '_index/page.js'
-let componentMenus = []
+let componentMenus = [
+  {
+    name: '基础组件',
+    type: 0,
+    icon: 'database',
+    level: 1,
+    show: true,
+    children: []
+  },
+  {
+    name: '表单组件',
+    type: 0,
+    icon: 'form',
+    level: 1,
+    show: true,
+    children: []
+  },
+  {
+    name: '高级组件',
+    type: 0,
+    icon: 'product',
+    level: 1,
+    show: true,
+    children: []
+  }
+]
 const requireComponent = require.context('./', true, /\page.js$/)
 
 requireComponent
@@ -20,7 +45,9 @@ requireComponent
       type: 0,
       name: page.title,
       icon: page.icon,
-      level: 2
+      level: 2,
+      show: true,
+      children: []
     })
     let parentPath = fileName.replace(propertyPath, '')
     requireComponent
@@ -41,6 +68,9 @@ requireComponent
 
         indexMenu.children.push(menu)
       })
-    componentMenus.push(indexMenu)
+
+    let group = page.group || 0
+    componentMenus[group].children.push(indexMenu)
   })
+
 export default componentMenus

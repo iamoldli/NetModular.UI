@@ -9,7 +9,10 @@ export default {
   computed: {
     ...mapState('app/system', { loginOptions: s => s.loginOptions }),
     type() {
-      return this.loginOptions.type || 'default'
+      if (!this.loginOptions.type || !this.loginOptions.typeOptions.includes(this.loginOptions.type)) {
+        return 'default'
+      }
+      return this.loginOptions.type
     }
   }
 }

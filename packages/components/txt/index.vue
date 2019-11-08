@@ -1,5 +1,5 @@
 <template>
-  <div :class="['nm-txt', 'nm-text-' + this.type,{'nm-text-icon':icon}]">
+  <div :class="['nm-txt', 'nm-text-' + this.type,'nm-size-' + this.size,{'nm-text-icon':icon}]">
     <nm-icon v-if="icon" :name="type" />
     <slot>{{text}}</slot>
   </div>
@@ -16,7 +16,12 @@ export default {
       default: 'warning'
     },
     /** 显示图标 */
-    icon: Boolean
+    icon: Boolean,
+    /** 字体大小 */
+    size: {
+      type: [Number, String],
+      default: 14
+    }
   }
 }
 </script>

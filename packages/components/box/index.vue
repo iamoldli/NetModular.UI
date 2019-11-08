@@ -44,7 +44,7 @@
           </section>
           <slot v-else />
         </section>
-        <footer v-if="footer" class="nm-box-footer">
+        <footer v-if="footer" :class="['nm-box-footer',footerAlign]">
           <slot name="footer"></slot>
         </footer>
       </section>
@@ -70,6 +70,11 @@ export default {
     header: Boolean,
     /** 是否显示底部 */
     footer: Boolean,
+    /** 底部对齐方式 */
+    footerAlign: {
+      type: String,
+      default: 'right'
+    },
     /** 高度 */
     height: String,
     /** 是否显示顶部边框 */
@@ -83,8 +88,6 @@ export default {
     titleBold: Boolean,
     /** 是否显示水平滚动条 */
     horizontal: Boolean,
-    /** 自定义折叠事件 */
-    customCollapseEvent: Function,
     /** loading */
     loading: Boolean,
     /** 是否页模式 */
@@ -93,14 +96,14 @@ export default {
     fullscreen: Boolean,
     /** 是否显示折叠按钮 */
     collapse: Boolean,
-    /** 是否显示滚动条 */
+    /** 自定义折叠事件 */
+    customCollapseEvent: Function,
+    /** 不显示滚动条 */
     noScrollbar: Boolean,
     /** 没有内边距 */
     noPadding: Boolean,
     /** 是否显示刷新按钮 */
-    refresh: Boolean,
-    /** 刷新按钮点击事件 */
-    refreshAction: Function
+    refresh: Boolean
   },
   computed: {
     ...mapState('app/loading', { loadingText: 'text', loadingBackground: 'background', loadingSpinner: 'spinner' }),
@@ -169,19 +172,15 @@ export default {
     },
     /** 全屏事件 */
     onFullscreen() {
-      if (this.fullscreen) {
-        this.fullscreen_ = !this.fullscreen_
-
-        // 全屏事件
-        this.$emit('fullscreen-change', this.fullscreen_)
+      if (this.fullscreen_) {
+        this.closeFullscreen()
+      } else {
+        this.openFullscreen()
       }
     },
+    /** 刷新按钮事件 */
     onRefresh() {
-      if (this.refreshAction) {
-        this.refreshAction().then(() => {
-          this.$emit('refresh')
-        })
-      }
+      this.$emit('refresh')
     }
   }
 }

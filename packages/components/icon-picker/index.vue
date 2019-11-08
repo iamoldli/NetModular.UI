@@ -3,14 +3,14 @@
     <div class="nm-icon-picker-input">
       <el-input :placeholder="placeholder" v-model="icon" @change="onChange">
         <template v-slot:prepend>
-          <nm-icon :name="icon"/>
+          <nm-icon :name="icon" />
         </template>
       </el-input>
     </div>
     <div class="nm-icon-picker-button">
-      <nm-button icon="search" @click="panelVisible=true"/>
+      <nm-button icon="search" @click="panelVisible=true" />
     </div>
-    <panel :visible.sync="panelVisible" @success="onSelect"/>
+    <panel :visible.sync="panelVisible" @success="onSelect" />
   </section>
 </template>
 <script>
@@ -18,7 +18,7 @@ import Panel from './panel'
 export default {
   name: 'IconPicker',
   components: { Panel },
-  data () {
+  data() {
     return {
       icon: this.value,
       panelVisible: false
@@ -29,18 +29,22 @@ export default {
     placeholder: String
   },
   methods: {
-    onChange (val) {
+    onChange(val) {
       this.$emit('input', val)
     },
-    onSelect (icon) {
+    onSelect(icon) {
       if (icon !== '') {
         this.icon = icon
         this.onChange(icon)
       }
+    },
+    reset() {
+      this.icon = ''
+      this.onChange('')
     }
   },
   watch: {
-    value () {
+    value() {
       this.icon = this.value
     }
   }

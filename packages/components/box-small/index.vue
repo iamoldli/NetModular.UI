@@ -39,17 +39,20 @@ export default {
   computed: {
     class_() {
       let classArr = ['nm-box-small']
-      if (['success', 'primary', 'info', 'warning', 'danger'].includes(this.bgColor)) {
+      if (this.includeBgColor) {
         classArr.push(`nm-bg-${this.bgColor}`)
       }
       return classArr
     },
     style_() {
       let style = {}
-      if (!['success', 'primary', 'info', 'warning', 'danger'].includes(this.bgColor)) {
+      if (!this.includeBgColor) {
         style.backgroundColor = this.bgColor
       }
       return style
+    },
+    includeBgColor() {
+      return ['success', 'primary', 'info', 'warning', 'danger'].includes(this.bgColor)
     }
   },
   methods: {

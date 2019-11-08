@@ -249,6 +249,9 @@ export default {
         // 重新绘制布局
         this.$refs.table.doLayout()
         this.loading_ = false
+
+        // 查询事件
+        this.$emit('query', data)
       }).catch(() => {
         this.loading_ = false
       })

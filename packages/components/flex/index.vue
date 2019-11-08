@@ -1,5 +1,5 @@
 <template>
-  <section :class="['nm-flex',direction,fixMode]" :style="{height}">
+  <section :class="['nm-flex',direction,fixMode]" :style="{height,width}">
     <template v-if="direction==='column'">
       <section class="nm-flex_top" :style="{height:fixMode==='top'?fix:''}">
         <slot name="top" />
@@ -32,9 +32,10 @@ export default {
     },
     // 固定宽度或高度
     fix: {
-      type: String
+      type: String,
+      required: true
     },
-    // 固定模块，top、bottom、left、right
+    // 固定模式，top、bottom、left、right
     fixMode: {
       type: String,
       validator(value) {
@@ -43,6 +44,10 @@ export default {
       default: 'top'
     },
     height: {
+      type: String,
+      default: '100%'
+    },
+    width: {
       type: String,
       default: '100%'
     },
