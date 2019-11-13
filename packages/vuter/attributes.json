@@ -1,0 +1,41 @@
+{
+    "icon": {
+        "description": "图标"
+    },
+    "title": {
+        "description": "标题"
+    },
+    "text": {
+        "description": "文本"
+    },
+    "size": {
+        "options": [
+            "medium",
+            "small",
+            "mini"
+        ],
+        "description": "尺寸大小"
+    },
+    "nm-label/type": {
+        "options": [
+            "success",
+            "warning",
+            "info",
+            "danger",
+            "primary"
+        ],
+        "description": "类型"
+    },
+    "arrowed": {
+        "description": "左侧箭头"
+    },
+    "arrowed-in": {
+        "description": "左侧内箭头"
+    },
+    "arrowed-right": {
+        "description": "右侧箭头"
+    },
+    "arrowed-right-in": {
+        "description": "右侧内箭头"
+    }
+}

@@ -1,7 +1,8 @@
 #{$prefix}txt {
-    padding: 3px 0;
+    padding: 2px 0;
     position: relative;
-    font-size: 12px;
+    line-height: 20px;
+    box-sizing: border-box;
 
     &-icon {
         padding-left: 21px;

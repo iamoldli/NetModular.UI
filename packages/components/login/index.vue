@@ -5,7 +5,7 @@
       <div class="nm-login-content">
         <div class="nm-login-logo">
           <img class="nm-login-logo-img" :src="logo" />
-          <h1 class="nm-login-logo-title">{{title}}</h1>
+          <h1 class="nm-login-logo-title">{{ title }}</h1>
         </div>
         <el-form ref="form" :model="form" :rules="rules">
           <el-form-item v-if="loginOptions.accountTypes" prop="accountType">
@@ -50,7 +50,7 @@
         </el-form>
       </div>
     </div>
-    <div class="copyright">{{copyright}}</div>
+    <div class="copyright">{{ copyright }}</div>
   </div>
 </template>
 <script>
@@ -69,25 +69,32 @@ export default {
         accountType: 0
       },
       rules: {
-        userName: [{
-          required: true,
-          message: '请输入用户名',
-          trigger: 'blur'
-        }],
-        password: [{
-          required: true,
-          message: '请输入密码',
-          trigger: 'blur'
-        }],
-        code: [{ validator(rule, value, callback) {
-          if (_this.loginVerifyCode && value === '') {
-            callback(new Error('请输入验证码'))
-          } else {
-            callback()
+        userName: [
+          {
+            required: true,
+            message: '请输入用户名',
+            trigger: 'blur'
           }
-        },
-        trigger: 'blur'
-        }]
+        ],
+        password: [
+          {
+            required: true,
+            message: '请输入密码',
+            trigger: 'blur'
+          }
+        ],
+        code: [
+          {
+            validator(rule, value, callback) {
+              if (_this.loginVerifyCode && value === '') {
+                callback(new Error('请输入验证码'))
+              } else {
+                callback()
+              }
+            },
+            trigger: 'blur'
+          }
+        ]
       },
       loading: false
     }
@@ -102,7 +109,9 @@ export default {
     })
   },
   mounted() {
-    this.refreshVierifyCode()
+    if (this.loginOptions.verifyCode) {
+      this.refreshVierifyCode()
+    }
     document.addEventListener('keydown', e => {
       if (e.keyCode === 13) {
         this.tryLogin()
@@ -111,7 +120,6 @@ export default {
   },
   methods: {
     ...mapActions('app/system', ['login']),
-    ...mapActions('app/token', { initToken: s => s.init }),
     // 刷新验证码
     async refreshVierifyCode() {
       let data = await this.getVerifyCode()
@@ -123,24 +131,27 @@ export default {
       this.$refs.form.validate(async valid => {
         if (valid) {
           this.loading = true
-          this.login(this.form).then(data => {
-            // 初始化令牌
-            this.initToken(data)
 
-            this.loading = false
+          this.login(this.form)
+            .then(data => {
+              // 初始化令牌
+              this.$store.commit('app/token/init', data)
 
-            // 跳转
-            let redirect = this.$route.query.redirect
-            if (!redirect || redirect === '') {
-              redirect = '/'
-            }
+              // 跳转
+              let redirect = this.$route.query.redirect
+              if (!redirect || redirect === '') {
+                redirect = '/'
+              }
 
-            this.$router.push({
-              path: redirect
+              this.loading = false
+
+              this.$router.push({
+                path: redirect
+              })
             })
-          }).catch(() => {
-            this.loading = false
-          })
+            .catch(() => {
+              this.loading = false
+            })
         } else {
           return false
         }
@@ -165,7 +176,7 @@ export default {
     left: 0;
     right: 0;
     opacity: 0.55;
-    background-image: url("../../../public/images/bg3.jpg");
+    background-image: url('../../../public/images/bg3.jpg');
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;

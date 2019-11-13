@@ -1,12 +1,11 @@
 import menus from '../menus'
-import token from './token'
 const login = params => {
   return new Promise((resolve, reject) => {
     if (params.userName === 'admin' && params.password === 'admin') {
-      token.set(
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
-      )
-      resolve()
+      resolve({
+        accessToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
+        refreshToken: ''
+      })
     } else {
       reject(new Error('密码错误'))
     }
@@ -40,7 +39,6 @@ const get = () => {
 }
 
 const skinUpdate = () => {
-  console.log('保存皮肤配置')
   return new Promise(resolve => {
     resolve()
   })

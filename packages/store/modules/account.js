@@ -109,16 +109,16 @@ export default {
     },
     /** 是否拥有指定按钮权限 */
     hasButton({ state }, button) {
-      if (!button || !button.code) return false
-
-      const b = !state.buttons.every(
-        c => c.toLowerCase() !== button.code.toLowerCase()
-      )
+      if (!button || !button.code) return true
+      const b = !state.buttons.every(c => c !== button.code.toLowerCase())
       return b
     }
   },
   mutations: {
     init(state, account) {
+      // 把按钮编码转小写
+      if (account.hasButton) account.buttons = account.buttons.map(b => b.toLowerCase())
+
       Object.assign(state, account)
     },
     initRouteMenus(state, routeMenus) {

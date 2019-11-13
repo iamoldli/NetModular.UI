@@ -94,11 +94,14 @@ export default {
     // 回调方法
     let callbacks = []
 
+    // 登录组件列表
+    system.loginOptions.typeOptions = ['default']
+
     // 加载模块信息
-    system.modules.map(m => {
+    system.modules.forEach(m => {
       // 注入路由信息
       if (m.routes) {
-        m.routes.map(r => routes.push(r))
+        m.routes.forEach(r => routes.push(r))
       }
       // 注入状态信息
       if (m.store) {
@@ -109,19 +112,14 @@ export default {
         callbacks.push(m.callback)
       }
 
-      // 登录组件例表
-      system.loginOptions.typeOptions = ['default']
-
       // 添加全局组件
       if (m.components) {
-        m.components.map(c => {
+        m.components.forEach(c => {
           globalComponents.push(c)
 
           // 判断是否是登录组件
           if (c.name.startsWith('nm-login-')) {
-            system.loginOptions.typeOptions.push(
-              c.name.replace('nm-login-', '')
-            )
+            system.loginOptions.typeOptions.push(c.name.replace('nm-login-', ''))
           }
         })
       }
@@ -140,6 +138,9 @@ export default {
 
     // 加载页面数据
     await store.dispatch('app/system/init', { system, router }, { root: true })
+
+    // 加载本地令牌
+    store.commit('app/token/load', null, { root: true })
 
     Vue.config.productionTip = false
 

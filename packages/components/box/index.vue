@@ -1,12 +1,5 @@
 <template>
-  <section
-    :class="class_"
-    :style="style_"
-    v-loading="loading"
-    :element-loading-text="loadingText"
-    :element-loading-background="loadingBackground"
-    :element-loading-spinner="loadingSpinner"
-  >
+  <section :class="class_" :style="style_" v-loading="loading" :element-loading-text="loadingText" :element-loading-background="loadingBackground" :element-loading-spinner="loadingSpinner">
     <!--头部-->
     <header v-if="header" class="nm-box-header">
       <slot name="header">
@@ -15,7 +8,7 @@
         </div>
         <!--标题-->
         <div class="nm-box-header-title">
-          <slot name="title">{{title}}</slot>
+          <slot name="title">{{ title }}</slot>
         </div>
         <!--工具栏之前-->
         <div class="nm-box-header-toobar-before">
@@ -30,7 +23,7 @@
           <!--刷新按钮-->
           <nm-button v-if="refresh" icon="refresh" @click="onRefresh" />
           <!--折叠按钮-->
-          <nm-button v-if="collapse" :icon="this.collapse_ ? 'angle-down':'angle-up'" @click="onCollapse" />
+          <nm-button v-if="collapse" :icon="this.collapse_ ? 'angle-down' : 'angle-up'" @click="onCollapse" />
         </div>
       </slot>
     </header>
@@ -44,7 +37,7 @@
           </section>
           <slot v-else />
         </section>
-        <footer v-if="footer" :class="['nm-box-footer',footerAlign]">
+        <footer v-if="footer" :class="['nm-box-footer', footerAlign]">
           <slot name="footer"></slot>
         </footer>
       </section>
@@ -117,7 +110,8 @@ export default {
         this.page ? 'page' : '',
         this.noPadding ? 'no-padding' : '',
         this.border ? 'border' : '',
-        this.titleBold ? 'title-bold' : '']
+        this.titleBold ? 'title-bold' : ''
+      ]
 
       if (['success', 'primary', 'info', 'warning', 'danger'].includes(this.borderColor)) {
         classArr.push(this.borderColor)

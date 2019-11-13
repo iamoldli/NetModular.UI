@@ -1,6 +1,6 @@
 {
     "name": "netmodular-ui",
-    "version": "1.0.9",
+    "version": "1.1.0",
     "description": "NetModular前端组件库",
     "author": "Oldli",
     "license": "ISC",
@@ -35,6 +35,7 @@
         "vuex": "^3.1.1"
     },
     "devDependencies": {
+        "@types/lodash": "^4.14.146",
         "@vue/cli-plugin-babel": "^3.11.0",
         "@vue/cli-plugin-eslint": "^3.11.0",
         "@vue/cli-service": "^3.11.0",
@@ -55,8 +56,8 @@
         "vue-template-compiler": "^2.6.10"
     },
     "vetur": {
-        "tags": "packages/helper/tags.json",
-        "attributes": "packages/helper/attributes.json"
+        "tags": "packages/vuter/tags.json",
+        "attributes": "packages/vuter/attributes.json"
     },
     "repository": {
         "type": "git",

@@ -1,8 +1,8 @@
 /** 页面信息 */
 const page = new function() {
   this.title = '示例代码'
-  this.name = 'components-txt-demo1'
-  this.path = '/components/txt/demo1'
+  this.name = 'components-label-demo1'
+  this.path = '/components/label/demo1'
   this.icon = 'develop'
 }()
 

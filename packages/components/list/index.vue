@@ -1,11 +1,5 @@
 <template>
-  <section
-    :class="class_"
-    v-loading="showLoading"
-    :element-loading-text="loadingText||loadingText_"
-    :element-loading-background="loadingBackground"
-    :element-loading-spinner="loadingSpinner"
-  >
+  <section :class="class_" v-loading="showLoading" :element-loading-text="loadingText || loadingText_" :element-loading-background="loadingBackground" :element-loading-spinner="loadingSpinner">
     <!--header-->
     <query-header v-if="!noHeader" :title="title" :icon="icon" :no-fullscreen="noFullscreen" :fullscreen.sync="fullscreen" :no-refresh="noRefresh">
       <template v-slot:toolbar>
@@ -36,9 +30,9 @@
           <template v-slot:header>
             <slot name="col-no-header">序号</slot>
           </template>
-          <template slot-scope="{row,$index}">
+          <template slot-scope="{ row, $index }">
             <div class="nm-list-no">
-              <slot name="col-no" :row="row">{{getNo($index)}}</slot>
+              <slot name="col-no" :row="row">{{ getNo($index) }}</slot>
             </div>
           </template>
         </el-table-column>
@@ -61,12 +55,12 @@
             <template v-slot:header>
               <slot :name="`col-${col.name}-header`">
                 <nm-icon v-if="col.icon" :name="col.icon" />
-                {{col.label}}
+                {{ col.label }}
               </slot>
             </template>
 
-            <template slot-scope="{row}">
-              <slot :name="'col-'+col.name" :row="row" :rows="rows">{{col.format?$dayjs(row[col.name]).format(col.format):row[col.name]}}</slot>
+            <template slot-scope="{ row }">
+              <slot :name="'col-' + col.name" :row="row" :rows="rows">{{ col.format ? $dayjs(row[col.name]).format(col.format) : row[col.name] }}</slot>
             </template>
           </el-table-column>
         </template>
@@ -76,7 +70,7 @@
           <template v-slot:header>
             <slot name="col-operation-header">操作</slot>
           </template>
-          <template slot-scope="{row}">
+          <template slot-scope="{ row }">
             <div class="nm-list-operation">
               <slot name="col-operation" :row="row" :rows="rows" />
             </div>
@@ -87,7 +81,7 @@
 
     <!--footer-->
     <query-footer v-if="!noFooter" v-model="page" :total="total" :columns.sync="columns" :no-select-column="noSelectColumn" :reverse="footerReverse">
-      <slot name="footer" :total="total" :selection="selection" />
+      <slot name="footer" :total="total" :selection="selection" :data="data" />
     </query-footer>
     <slot />
   </section>
@@ -137,6 +131,8 @@ export default {
       },
       // 数据列表
       rows: [],
+      // 扩展数据
+      data: '',
       // 总数量
       total: 0,
       selection: [],
@@ -212,9 +208,7 @@ export default {
   computed: {
     ...mapState('app/loading', { loadingText_: 'text', loadingBackground: 'background', loadingSpinner: 'spinner' }),
     class_() {
-      return ['nm-list',
-        this.fontSize ? `nm-list-${this.fontSize}` : '',
-        this.fullscreen ? 'fullscreen' : '']
+      return ['nm-list', this.fontSize ? `nm-list-${this.fontSize}` : '', this.fullscreen ? 'fullscreen' : '']
     },
     querybar() {
       return {
@@ -233,7 +227,9 @@ export default {
   methods: {
     /** 查询方法 */
     query() {
-      if (this.loading_) { return }
+      if (this.loading_) {
+        return
+      }
 
       this.loading_ = true
       let fullModel = Object.assign({}, this.model)
@@ -241,20 +237,24 @@ export default {
       // 设置分页
       fullModel.page = this.page
 
-      this.action(fullModel).then(data => {
-        this.rows = data.rows
-        this.total = data.total
-        // 回到顶部
-        this.$refs.table.scrollTop()
-        // 重新绘制布局
-        this.$refs.table.doLayout()
-        this.loading_ = false
+      this.action(fullModel)
+        .then(data => {
+          this.rows = data.rows
+          this.total = data.total
+          this.data = data.data
 
-        // 查询事件
-        this.$emit('query', data)
-      }).catch(() => {
-        this.loading_ = false
-      })
+          // 回到顶部
+          this.$refs.table.scrollTop()
+          // 重新绘制布局
+          this.$refs.table.doLayout()
+          this.loading_ = false
+
+          // 查询事件
+          this.$emit('query', data)
+        })
+        .catch(() => {
+          this.loading_ = false
+        })
     },
     /** 刷新 */
     refresh() {
@@ -287,10 +287,12 @@ export default {
       this.$refs.table.doLayout()
     }
   },
-  created() {
-    if (this.queryOnCreated) {
-      this.query()
-    }
+  mounted() {
+    this.$nextTick(() => {
+      if (this.queryOnCreated) {
+        this.query()
+      }
+    })
   },
   activated() {
     this.doLayout()

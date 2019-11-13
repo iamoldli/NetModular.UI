@@ -88,6 +88,7 @@ export default {
         if (this.action || typeof action === 'function') {
           await this.action(this.selection.map(item => item.id))
           this._success('删除成功~')
+          this.$emit('success')
         }
       }).catch(() => {
       })

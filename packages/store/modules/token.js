@@ -1,4 +1,4 @@
-import token from '../../utils/token'
+import t from '../../utils/token'
 export default {
   namespaced: true,
   state: {
@@ -7,20 +7,16 @@ export default {
     /** 刷新令牌 */
     refreshToken: ''
   },
-  actions: {
-    load({ commit }) {
-      const t = token.get()
-      if (t) {
-        commit('init', t)
-      }
-    },
-    init({ commit }, token) {
-      commit('init', token)
-    }
-  },
   mutations: {
     init(state, token) {
+      t.set(token)
       Object.assign(state, token)
+    },
+    load(state) {
+      const token = t.get()
+      if (token) {
+        Object.assign(state, token)
+      }
     }
   }
 }

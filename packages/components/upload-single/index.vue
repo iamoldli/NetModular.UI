@@ -93,7 +93,9 @@ export default {
       this.filePath = ''
     },
     onClick() {
-      if (this.loading) { return }
+      if (this.loading) {
+        return
+      }
       this.$refs.upload.clearFiles()
     },
     onBeforeUpload(file) {
@@ -127,7 +129,6 @@ export default {
     name(val) {
       this.fileName = val
     }
-
   }
 }
 </script>

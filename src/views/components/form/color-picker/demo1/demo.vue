@@ -7,16 +7,16 @@
             <el-col :span="19" :offset="2">
               <nm-form :model="model">
                 <el-form-item label="普通用法：" prop="color">
-                  <nm-color-picker v-model="model.color"/>
+                  <nm-color-picker v-model="model.color" />
                 </el-form-item>
                 <el-form-item label="禁用：" prop="color1">
-                  <nm-color-picker v-model="model.color1" disabled/>
+                  <nm-color-picker v-model="model.color1" disabled />
                 </el-form-item>
                 <el-form-item label="透明度：" prop="color1">
-                  <nm-color-picker v-model="model.color2" show-alpha/>
+                  <nm-color-picker v-model="model.color2" show-alpha />
                 </el-form-item>
                 <el-form-item label="预定义颜色：" prop="color1">
-                  <nm-color-picker v-model="model.color2" :predefine="predefine"/>
+                  <nm-color-picker v-model="model.color2" :predefine="predefine" />
                 </el-form-item>
               </nm-form>
             </el-col>
@@ -29,7 +29,7 @@
 </template>
 <script>
 export default {
-  data () {
+  data() {
     return {
       model: {
         color: '',
@@ -41,5 +41,4 @@ export default {
   }
 }
 </script>
-<style>
-</style>
+<style></style>
