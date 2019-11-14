@@ -14,7 +14,7 @@
     @click="remove"
   >
     <nm-icon v-if="!noIcon" :name="icon" />
-    <span v-if="!circle&&text" class="nm-button-text" v-html="text" />
+    <span v-if="!circle && text" class="nm-button-text" v-html="text" />
   </el-button>
 </template>
 <script>
@@ -43,9 +43,15 @@ export default {
     /** 原生 type 属性 button/submit/reset */
     nativeType: String,
     /** 图标 */
-    icon: String,
+    icon: {
+      type: String,
+      default: 'delete'
+    },
     // 文本
-    text: String,
+    text: {
+      type: String,
+      default: '删除'
+    },
     // 按钮编码，用于按钮权限控制
     code: String,
     // 不显示图标
@@ -65,8 +71,7 @@ export default {
       this._delete(async () => {
         await this.action(this.id)
         this.$emit('success')
-      }, this.msg).catch(() => {
-      })
+      }, this.msg).catch(() => {})
     }
   }
 }
