@@ -61,7 +61,7 @@ export default {
       this.$emit('update:start', val[0])
     }
     if (!this.end) {
-      this.$emit('update:end', val[0])
+      this.$emit('update:end', val[1])
     }
   },
   watch: {
