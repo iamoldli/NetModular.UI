@@ -8,7 +8,7 @@
       <br />
       <p>可通过no-icon属性设置不显示图标</p>
       <br />
-      <nm-button-delete :options="{type:'danger'}" :action="remove" id="1" @success="onSuccess" />
+      <nm-button-delete :options="{ type: 'danger' }" :action="remove" id="1" @success="onSuccess" />
     </el-row>
 
     <el-row style="height:400px">
@@ -17,11 +17,20 @@
       <p>可以通过show-property属性，设置二次提示时展示要删除的数据，show-property是要展示的数据在table中对应的列名称</p>
       <br />
       <nm-list v-bind="list">
-        <template v-slot:querybar-buttons="{selection}">
+        <template v-slot:querybar-buttons="{ selection }">
           <nm-button-delete-batch :action="remove" :selection="selection" show-property="name" @success="onSuccess" />
         </template>
       </nm-list>
     </el-row>
+    <el-row style="height:400px">
+      <p>复制到粘贴板按钮</p>
+      <br />
+      <p>基于<a href="https://github.com/Inndy/vue-clipboard2">https://github.com/Inndy/vue-clipboard2</a>附件封装的复制到粘贴板按钮</p>
+      <p>
+        <br />
+        <nm-button-copy copy="复制的内容" /></p
+    ></el-row>
+
     <!--在线编辑预览不支持闭合的方式，请使用下面的代码方式-->
     <!-- <nm-button>默认按钮</nm-button> -->
   </nm-box>
@@ -35,15 +44,17 @@ export default {
         action: this.query,
         multiple: true,
         search: { enabled: false },
-        cols: [{
-          name: 'id',
-          label: '编号',
-          width: 240
-        },
-        {
-          name: 'name',
-          label: '名称'
-        }]
+        cols: [
+          {
+            name: 'id',
+            label: '编号',
+            width: 240
+          },
+          {
+            name: 'name',
+            label: '名称'
+          }
+        ]
       }
     }
   },
@@ -55,7 +66,13 @@ export default {
     },
     query() {
       return new Promise(resolve => {
-        resolve({ rows: [{ id: 1, name: '张三' }, { id: 2, name: '李四' }], total: 2 })
+        resolve({
+          rows: [
+            { id: 1, name: '张三' },
+            { id: 2, name: '李四' }
+          ],
+          total: 2
+        })
       })
     },
     onSuccess() {

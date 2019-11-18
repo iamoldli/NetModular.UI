@@ -13,6 +13,8 @@ import Directive from './directive'
 import dayjs from 'dayjs'
 import echarts from 'echarts'
 import VCharts from 'v-charts'
+import VueClipboard from 'vue-clipboard2'
+
 // 皮肤
 import SkinPretty from './skins/pretty/index'
 // 皮肤集合
@@ -79,6 +81,9 @@ export default {
 
     // 加载v-charts组件
     Vue.use(VCharts)
+
+    // 复制到粘贴板组件
+    Vue.use(VueClipboard)
 
     // 加载自定义组件
     Vue.use(Components)
