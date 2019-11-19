@@ -1,11 +1,8 @@
 import lib from '../library'
 
 let components = []
-const requireComponent = require.context(
-  '../components',
-  true,
-  /index\.(vue|js)$/
-)
+let loginComponents = []
+const requireComponent = require.context('../components', true, /index\.(vue|js)$/)
 requireComponent
   .keys()
   .filter(item => item !== './index.js')
@@ -13,6 +10,11 @@ requireComponent
     const componentConfig = requireComponent(fileName)
     if (componentConfig.default && componentConfig.default.name) {
       components.push(componentConfig.default)
+
+      // 登录组件
+      if (fileName.includes('login-')) {
+        loginComponents.push(fileName.split('/')[1].split('-')[1])
+      }
     }
   })
 export default function(Vue) {
@@ -20,3 +22,5 @@ export default function(Vue) {
     Vue.component(`${lib.prefix}${component.name}`, component)
   })
 }
+
+export { loginComponents }

@@ -53,6 +53,12 @@
 @import './components/list/index';
 //列表框
 @import './components/listbox/index';
+//登录页
+@import './components/login/index';
+//登录组件Default
+@import './components/login-default/index';
+//登录组件Neon
+@import './components/login-neon/index';
 //滚动条
 @import './components/scrollbar/index';
 //选择框
@@ -75,7 +81,6 @@
 @import './components/upload-dialog/index';
 
 /*********************组件 End*******************************/
-
 
 /*********************主题 Begin*****************************/
 @import './theme';

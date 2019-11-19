@@ -1,0 +1,95 @@
+#{$prefix}login-default {
+  #{$prefix}login-bg {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.55;
+    background-image: url('~/public/images/bg3.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    z-index: -1;
+  }
+
+  #{$prefix}login-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -160px 0 0 -190px;
+    padding: 5px 15px;
+    border-radius: 5px;
+    text-align: center;
+    width: 350px;
+    background: rgba(255, 255, 255, 0.7);
+  }
+
+  #{$prefix}login-content {
+    .verifycode {
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+
+      &-input {
+        padding-right: 10px;
+        flex-grow: 1;
+      }
+
+      &-img {
+        flex-shrink: 0;
+        img {
+          margin-top: 1px;
+          height: 38px;
+          cursor: pointer;
+        }
+      }
+    }
+    .btn-login {
+      width: 100%;
+      cursor: pointer;
+    }
+  }
+
+  #{$prefix}login-logo {
+    position: relative;
+    padding: 10px 0 10px 85px;
+
+    &-img {
+      position: absolute;
+      left: 2px;
+      top: 14px;
+      padding: 5px;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      height: 75px;
+      float: left;
+    }
+
+    &-title {
+      margin: 0;
+      padding: 0;
+      height: 80px;
+      line-height: 80px;
+      font-size: 33px;
+      text-align: left;
+    }
+  }
+
+  #{$prefix}icon {
+    font-size: 2em;
+  }
+  .el-input__inner {
+    padding-left: 35px !important;
+  }
+
+  .copyright {
+    position: absolute;
+    bottom: 22px;
+    width: 100%;
+    text-align: center;
+    color: #b4783b;
+    font-size: 13px;
+  }
+}

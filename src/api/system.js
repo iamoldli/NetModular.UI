@@ -9,7 +9,7 @@ const get = () => {
     home: '/home',
     permissionValidate: false,
     loginOptions: {
-      type: 'default'
+      type: 'auto'
     },
     copyright: '版权所有：尼古拉斯·老李 | 用代码改变世界 | Powered by .NET Core 3.0.0 on Linux',
     actions: {

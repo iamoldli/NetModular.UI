@@ -7,7 +7,7 @@ import UseRouter, { router, routes } from './router/'
 import UseStore, { store, storeOptions } from './store/'
 import HttpInit from './utils/http'
 import Layout from './layout'
-import Components from './components'
+import Components, { loginComponents } from './components'
 import Mixins from './mixins/'
 import Directive from './directive'
 import dayjs from 'dayjs'
@@ -100,7 +100,7 @@ export default {
     let callbacks = []
 
     // 登录组件列表
-    system.loginOptions.typeOptions = ['default']
+    system.loginOptions.typeOptions = loginComponents
 
     // 加载模块信息
     system.modules.forEach(m => {

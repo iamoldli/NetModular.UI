@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="nm-login-container">
     <component v-bind:is="`nm-login-${type}`"></component>
   </div>
 </template>
