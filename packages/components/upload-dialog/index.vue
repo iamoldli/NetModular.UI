@@ -12,7 +12,7 @@
         <div v-if="tip" class="nm-upload-multiple-tip">
           <slot name="tip">
             <i class="el-alert__icon el-icon-warning"></i>
-            {{tip}}
+            {{ tip }}
           </slot>
         </div>
       </el-upload>
@@ -24,9 +24,9 @@
         <el-table-column align="center" prop="size" label="大小" width="180"></el-table-column>
         <el-table-column align="center" prop="ext" label="扩展" width="180"></el-table-column>
         <el-table-column align="center" label="操作">
-          <template v-slot:default="{row}">
-            <nm-icon class="status-success" v-if="row.status===1" name="select" />
-            <nm-icon class="status-error" v-else-if="row.status===2" name="close" />
+          <template v-slot:default="{ row }">
+            <nm-icon class="status-success" v-if="row.status === 1" name="select" />
+            <nm-icon class="status-error" v-else-if="row.status === 2" name="close" />
             <nm-button type="text" icon="delete" text="删除" @click="onRemove(row)" />
           </template>
         </el-table-column>
@@ -179,7 +179,9 @@ export default {
       this.$refs.upload.submit()
     },
     onChange(file, fileList) {
-      if (this.fileList.length > 0 && fileList.length === this.fileList.length) { return }
+      if (this.fileList.length > 0 && fileList.length === this.fileList.length) {
+        return
+      }
       this.fileList = []
       fileList.map(m => {
         this.fileList.push({
@@ -191,7 +193,7 @@ export default {
         })
       })
     },
-    onBeforeUpload(file) {
+    onBeforeUpload() {
       this.loading = true
     },
     onSuccess(response, file) {

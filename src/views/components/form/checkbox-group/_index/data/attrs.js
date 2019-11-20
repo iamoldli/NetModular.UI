@@ -8,8 +8,7 @@ export default [
   },
   {
     name: 'size',
-    desc:
-      '多选框组尺寸，仅对按钮形式的 Checkbox 或带有边框的 Checkbox 有效，默认皮肤的字号设置',
+    desc: '多选框组尺寸，仅对按钮形式的 Checkbox 或带有边框的 Checkbox 有效，默认皮肤的字号设置',
     type: 'String',
     opt: 'medium / small / mini',
     def: '-'

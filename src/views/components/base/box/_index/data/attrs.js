@@ -36,8 +36,7 @@ export default [
   },
   {
     name: 'height',
-    desc:
-      '高度，与css中的height属性相同，如：100%、100px，设置了固定高度后如果内容超出会有滚动条',
+    desc: '高度，与css中的height属性相同，如：100%、100px，设置了固定高度后如果内容超出会有滚动条',
     type: 'string',
     opt: '-',
     def: 'false'
@@ -100,8 +99,7 @@ export default [
   },
   {
     name: 'custom-collapse-event',
-    desc:
-      '自定义折叠事件，改参数会覆盖默认的折叠操作，当需要折叠部分内容时，可使用该参数',
+    desc: '自定义折叠事件，改参数会覆盖默认的折叠操作，当需要折叠部分内容时，可使用该参数',
     type: 'Function',
     opt: '-',
     def: '-'

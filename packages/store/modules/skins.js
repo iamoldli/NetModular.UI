@@ -25,7 +25,7 @@ export default {
      * @description 初始化皮肤信息
      * @param {*} skin
      */
-    init({ commit, dispatch }, skin) {
+    init({ commit }, skin) {
       if (skin) {
         commit('init', skin)
       }

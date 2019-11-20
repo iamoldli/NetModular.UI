@@ -3,7 +3,7 @@
     ref="dialog"
     :id="id"
     :class="class_"
-    :top="draggable?'':top"
+    :top="draggable ? '' : top"
     :modal="modal_"
     :close-on-click-modal="closeOnClickModal_"
     :fullscreen="hasFullscreen"
@@ -18,27 +18,20 @@
         <nm-icon :name="icon" />
       </section>
       <section ref="title" class="nm-dialog-title">
-        <slot name="title">{{title}}</slot>
+        <slot name="title">{{ title }}</slot>
       </section>
       <section class="nm-dialog-toolbar">
         <!--工具栏插槽-->
         <slot name="toolbar" />
         <!--全屏按钮-->
-        <nm-button v-if="fullscreen" :icon="hasFullscreen ? 'fullscreen-c':'fullscreen-o'" @click="toggerFullscreen" />
+        <nm-button v-if="fullscreen" :icon="hasFullscreen ? 'fullscreen-c' : 'fullscreen-o'" @click="toggerFullscreen" />
         <!--关闭按钮-->
         <nm-button icon="close" @click="close" />
       </section>
     </template>
 
     <!--Body-->
-    <section
-      ref="dialogBody"
-      class="nm-dialog-body"
-      v-loading="loading"
-      :element-loading-text="loadingText"
-      :element-loading-background="loadingBackground"
-      :element-loading-spinner="loadingSpinner"
-    >
+    <section ref="dialogBody" class="nm-dialog-body" v-loading="loading" :element-loading-text="loadingText" :element-loading-background="loadingBackground" :element-loading-spinner="loadingSpinner">
       <section class="nm-dialog-content">
         <section class="nm-dialog-main">
           <slot v-if="noScrollbar" />
@@ -150,7 +143,7 @@ export default {
       return ['nm-dialog', this.draggable ? 'draggable' : '']
     },
     width_() {
-      return typeof this.width === 'number' ? this.width > 0 ? this.width + 'px' : '50%' : this.width
+      return typeof this.width === 'number' ? (this.width > 0 ? this.width + 'px' : '50%') : this.width
     },
     modal_() {
       return !this.draggable && this.modal
@@ -193,8 +186,8 @@ export default {
       this.hide()
     },
     /**
-    * 调整高度
-    */
+     * 调整高度
+     */
     resize() {
       // 对话框高度
       const dialogHeight = this.getDialogHeight()
@@ -206,7 +199,7 @@ export default {
         this.top = '10px'
         height = bodyHeight - dialogHeight.h - dialogHeight.f - 20 + 'px'
       } else {
-        this.top = (bodyHeight - dialogHeight.full) / 7 * 2.5 + 'px'
+        this.top = ((bodyHeight - dialogHeight.full) / 7) * 2.5 + 'px'
         height = dialogHeight.full + 'px'
       }
 
@@ -232,7 +225,7 @@ export default {
           if (this.height.endsWith('px')) {
             full = parseFloat(this.height.replace('px', ''))
           } else {
-            full = document.body.clientHeight * parseFloat(this.height.replace('%', '')) / 100 - h - f
+            full = (document.body.clientHeight * parseFloat(this.height.replace('%', ''))) / 100 - h - f
           }
         }
         b = parseFloat(full - h - f)
@@ -291,7 +284,7 @@ export default {
     /**
      * @description 处理拖拽结束
      */
-    handleDragUp(e) {
+    handleDragUp() {
       this.isDragDown = false
       off(document, 'mousemove', this.handleDragMove)
       off(document, 'mouseup', this.handleDragUp)
@@ -301,7 +294,9 @@ export default {
         this.resize()
 
         on(window, 'resize', this.resize)
-        if (!this.noScrollbar) { addResizeListener(this.elScrollbarViewEl, this.resize) }
+        if (!this.noScrollbar) {
+          addResizeListener(this.elScrollbarViewEl, this.resize)
+        }
 
         if (!this.draggable) return
         on(this.titleEl, 'mousedown', this.handleDragDown)
@@ -326,7 +321,9 @@ export default {
     },
     onClose() {
       off(window, 'resize', this.resize)
-      if (!this.noScrollbar) { removeResizeListener(this.elScrollbarViewEl, this.resize) }
+      if (!this.noScrollbar) {
+        removeResizeListener(this.elScrollbarViewEl, this.resize)
+      }
       off(this.titleEl, 'mousedown', this.handleDragDown)
       this.$emit('close')
     },

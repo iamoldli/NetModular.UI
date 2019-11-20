@@ -144,7 +144,7 @@ export default {
       let chart = this.$echarts.init(this.$refs.chart)
       this.chart = chart
       this.chart.setOption(this.options)
-      window.addEventListener('resize', function () {
+      window.addEventListener('resize', function() {
         chart.resize()
       })
     }

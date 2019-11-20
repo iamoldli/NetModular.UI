@@ -73,5 +73,4 @@
     </el-row>
   </nm-box>
 </template>
-<style>
-</style>
+<style></style>

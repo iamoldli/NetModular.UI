@@ -11,7 +11,7 @@
       <div v-if="tip" class="nm-upload-multiple-tip">
         <slot name="tip">
           <i class="el-alert__icon el-icon-warning"></i>
-          {{tip}}
+          {{ tip }}
         </slot>
       </div>
     </el-upload>
@@ -21,7 +21,7 @@
       <el-table-column align="center" prop="size" label="大小" width="180"></el-table-column>
       <el-table-column align="center" prop="ext" label="扩展" width="180"></el-table-column>
       <el-table-column align="center" label="操作">
-        <template v-slot:default="{row}">
+        <template v-slot:default="{ row }">
           <nm-button type="text" icon="delete" text="删除" @click="onRemove(row)" />
         </template>
       </el-table-column>
@@ -147,7 +147,7 @@ export default {
       }
       this.loading = true
     },
-    onSuccess(response, file, fileList) {
+    onSuccess(response, file) {
       for (let i = 0; i < this.fileList.length; i++) {
         let $file = this.fileList[i]
         if ($file.localFile === file) {
@@ -166,7 +166,10 @@ export default {
         response.data.map(f => {
           this.fileList.push(this.convert(f, file))
         })
-        this.$emit('input', this.fileList.map(m => m.remoteFile))
+        this.$emit(
+          'input',
+          this.fileList.map(m => m.remoteFile)
+        )
         this.loading = false
       } else {
         this.onError()

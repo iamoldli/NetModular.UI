@@ -35,7 +35,11 @@ export default {
   },
   methods: {
     query() {
-      const rows = [{ id: 1, name: '张三', age: 22 }, { id: 2, name: '李四', age: 26 }, { id: 3, name: '王五', age: 26 }]
+      const rows = [
+        { id: 1, name: '张三', age: 22 },
+        { id: 2, name: '李四', age: 26 },
+        { id: 3, name: '王五', age: 26 }
+      ]
       return new Promise(resolve => {
         resolve({
           rows,
@@ -43,7 +47,7 @@ export default {
         })
       })
     },
-    remove() { },
+    remove() {},
     onSuccess() {
       this.query()
     }

@@ -31,31 +31,36 @@ export default {
         advanced: {
           enabled: true
         },
-        cols: [{
-          name: 'id',
-          label: '编号',
-          show: false
-        },
-        {
-          name: 'name',
-          label: '姓名'
-        },
-        {
-          name: 'age',
-          label: '年龄'
-        },
-        {
-          name: 'birthday',
-          label: '出生日期',
-          format: 'YYYY年MM月DD日'
-        }
+        cols: [
+          {
+            name: 'id',
+            label: '编号',
+            show: false
+          },
+          {
+            name: 'name',
+            label: '姓名'
+          },
+          {
+            name: 'age',
+            label: '年龄'
+          },
+          {
+            name: 'birthday',
+            label: '出生日期',
+            format: 'YYYY年MM月DD日'
+          }
         ]
       }
     }
   },
   methods: {
     query() {
-      const rows = [{ id: 1, name: '张三', age: 22, birthday: '1991-1-8' }, { id: 2, name: '李四', age: 26, birthday: '1991-1-8 10:33' }, { id: 3, name: '王五', age: 26, birthday: '1991-1-8' }]
+      const rows = [
+        { id: 1, name: '张三', age: 22, birthday: '1991-1-8' },
+        { id: 2, name: '李四', age: 26, birthday: '1991-1-8 10:33' },
+        { id: 3, name: '王五', age: 26, birthday: '1991-1-8' }
+      ]
       return new Promise(resolve => {
         resolve({
           rows,
@@ -63,7 +68,7 @@ export default {
         })
       })
     },
-    remove() { },
+    remove() {},
     onSuccess() {
       this.query()
     }

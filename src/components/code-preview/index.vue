@@ -1,9 +1,9 @@
 <template>
-  <div class="nm-code-preview" :class="{show:visible}">
-    <nm-button class="nm-code-preview-btn" type="warning" icon="develop" @click="onCBtnlick"/>
+  <div class="nm-code-preview" :class="{ show: visible }">
+    <nm-button class="nm-code-preview-btn" type="warning" icon="develop" @click="onCBtnlick" />
     <nm-drawer class="nm-code-preview-drawer" v-bind="drawer" :visible.sync="visible">
       <template v-slot:toolbar>
-        <nm-button icon="transmit" @click="run"/>
+        <nm-button icon="transmit" @click="run" />
       </template>
       <pre v-highlightjs="code"><code class="html"></code></pre>
     </nm-drawer>
@@ -11,7 +11,7 @@
 </template>
 <script>
 export default {
-  data () {
+  data() {
     return {
       visible: false,
       drawer: {
@@ -26,10 +26,10 @@ export default {
   },
   props: ['code'],
   methods: {
-    onCBtnlick () {
+    onCBtnlick() {
       this.visible = !this.visible
     },
-    run () {
+    run() {
       window.addEventListener('message', this.receiveMessage, false)
       const runUrl = window.location.href.split('#')[0] + '#/run'
       const runWindow = window.open(runUrl, '_blank')
@@ -37,7 +37,7 @@ export default {
         runWindow.postMessage(this.code, runUrl)
       }, 300)
     },
-    receiveMessage (event) {
+    receiveMessage(event) {
       if (this.timer && event.origin === window.location.origin) {
         clearInterval(this.timer)
       }

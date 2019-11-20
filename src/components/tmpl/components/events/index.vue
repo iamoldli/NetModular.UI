@@ -2,9 +2,9 @@
   <section class="nm-tmpl-box">
     <h1 class="nm-tmpl-box-title">事件(Event)</h1>
     <el-table :data="data" border style="width: 100%">
-      <el-table-column prop="name" label="名称"/>
-      <el-table-column prop="desc" label="说明"/>
-      <el-table-column prop="params" label="参数"/>
+      <el-table-column prop="name" label="名称" />
+      <el-table-column prop="desc" label="说明" />
+      <el-table-column prop="params" label="参数" />
     </el-table>
   </section>
 </template>

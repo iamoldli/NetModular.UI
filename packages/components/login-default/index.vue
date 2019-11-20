@@ -162,6 +162,6 @@ export default {
 </script>
 <style lang="scss">
 .nm-login-default > .nm-login-bg {
-  background-image: url('../../../public/images/bg3.jpg');
+  background-image: url('../../../public/images/login/bg3.jpg');
 }
 </style>

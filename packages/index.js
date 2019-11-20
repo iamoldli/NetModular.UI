@@ -1,3 +1,4 @@
+import './font/iconfont.js'
 import Vue from 'vue'
 import lodash from 'lodash'
 import ElementUI from 'element-ui'

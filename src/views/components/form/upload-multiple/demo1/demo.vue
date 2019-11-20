@@ -5,7 +5,7 @@
         <el-row>
           <el-col :span="21" :offset="1">
             <el-form-item label="上传文件" prop="filePath">
-              <nm-upload-multiple v-model="filePath" :name.sync="fileName" action="http://ip.com"/>
+              <nm-upload-multiple v-model="filePath" :name.sync="fileName" action="http://ip.com" />
             </el-form-item>
           </el-col>
         </el-row>

@@ -57,8 +57,7 @@ export default [
   },
   {
     name: 'label-position',
-    desc:
-      '表单域标签的位置，如果值为 left 或者 right 时，则需要设置 label-width',
+    desc: '表单域标签的位置，如果值为 left 或者 right 时，则需要设置 label-width',
     type: 'String',
     opt: 'right/left/top',
     def: 'right'

@@ -1,17 +1,17 @@
 <template>
   <nm-box page header title="对话框表单示例">
-    <nm-button text="新增" @click="dialog.add=true"/>
-    <nm-button text="编辑" @click="dialog.edit=true"/>
+    <nm-button text="新增" @click="dialog.add = true" />
+    <nm-button text="编辑" @click="dialog.edit = true" />
     <nm-form-dialog v-bind="dialogAdd" :visible.sync="dialog.add">
       <el-row>
         <el-col :span="21" :offset="1">
           <el-form-item label="姓名：" prop="name">
-            <el-input v-model="dialogAdd.model.name"/>
+            <el-input v-model="dialogAdd.model.name" />
           </el-form-item>
         </el-col>
         <el-col :span="21" :offset="1">
           <el-form-item label="年龄：" prop="age">
-            <el-input v-model="dialogAdd.model.age"/>
+            <el-input v-model="dialogAdd.model.age" />
           </el-form-item>
         </el-col>
       </el-row>
@@ -20,12 +20,12 @@
       <el-row>
         <el-col :span="21" :offset="1">
           <el-form-item label="姓名：" prop="name">
-            <el-input v-model="dialogEdit.model.name"/>
+            <el-input v-model="dialogEdit.model.name" />
           </el-form-item>
         </el-col>
         <el-col :span="21" :offset="1">
           <el-form-item label="年龄：" prop="age">
-            <el-input v-model="dialogEdit.model.age"/>
+            <el-input v-model="dialogEdit.model.age" />
           </el-form-item>
         </el-col>
       </el-row>
@@ -34,7 +34,7 @@
 </template>
 <script>
 export default {
-  data () {
+  data() {
     return {
       dialog: {
         add: false,
@@ -51,7 +51,7 @@ export default {
         rules: {
           name: [{ required: true, message: '请输入姓名' }]
         },
-        action () {
+        action() {
           return new Promise(resolve => {
             resolve()
           })
@@ -68,7 +68,7 @@ export default {
         rules: {
           name: [{ required: true, message: '请输入姓名' }]
         },
-        action () {
+        action() {
           return new Promise(resolve => {
             resolve()
           })

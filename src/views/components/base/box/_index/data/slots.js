@@ -13,8 +13,7 @@ export default [
   },
   {
     name: 'toolbar-before',
-    desc:
-      '工具栏前面的插槽，当需要在工具栏前面添加内容的时候使用，如果使用了header插槽，该插槽不生效'
+    desc: '工具栏前面的插槽，当需要在工具栏前面添加内容的时候使用，如果使用了header插槽，该插槽不生效'
   },
   {
     name: 'toolbar',

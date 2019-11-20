@@ -105,7 +105,7 @@ export default {
       }
       this.loading = true
     },
-    onSuccess(response, file, fileList) {
+    onSuccess(response, file) {
       if (response.code === 1) {
         this.fileName = response.data.fileName
         this.filePath = response.data.fullPath

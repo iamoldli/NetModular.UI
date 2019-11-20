@@ -5,13 +5,13 @@
     <el-alert title="自定义工具栏" type="warning" description="通过 toolbar 插槽可以实现自定义工具栏" show-icon :closable="false"></el-alert>
 
     <template v-slot:toolbar>
-      <nm-button icon="system" @click="onClick"/>
+      <nm-button icon="system" @click="onClick" />
     </template>
   </nm-box>
 </template>
 <script>
 export default {
-  data () {
+  data() {
     return {
       box: {
         header: true,
@@ -23,7 +23,7 @@ export default {
     }
   },
   methods: {
-    onClick () {
+    onClick() {
       this._success('我是自定义工具栏按钮')
     }
   }

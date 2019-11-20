@@ -12,10 +12,10 @@
             <el-tab-pane v-for="i in 5" :key="i" :name="`tab${i}`">
               <span slot="label">
                 <nm-icon name="list"></nm-icon>
-                Tab{{i}}
+                Tab{{ i }}
               </span>
               <nm-box>
-                <p>这里是Tab{{i}}</p>
+                <p>这里是Tab{{ i }}</p>
               </nm-box>
             </el-tab-pane>
           </el-tabs>
@@ -30,34 +30,45 @@ export default {
     return {
       split: 0.2,
       tab: 'tab1',
-      data: [{
-        id: 1,
-        label: '一级 2',
-        children: [{
-          id: 3,
-          label: '二级 2-1',
-          children: [{
-            id: 4,
-            label: '三级 3-1-1'
-          }, {
-            id: 5,
-            label: '三级 3-1-2',
-            disabled: true
-          }]
-        }, {
-          id: 2,
-          label: '二级 2-2',
-          disabled: true,
-          children: [{
-            id: 6,
-            label: '三级 3-2-1'
-          }, {
-            id: 7,
-            label: '三级 3-2-2',
-            disabled: true
-          }]
-        }]
-      }],
+      data: [
+        {
+          id: 1,
+          label: '一级 2',
+          children: [
+            {
+              id: 3,
+              label: '二级 2-1',
+              children: [
+                {
+                  id: 4,
+                  label: '三级 3-1-1'
+                },
+                {
+                  id: 5,
+                  label: '三级 3-1-2',
+                  disabled: true
+                }
+              ]
+            },
+            {
+              id: 2,
+              label: '二级 2-2',
+              disabled: true,
+              children: [
+                {
+                  id: 6,
+                  label: '三级 3-2-1'
+                },
+                {
+                  id: 7,
+                  label: '三级 3-2-2',
+                  disabled: true
+                }
+              ]
+            }
+          ]
+        }
+      ],
       defaultProps: {
         children: 'children',
         label: 'label'

@@ -1,6 +1,12 @@
 <template>
   <nm-box v-bind="box">
-    <el-alert title="盒子页" type="warning" description="通过设置 page 属性为true，可以让盒子变成一个盒子页，盒子页高度会自动填充满整个父级元素，当内容超出时会有滚动条" show-icon :closable="false"></el-alert>
+    <el-alert
+      title="盒子页"
+      type="warning"
+      description="通过设置 page 属性为true，可以让盒子变成一个盒子页，盒子页高度会自动填充满整个父级元素，当内容超出时会有滚动条"
+      show-icon
+      :closable="false"
+    ></el-alert>
     <pre>
     水调歌头·明月几时有
 
@@ -24,13 +30,13 @@
     </pre>
 
     <template v-slot:footer>
-      <nm-button type="success" text="确认" @click="onClick"/>
+      <nm-button type="success" text="确认" @click="onClick" />
     </template>
   </nm-box>
 </template>
 <script>
 export default {
-  data () {
+  data() {
     return {
       box: {
         page: true,
@@ -44,7 +50,7 @@ export default {
     }
   },
   methods: {
-    onClick () {
+    onClick() {
       this._success('保存成功')
     }
   }

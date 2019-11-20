@@ -1,6 +1,6 @@
 <template>
   <nm-box page header title="拖拽排序对话框示例" icon="sort">
-    <nm-button type="primary" text="排序" @click="show=true" />
+    <nm-button type="primary" text="排序" @click="show = true" />
     <nm-drag-sort-dialog :query-action="query" :update-action="update" :visible.sync="show"></nm-drag-sort-dialog>
   </nm-box>
 </template>
@@ -26,12 +26,11 @@ export default {
         resolve({ options })
       })
     },
-    update(list) {
+    update() {
       return new Promise(resolve => {
         resolve({ code: 1, data: '' })
       })
     }
   }
-
 }
 </script>

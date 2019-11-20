@@ -250,7 +250,7 @@ export default {
      * @param {String} path 选择的页面路径
      * @param {Object} router 路由对象
      */
-    closeAll({ state, commit, dispatch }, { router }) {
+    closeAll({ commit, dispatch }, { router }) {
       commit('init', [])
       commit('keepAliveClean')
       dispatch('cacheInsert')
@@ -329,9 +329,7 @@ export default {
      * @param {Object} state vuex state
      */
     keepAliveRefresh(state) {
-      state.keepAlive = state.opened
-        .filter(item => item.meta.cache !== false)
-        .map(e => e.name)
+      state.keepAlive = state.opened.filter(item => item.meta.cache !== false).map(e => e.name)
     },
     /**
      * @description 删除一个页面的缓存设置

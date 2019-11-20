@@ -9,7 +9,8 @@
       <p>然后写入以下代码</p>
       <br />
       <pre
-        v-highlightjs="`
+        v-highlightjs="
+          `
         <script>
         import { mixins } from 'netmodular-ui'
         export default {
@@ -20,7 +21,8 @@
             }
           }
         }
-        </script>`"
+        </script>`
+        "
       ><code class="html">
         </code>
       </pre>
@@ -34,8 +36,7 @@ import page from './page.js'
 export default {
   name: page.name,
   data() {
-    return {
-    }
+    return {}
   }
 }
 </script>

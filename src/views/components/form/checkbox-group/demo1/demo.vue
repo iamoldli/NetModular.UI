@@ -15,7 +15,7 @@
               </nm-form>
             </el-col>
           </el-row>
-          <template v-slot:footer>{{modelStr}}</template>
+          <template v-slot:footer>{{ modelStr }}</template>
         </nm-box>
       </el-col>
       <el-col :span="12">
@@ -33,7 +33,7 @@
               </nm-form>
             </el-col>
           </el-row>
-          <template v-slot:footer>{{modelStr1}}</template>
+          <template v-slot:footer>{{ modelStr1 }}</template>
         </nm-box>
       </el-col>
     </el-row>
@@ -64,16 +64,21 @@ export default {
   methods: {
     query() {
       return new Promise(resolve => {
-        resolve([{ label: '南京', value: 'nj' }, { label: '江苏', value: 'js' }])
+        resolve([
+          { label: '南京', value: 'nj' },
+          { label: '江苏', value: 'js' }
+        ])
       })
     },
     query1() {
       return new Promise(resolve => {
-        resolve([{ label: '南京', value: 'nj', disabled: true }, { label: '江苏', value: 'js' }])
+        resolve([
+          { label: '南京', value: 'nj', disabled: true },
+          { label: '江苏', value: 'js' }
+        ])
       })
     }
   }
 }
 </script>
-<style>
-</style>
+<style></style>
