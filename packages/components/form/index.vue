@@ -89,7 +89,7 @@ export default {
                 this._success(this.successMsgText)
               }
 
-              this.$emit('success', this.model, data)
+              this.$emit('success', data)
 
               this.closeLoading()
             })

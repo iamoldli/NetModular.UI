@@ -73,11 +73,13 @@
 
 //树
 #{$prefix}tree {
-  .el-tree--highlight-current {
-    .el-tree-node.is-current {
-      > .el-tree-node__content {
-        background-color: $pretty-tree-background-color;
-        color: $pretty-tree-color;
+  &.el-tree--highlight-current {
+    .el-tree-node {
+      &.is-current {
+        > .el-tree-node__content {
+          background-color: $pretty-tree-background-color;
+          color: $pretty-tree-color;
+        }
       }
     }
   }

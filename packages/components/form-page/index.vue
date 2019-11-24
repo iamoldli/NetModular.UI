@@ -163,9 +163,9 @@ export default {
       this.$refs.form.closeLoading()
     },
     // 成功
-    onSuccess(model, data) {
+    onSuccess(data) {
       this.loading = false
-      this.$emit('success', model, data)
+      this.$emit('success', data)
     },
     onError() {
       this.loading = false

@@ -194,13 +194,13 @@ export default {
       this.loading = false
     },
     // 成功
-    onSuccess(model, data) {
+    onSuccess(data) {
       // 关闭对话框
       if (this.closeWhenSuccess) {
         setTimeout(this.hide, 800)
       }
       this.loading_ = false
-      this.$emit('success', model, data)
+      this.$emit('success', data)
     },
     onError() {
       this.loading_ = false
