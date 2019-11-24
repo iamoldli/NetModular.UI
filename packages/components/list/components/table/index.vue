@@ -10,7 +10,7 @@ export default {
   data() {
     return {
       on: {
-        'select': this.onSelect,
+        select: this.onSelect,
         'select-all': this.onSelectAll,
         'selection-change': this.onSelectionChange,
         'cell-mouse-enter': this.onCellMouseEnter,
@@ -133,7 +133,7 @@ export default {
         this.$parent.page.sort.push({ field: val.prop, type: val.order === 'ascending' ? 0 : 1 })
       }
 
-      this.refresh()
+      this.$parent.refresh()
 
       this.$parent.$emit('sort-change', this.$parent.page.sort, val)
     },

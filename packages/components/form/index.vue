@@ -78,23 +78,25 @@ export default {
   methods: {
     /** 提交 */
     submit() {
-      this.$refs.form.validate(async (valid) => {
+      this.$refs.form.validate(async valid => {
         // 自定义验证
         if (valid && (!this.validate || this.validate() === true)) {
           this.openLoading()
 
-          this.action(this.model).then(data => {
-            if (this.successMsg === true) {
-              this._success(this.successMsgText)
-            }
+          this.action(this.model)
+            .then(data => {
+              if (this.successMsg === true) {
+                this._success(this.successMsgText)
+              }
 
-            this.$emit('success', data)
+              this.$emit('success', this.model, data)
 
-            this.closeLoading()
-          }).catch(() => {
-            this.$emit('error')
-            this.closeLoading()
-          })
+              this.closeLoading()
+            })
+            .catch(() => {
+              this.$emit('error')
+              this.closeLoading()
+            })
         } else {
           // 验证失败
           this.$emit('validate-error')
@@ -128,11 +130,15 @@ export default {
     },
     /** 打开加载中 */
     openLoading() {
-      if (!this.noLoading) { this.loading_ = true }
+      if (!this.noLoading) {
+        this.loading_ = true
+      }
     },
     /** 关闭加载中 */
     closeLoading() {
-      if (!this.noLoading) { this.loading_ = false }
+      if (!this.noLoading) {
+        this.loading_ = false
+      }
     }
   }
 }

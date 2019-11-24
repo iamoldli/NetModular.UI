@@ -5,12 +5,12 @@
         <nm-icon :name="sidebarCollapse ? 'indent-left' : 'indent-right'"></nm-icon>
       </a>
       <!--面包屑-->
-      <breadcrumb/>
+      <breadcrumb />
     </section>
     <section class="nm-header-right">
       <!--工具栏-->
       <div class="nm-header-toolbar">
-        <nm-toolbar/>
+        <nm-toolbar />
       </div>
     </section>
   </section>

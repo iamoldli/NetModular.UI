@@ -1,5 +1,5 @@
 <template>
-  <section :class="['nm-tabnav',fontSize]">
+  <section :class="['nm-tabnav', fontSize]">
     <slot name="before" />
     <div class="nm-tabnav-tabs">
       <el-tabs :value="current.path" type="card" :closable="true" @tab-click="click" @edit="edit">
@@ -13,18 +13,10 @@
           <nm-icon name="angle-double-down" />
         </span>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item command="left">
-            <nm-icon name="arrow-left" class="nm-tabnav-control-icon" />关闭左侧
-          </el-dropdown-item>
-          <el-dropdown-item command="right">
-            <nm-icon name="arrow-right" class="nm-tabnav-control-icon" />关闭右侧
-          </el-dropdown-item>
-          <el-dropdown-item command="other">
-            <nm-icon name="other" class="nm-tabnav-control-icon" />关闭其他
-          </el-dropdown-item>
-          <el-dropdown-item command="all">
-            <nm-icon name="app" class="nm-tabnav-control-icon" />全部关闭
-          </el-dropdown-item>
+          <el-dropdown-item command="left"> <nm-icon name="arrow-left" class="nm-tabnav-control-icon" />关闭左侧 </el-dropdown-item>
+          <el-dropdown-item command="right"> <nm-icon name="arrow-right" class="nm-tabnav-control-icon" />关闭右侧 </el-dropdown-item>
+          <el-dropdown-item command="other"> <nm-icon name="other" class="nm-tabnav-control-icon" />关闭其他 </el-dropdown-item>
+          <el-dropdown-item command="all"> <nm-icon name="app" class="nm-tabnav-control-icon" />全部关闭 </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -61,10 +53,18 @@ export default {
     handleCommand(cmd, tagName = null) {
       const params = { path: tagName, router: this.$router }
       switch (cmd) {
-        case 'left': this.closeLeft(params); break
-        case 'right': this.closeRight(params); break
-        case 'other': this.closeOther(params); break
-        case 'all': this.closeAll(params); break
+        case 'left':
+          this.closeLeft(params)
+          break
+        case 'right':
+          this.closeRight(params)
+          break
+        case 'other':
+          this.closeOther(params)
+          break
+        case 'all':
+          this.closeAll(params)
+          break
       }
     }
   }

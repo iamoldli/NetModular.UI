@@ -1,8 +1,8 @@
 <template>
   <!--节点菜单-->
-  <el-submenu v-if="menu.type===0" :index="menu.id+''">
+  <el-submenu v-if="menu.type === 0" :index="menu.id + ''">
     <template v-slot:title>
-      <nm-icon :name="menu.icon" class="nm-menus-icon" :style="{color:menu.iconColor}" />
+      <nm-icon :name="menu.icon" class="nm-menus-icon" :style="{ color: menu.iconColor }" />
       <span>{{ menu.name }}</span>
     </template>
     <template v-for="item in menu.children">
@@ -11,8 +11,8 @@
   </el-submenu>
 
   <!--链接菜单-->
-  <el-menu-item v-else :index="menu.id+''" :parent-index="parentIndex" @click="go(menu,$event)">
-    <nm-icon :name="menu.icon" class="nm-menus-icon" :style="{color:menu.iconColor}" />
+  <el-menu-item v-else :index="menu.id + ''" :parent-index="parentIndex" @click="go(menu, $event)">
+    <nm-icon :name="menu.icon" class="nm-menus-icon" :style="{ color: menu.iconColor }" />
     <span>{{ menu.name }}</span>
   </el-menu-item>
 </template>
@@ -21,7 +21,9 @@ import { mapActions } from 'vuex'
 import { open } from '../../../../utils/menu'
 export default {
   name: 'MenuItem',
-  data() { return {} },
+  data() {
+    return {}
+  },
   props: {
     parentIndex: {
       type: String,
@@ -39,7 +41,9 @@ export default {
       open(this.$router, menu)
     },
     getIndex(index) {
-      if (this.parentIndex === 0) { return index + '' }
+      if (this.parentIndex === 0) {
+        return index + ''
+      }
       return this.parentIndex + '-' + index
     }
   }

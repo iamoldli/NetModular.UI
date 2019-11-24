@@ -1,18 +1,18 @@
 <template>
-  <section :class="['nm-flex',direction,fixMode]" :style="{height,width}">
-    <template v-if="direction==='column'">
-      <section class="nm-flex_top" :style="{height:fixMode==='top'?fix:''}">
+  <section :class="['nm-flex', direction, fixMode]" :style="{ height, width }">
+    <template v-if="direction === 'column'">
+      <section class="nm-flex_top" :style="{ height: fixMode === 'top' ? fix : '' }">
         <slot name="top" />
       </section>
-      <section class="nm-flex_bottom" :style="{height:fixMode==='bottom'?fix:'',paddingTop:gutter?gutter+'px':0}">
+      <section class="nm-flex_bottom" :style="{ height: fixMode === 'bottom' ? fix : '', paddingTop: gutter ? gutter + 'px' : 0 }">
         <slot name="bottom" />
       </section>
     </template>
     <template v-else>
-      <section class="nm-flex_left" :style="{width:fixMode==='left'?fix:''}">
+      <section class="nm-flex_left" :style="{ width: fixMode === 'left' ? fix : '' }">
         <slot name="left" />
       </section>
-      <section class="nm-flex_right" :style="{width:fixMode==='right'?fix:'',paddingLeft:gutter?gutter+'px':0}">
+      <section class="nm-flex_right" :style="{ width: fixMode === 'right' ? fix : '', paddingLeft: gutter ? gutter + 'px' : 0 }">
         <slot name="right" />
       </section>
     </template>

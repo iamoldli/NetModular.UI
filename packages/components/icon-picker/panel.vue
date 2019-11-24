@@ -4,7 +4,7 @@
       <el-input class="nm-icon-picker-panel-filter" v-model="filter" placeholder="请输入英文或中文名称" clearable></el-input>
     </template>
     <section class="nm-icon-picker-panel">
-      <el-tooltip v-for="icon in filterList" :key="icon" effect="dark" :content="icon" placement="top">
+      <el-tooltip v-for="icon in filterList" :key="icon" effect="dark" :open-delay="800" :content="icon" placement="top">
         <div class="nm-icon-picker-panel-item" @click="onSelect(icon)">
           <nm-icon :name="icon" />
         </div>
@@ -37,11 +37,15 @@ export default {
   },
   computed: {
     filterList() {
-      if (!this.filter) { return this.list }
+      if (!this.filter) {
+        return this.list
+      }
 
       let list = []
       this.list.forEach(icon => {
-        if (icon.indexOf(this.filter) > -1 || icon.indexOf(this.filter) > -1) { list.push(icon) }
+        if (icon.indexOf(this.filter) > -1 || icon.indexOf(this.filter) > -1) {
+          list.push(icon)
+        }
       })
       return list
     }

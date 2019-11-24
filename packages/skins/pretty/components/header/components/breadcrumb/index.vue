@@ -1,7 +1,7 @@
 <template>
   <el-breadcrumb class="nm-breadcrumb" separator="/">
     <transition-group name="breadcrumb">
-      <el-breadcrumb-item v-for="(item,index) in breadcrumb" :key="`${index}_${item.route}`" :to="item.route">{{item.title}}</el-breadcrumb-item>
+      <el-breadcrumb-item v-for="(item, index) in breadcrumb" :key="`${index}_${item.route}`" :to="item.route">{{ item.title }}</el-breadcrumb-item>
     </transition-group>
   </el-breadcrumb>
 </template>
@@ -11,14 +11,18 @@ export default {
   computed: {
     ...mapState('app/account', ['routeMenus']),
     ...mapState('app/page', ['default']),
-    breadcrumb () {
+    breadcrumb() {
       let route = this.$route
-      let bc = [{
-        title: '首页',
-        route: '/'
-      }]
+      let bc = [
+        {
+          title: '首页',
+          route: '/'
+        }
+      ]
 
-      if (!route.name || this.default === route.path) { return bc }
+      if (!route.name || this.default === route.path) {
+        return bc
+      }
 
       if (this.routeMenus) {
         const obj = this.routeMenus.get(route.name)

@@ -1,5 +1,5 @@
 <template>
-  <footer class="nm-list-footer" :class="[reverse?'reverse':'']">
+  <footer class="nm-list-footer" :class="[reverse ? 'reverse' : '']">
     <div class="nm-list-footer-left">
       <slot />
     </div>

@@ -6,7 +6,7 @@ export default {
      * @description 成功消息
      * @param {String} msg 消息内容
      */
-    async _success (msg, onClose) {
+    async _success(msg, onClose) {
       await this.$message({
         message: msg,
         showClose: true,
@@ -19,7 +19,7 @@ export default {
      * @description 警告消息
      * @param {String} msg 消息内容
      */
-    async _warning (msg, onClose) {
+    async _warning(msg, onClose) {
       await this.$message({
         message: msg,
         showClose: true,
@@ -32,7 +32,7 @@ export default {
      * @description 错误消息
      * @param {String} msg 消息内容
      */
-    async _error (msg, onClose) {
+    async _error(msg, onClose) {
       await this.$message({
         message: msg,
         showClose: true,
@@ -42,7 +42,7 @@ export default {
       })
     },
     /** 二次确认 */
-    async _confirm (msg, title, type) {
+    async _confirm(msg, title, type) {
       await this.$confirm(msg, title || '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
@@ -50,7 +50,7 @@ export default {
       })
     },
     /** 删除数据确认 */
-    async _delete (action, title) {
+    async _delete(action, title) {
       const msg = title || '您确认要删除该数据吗?'
 
       await this._confirm(msg)

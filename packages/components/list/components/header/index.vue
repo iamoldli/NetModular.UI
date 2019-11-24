@@ -1,9 +1,9 @@
 <template>
   <header class="nm-list-header">
     <div class="nm-list-icon">
-      <nm-icon :name="icon||'list'" />
+      <nm-icon :name="icon || 'list'" />
     </div>
-    <div class="nm-list-title">{{title}}</div>
+    <div class="nm-list-title">{{ title }}</div>
     <div class="nm-list-header-toolbar">
       <!--工具栏插槽-->
       <slot name="toolbar" />
@@ -15,7 +15,6 @@
   </header>
 </template>
 <script>
-
 export default {
   props: {
     value: Object,

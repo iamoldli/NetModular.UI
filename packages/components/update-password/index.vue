@@ -53,9 +53,7 @@ export default {
         confirmPassword: ''
       },
       rules: {
-        oldPassword: [
-          { required: true, message: '请输入原密码' }
-        ],
+        oldPassword: [{ required: true, message: '请输入原密码' }],
         newPassword: [
           { required: true, message: '请输入新密码' },
           { min: 6, message: '密码长度不能小于6' }

@@ -8,7 +8,7 @@ export default {
     })
   },
   methods: {
-    _loading (text) {
+    _loading(text) {
       return this.$loading({
         lock: true,
         text: text || this.loadingText,

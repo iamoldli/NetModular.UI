@@ -2,10 +2,10 @@
   <div :class="class_" :style="style_">
     <div class="inner">
       <div class="value">
-        {{value}}
-        <span v-if="unit" class="unit">{{unit}}</span>
+        {{ value }}
+        <span v-if="unit" class="unit">{{ unit }}</span>
       </div>
-      <div v-if="label" class="label">{{label}}</div>
+      <div v-if="label" class="label">{{ label }}</div>
     </div>
     <div v-if="icon" class="icon">
       <nm-icon :name="icon" />

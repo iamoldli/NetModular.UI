@@ -1,15 +1,20 @@
+$pretty-sidebar-toggle-btn-color: #fff;
+
 @import './default/index';
 @import './blue-light/index';
 @import './green/index';
 @import './green-light/index';
+@import './orange/index';
+@import './orange-light/index';
+@import './pink/index';
+@import './pink-light/index';
 
 #{$prefix}tabnav {
-    &-tabs {
-        .el-tabs__header {
-
-            .el-tabs__nav {
-                padding-left: 5px;
-            }
-        }
+  &-tabs {
+    .el-tabs__header {
+      .el-tabs__nav {
+        padding-left: 5px;
+      }
     }
+  }
 }

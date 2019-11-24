@@ -1,10 +1,6 @@
 <template>
   <section
-    :class="['nm-box-col',
-    span ? 'nm-box-col-' + span : '',
-    offset ? 'nm-box-col-offset-' + offset : '',
-    push ? 'nm-box-col-push-' + push : '',
-    pull ? 'nm-box-col-pull-' + pull : '']"
+    :class="['nm-box-col', span ? 'nm-box-col-' + span : '', offset ? 'nm-box-col-offset-' + offset : '', push ? 'nm-box-col-push-' + push : '', pull ? 'nm-box-col-pull-' + pull : '']"
     :style="style"
   >
     <slot />

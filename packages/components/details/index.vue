@@ -1,21 +1,21 @@
 <template>
   <section
     ref="details"
-    :class="['nm-details',noBorder?'no-border':'']"
+    :class="['nm-details', noBorder ? 'no-border' : '']"
     v-loading="loading"
     :element-loading-text="loadingText"
     :element-loading-background="loadingBackground"
     :element-loading-spinner="loadingSpinner"
   >
     <template v-if="model_">
-      <template v-for="(group,i) in options">
-        <div v-if="group.length>0" :class="['nm-details-group',`nm-details-group-${group.length}`]" :key="i">
-          <div class="nm-details-item" v-for="(item,t) in group" :key="t">
+      <template v-for="(group, i) in options">
+        <div v-if="group.length > 0" :class="['nm-details-group', `nm-details-group-${group.length}`]" :key="i">
+          <div class="nm-details-item" v-for="(item, t) in group" :key="t">
             <div class="nm-details-item-label">
-              <slot :name="`label-${item.prop}`" :model="model_" :item="item">{{item.label}}</slot>
+              <slot :name="`label-${item.prop}`" :model="model_" :item="item">{{ item.label }}</slot>
             </div>
             <div class="nm-details-item-content">
-              <slot :name="`content-${item.prop}`" :model="model_" :item="item">{{model_[item.prop]}}</slot>
+              <slot :name="`content-${item.prop}`" :model="model_" :item="item">{{ model_[item.prop] }}</slot>
             </div>
           </div>
         </div>
@@ -65,12 +65,14 @@ export default {
     query() {
       if (this.action && typeof this.action === 'function') {
         this.loading_ = true
-        this.action().then(data => {
-          this.model_ = data
-          this.loading_ = false
-        }).catch(() => {
-          this.loading_ = false
-        })
+        this.action()
+          .then(data => {
+            this.model_ = data
+            this.loading_ = false
+          })
+          .catch(() => {
+            this.loading_ = false
+          })
       }
     },
     refresh() {

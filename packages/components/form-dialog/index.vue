@@ -11,7 +11,7 @@
     <template v-slot:footer>
       <slot name="footer-buttons" />
       <slot name="footer">
-        <el-button v-if="btnOk" :type="btnOkType" @click="submit" :size="fontSize">{{btnOkText}}</el-button>
+        <el-button v-if="btnOk" :type="btnOkType" @click="submit" :size="fontSize">{{ btnOkText }}</el-button>
         <el-button v-if="btnReset" type="info" @click="reset" :size="fontSize">重置</el-button>
       </slot>
     </template>
@@ -194,13 +194,13 @@ export default {
       this.loading = false
     },
     // 成功
-    onSuccess(data) {
+    onSuccess(model, data) {
       // 关闭对话框
       if (this.closeWhenSuccess) {
         setTimeout(this.hide, 800)
       }
       this.loading_ = false
-      this.$emit('success', data)
+      this.$emit('success', model, data)
     },
     onError() {
       this.loading_ = false

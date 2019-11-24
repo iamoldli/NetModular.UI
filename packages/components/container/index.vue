@@ -1,5 +1,5 @@
 <template>
-  <section class="nm-container" :class="{'is-horizontal':horizontal}">
+  <section class="nm-container" :class="{ 'is-horizontal': horizontal }">
     <section class="nm-container-main">
       <nm-scrollbar v-if="scrollbar" :horizontal="horizontal">
         <slot />

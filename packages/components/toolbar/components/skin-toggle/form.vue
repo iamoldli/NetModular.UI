@@ -2,12 +2,13 @@
   <nm-drawer class="nm-skin-toggle" v-bind="deawer" :visible.sync="visible_" v-on="on">
     <el-divider>皮肤</el-divider>
     <section class="skin-list">
-      <div v-for="item in list" :key="item.code" :class="['skin-list-item',model.name===item.code?'active':'']" @click="onSkinChange(item)">
+      <div v-for="item in list" :key="item.code" :class="['skin-list-item', model.name === item.code ? 'active' : '']" @click="onSkinChange(item)">
         <div class="img">
           <img :src="item.preview" />
         </div>
         <div class="text">
-          <span>{{item.name}}</span>&nbsp;&nbsp;
+          <span>{{ item.name }}</span
+          >&nbsp;&nbsp;
           <el-popover placement="left" :title="item.name" width="700" trigger="click">
             <img style="width:100%" :src="item.preview" />
             <nm-button slot="reference" type="text" text="查看大图" />
@@ -17,13 +18,7 @@
     </section>
     <el-divider>主题</el-divider>
     <section class="theme-list">
-      <div
-        :class="['theme-list-item',model.theme===item.name?'active':'']"
-        v-for="item in themes"
-        :key="item.name"
-        :style="{backgroundColor:item.color}"
-        @click="onThemeChange(item)"
-      ></div>
+      <div :class="['theme-list-item', model.theme === item.name ? 'active' : '']" v-for="item in themes" :key="item.name" :style="{ backgroundColor: item.color }" @click="onThemeChange(item)"></div>
     </section>
     <el-divider>字号</el-divider>
     <section class="fontsize-list">
@@ -76,7 +71,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations('app/skins', ['toggle']),
+    ...mapMutations('app/skins', ['toggle', 'init']),
     onSuccess() {
       this.$emit('success')
     },
@@ -97,7 +92,7 @@ export default {
     },
     onSave() {
       this.saveSkin(this.model).then(() => {
-        window.location.reload()
+        this.init(this.model)
       })
     }
   }

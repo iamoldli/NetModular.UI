@@ -4,15 +4,15 @@
     <nm-form ref="normalForm" class="nm-list-querybar-normal" :model="model_" :rules="rules" :inline="true">
       <slot />
       <el-form-item v-if="!noSearch">
-        <nm-button type="primary" @click="query" :icon="!noSearchButtonIcon?'search':''" text="查询" />
+        <nm-button type="primary" @click="query" :icon="!noSearchButtonIcon ? 'search' : ''" text="查询" />
       </el-form-item>
       <el-form-item v-if="!noSearch">
-        <nm-button type="info" @click="reset" :icon="!noSearchButtonIcon?'refresh':''" text="重置" />
+        <nm-button type="info" @click="reset" :icon="!noSearchButtonIcon ? 'refresh' : ''" text="重置" />
       </el-form-item>
       <el-form-item v-if="advanced_.enabled">
         <nm-button ref="showAdvnacedBtn" type="warning" @click="onAdvancedClick">
           高级查询
-          <i class="el-icon--right" :class="[showAdvanced?'el-icon-arrow-up':'el-icon-arrow-down']"></i>
+          <i class="el-icon--right" :class="[showAdvanced ? 'el-icon-arrow-up' : 'el-icon-arrow-down']"></i>
         </nm-button>
       </el-form-item>
       <!--自定义按钮插槽-->
@@ -24,9 +24,9 @@
     <!--高级查询框-->
     <transition name="el-zoom-in-top">
       <section ref="advancedBox" class="nm-list-querybar-advanced" v-if="advanced_.enabled" v-show="showAdvanced" :style="advancedStyle">
-        <nm-box page header footer title="高级查询" icon="search" :toolbar="null">
+        <nm-box page header footer title="高级查询" icon="search">
           <template v-slot:toolbar>
-            <nm-button icon="close" @click="showAdvanced=false" />
+            <nm-button icon="close" @click="showAdvanced = false" />
           </template>
           <!--查询条件-->
           <nm-form ref="advancedForm" :model="model_" :rules="rules" :label-width="advanced_.labelWidth" :inline="advanced_.inline">
@@ -34,9 +34,9 @@
           </nm-form>
           <template v-slot:footer>
             <!--查询按钮-->
-            <nm-button type="primary" @click="query" text="查询" :icon="!noSearchButtonIcon?'search':''" />
+            <nm-button type="primary" @click="query" text="查询" :icon="!noSearchButtonIcon ? 'search' : ''" />
             <!--重置按钮-->
-            <nm-button type="info" @click="reset" text="重置" :icon="!noSearchButtonIcon?'refresh':''" />
+            <nm-button type="info" @click="reset" text="重置" :icon="!noSearchButtonIcon ? 'refresh' : ''" />
           </template>
         </nm-box>
         <div ref="arrow" class="advanced-arrow" />

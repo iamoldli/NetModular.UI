@@ -30,7 +30,7 @@ export default {
         }
         return '-1'
       },
-      set() { }
+      set() {}
     }
   }
 }

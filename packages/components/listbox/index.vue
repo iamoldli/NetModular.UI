@@ -2,17 +2,17 @@
   <nm-box ref="page" page header class="nm-listbox" :icon="icon">
     <template v-slot:header>
       <div class="nm-box-header-icon">
-        <nm-icon v-if="icon" :name="icon"/>
+        <nm-icon v-if="icon" :name="icon" />
       </div>
-      <div class="nm-box-header-text">{{title}}</div>
-      <span v-if="!noCount" class="nm-listbox-count">已选 {{value.length}} 个</span>
+      <div class="nm-box-header-text">{{ title }}</div>
+      <span v-if="!noCount" class="nm-listbox-count">已选 {{ value.length }} 个</span>
     </template>
 
-    <ul v-if="value&&value.length>0" class="nm-listbox-list">
+    <ul v-if="value && value.length > 0" class="nm-listbox-list">
       <li class="nm-listbox-item" v-for="item in value_" :key="item.value" :title="item.label">
         <slot :item="item">
-          <span class="nm-listbox-item-text">{{item.label}}</span>
-          <nm-button class="nm-listbox-delete" circle type="danger" icon="delete" @click="remove(item.value)"/>
+          <span class="nm-listbox-item-text">{{ item.label }}</span>
+          <nm-button class="nm-listbox-delete" circle type="danger" icon="delete" @click="remove(item.value)" />
         </slot>
       </li>
     </ul>
@@ -22,7 +22,7 @@
 <script>
 export default {
   name: 'Listbox',
-  data () {
+  data() {
     return {
       value_: this.value,
       resizeing: false
@@ -47,12 +47,15 @@ export default {
     noCount: Boolean
   },
   methods: {
-    remove (v) {
-      this.value_.splice(this.value_.findIndex(item => item.value === v), 1)
+    remove(v) {
+      this.value_.splice(
+        this.value_.findIndex(item => item.value === v),
+        1
+      )
       this.$emit('input', this.value_)
       this.$emit('remove', v, this.value_)
     },
-    scrollbarResize () {
+    scrollbarResize() {
       if (!this.resizeing) {
         this.resizeing = true
         setTimeout(() => {
@@ -65,7 +68,7 @@ export default {
     }
   },
   watch: {
-    value (val) {
+    value(val) {
       this.value_ = val
       this.scrollbarResize()
     }

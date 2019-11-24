@@ -2,10 +2,10 @@
 export default {
   computed: {
     visible_: {
-      get () {
+      get() {
         return this.visible
       },
-      set (val) {
+      set(val) {
         this.$emit('update:visible', val)
       }
     }
@@ -17,10 +17,10 @@ export default {
     }
   },
   methods: {
-    show () {
+    show() {
       this.visible_ = true
     },
-    hide () {
+    hide() {
       this.visible_ = false
     }
   }

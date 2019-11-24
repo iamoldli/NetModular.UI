@@ -118,7 +118,7 @@ export default config => {
         if (response.headers['content-disposition']) {
           const url = window.URL.createObjectURL(response.data)
           // 如果是预览直接返回，否则就是下载
-          if (response.config.preview) {
+          if (response.config.headers['preview']) {
             return url
           }
 

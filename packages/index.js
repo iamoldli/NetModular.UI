@@ -15,11 +15,12 @@ import dayjs from 'dayjs'
 import echarts from 'echarts'
 import VCharts from 'v-charts'
 import VueClipboard from 'vue-clipboard2'
-
 // 皮肤
 import SkinPretty from './skins/pretty/index'
 // 皮肤集合
 let skins = [SkinPretty]
+//
+Vue.config.productionTip = false
 
 // 附加自定义样式
 const appendCustomCss = system => {

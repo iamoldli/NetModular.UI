@@ -8,7 +8,7 @@
       </el-input>
     </div>
     <div class="nm-icon-picker-button">
-      <nm-button icon="search" @click="panelVisible=true" />
+      <nm-button icon="search" @click="panelVisible = true" />
     </div>
     <panel :visible.sync="panelVisible" @success="onSelect" />
   </section>

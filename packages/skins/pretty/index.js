@@ -20,10 +20,26 @@ export default {
       },
       {
         name: 'green',
-        color: '#18ce0f'
+        color: '#00a65a'
       },
       {
         name: 'green-light',
+        color: '#e4e7ed'
+      },
+      {
+        name: 'orange',
+        color: '#e6a23c'
+      },
+      {
+        name: 'orange-light',
+        color: '#e4e7ed'
+      },
+      {
+        name: 'pink',
+        color: '#eac4db'
+      },
+      {
+        name: 'pink-light',
         color: '#e4e7ed'
       }
     ]

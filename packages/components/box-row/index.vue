@@ -1,6 +1,6 @@
 <template>
-  <section ref="row" class="nm-box-row" :style="{height}">
-    <slot/>
+  <section ref="row" class="nm-box-row" :style="{ height }">
+    <slot />
   </section>
 </template>
 <script>
@@ -19,7 +19,7 @@ export default {
     }
   },
   computed: {
-    gutter_ () {
+    gutter_() {
       return this.gutter / 2 + 'px'
     }
   }

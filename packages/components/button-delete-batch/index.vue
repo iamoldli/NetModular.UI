@@ -14,7 +14,7 @@
     @click="remove"
   >
     <nm-icon v-if="!noIcon" :name="icon" />
-    <span v-if="!circle&&text" class="nm-button-text">{{text}}</span>
+    <span v-if="!circle && text" class="nm-button-text">{{ text }}</span>
   </el-button>
 </template>
 <script>
@@ -83,15 +83,16 @@ export default {
         cancelButtonText: '取消',
         dangerouslyUseHTMLString: true,
         type: 'warning'
-      }).then(async () => {
-        // 执行删除操作
-        if (this.action || typeof action === 'function') {
-          await this.action(this.selection.map(item => item.id))
-          this._success('删除成功~')
-          this.$emit('success')
-        }
-      }).catch(() => {
       })
+        .then(async () => {
+          // 执行删除操作
+          if (this.action || typeof action === 'function') {
+            await this.action(this.selection.map(item => item.id))
+            this._success('删除成功~')
+            this.$emit('success')
+          }
+        })
+        .catch(() => {})
     }
   }
 }

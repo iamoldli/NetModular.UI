@@ -1,5 +1,5 @@
 <template>
-  <el-scrollbar ref="bar" :class="['nm-scrollbar',horizontal?'is-horizontal':'']">
+  <el-scrollbar ref="bar" :class="['nm-scrollbar', horizontal ? 'is-horizontal' : '']">
     <slot />
   </el-scrollbar>
 </template>

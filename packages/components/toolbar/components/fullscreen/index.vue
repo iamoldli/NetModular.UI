@@ -1,7 +1,7 @@
 <template>
   <div class="nm-toolbar-item">
     <nm-button class="nm-toolbar-button" type="text" @click="toggle">
-      <nm-icon :name="icon"/>
+      <nm-icon :name="icon" />
     </nm-button>
   </div>
 </template>
@@ -11,7 +11,7 @@ import { mapState, mapActions } from 'vuex'
 export default {
   computed: {
     ...mapState('app/fullscreen', ['active']),
-    icon () {
+    icon() {
       return this.active ? 'fullscreen-c' : 'fullscreen-o'
     }
   },

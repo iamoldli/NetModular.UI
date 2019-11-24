@@ -1,6 +1,6 @@
 <template>
   <span :class="class_">
-    <slot>{{text}}</slot>
+    <slot>{{ text }}</slot>
   </span>
 </template>
 <script>

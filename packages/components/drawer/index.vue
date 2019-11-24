@@ -7,7 +7,7 @@
       <section
         ref="dialog"
         class="nm-drawer-dialog"
-        :style="{width:wrapperWidth}"
+        :style="{ width: wrapperWidth }"
         v-show="visible"
         v-loading="loading"
         :element-loading-text="loadingText"
@@ -21,7 +21,7 @@
               <nm-icon v-if="icon" :name="icon" />
             </div>
             <!--标题-->
-            <div class="nm-drawer-header-title">{{title}}</div>
+            <div class="nm-drawer-header-title">{{ title }}</div>
             <!--工具栏-->
             <div class="nm-drawer-header-toolbar">
               <!--工具栏插槽-->
@@ -138,13 +138,7 @@ export default {
   computed: {
     ...mapState('app/loading', { loadingText: 'text', loadingBackground: 'background', loadingSpinner: 'spinner' }),
     class_() {
-      return ['nm-drawer',
-        this.placement,
-        this.fullscreen_ ? 'fullscreen' : '',
-        this.draggable ? 'draggable' : '',
-        this.customClass,
-        this.noPadding ? 'no-padding' : ''
-      ]
+      return ['nm-drawer', this.placement, this.fullscreen_ ? 'fullscreen' : '', this.draggable ? 'draggable' : '', this.customClass, this.noPadding ? 'no-padding' : '']
     }
   },
   methods: {

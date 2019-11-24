@@ -1,5 +1,5 @@
 <template>
-  <section :class="['nm-tabs',this.fullscreen_?'fullscreen':'']">
+  <section :class="['nm-tabs', this.fullscreen_ ? 'fullscreen' : '']">
     <section class="nm-tabs-toolbar">
       <slot name="toolbar" />
       <!--全屏按钮-->

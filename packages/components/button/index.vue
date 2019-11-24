@@ -13,9 +13,9 @@
     v-nm-has="code"
     @click="$emit('click')"
   >
-    <nm-icon v-if="!loading&&icon" :name="icon" />
+    <nm-icon v-if="!loading && icon" :name="icon" />
     <slot>
-      <span v-if="!circle&&text" class="nm-button-text" v-html="text" />
+      <span v-if="!circle && text" class="nm-button-text" v-html="text" />
     </slot>
   </el-button>
 </template>

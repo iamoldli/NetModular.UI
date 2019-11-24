@@ -68,19 +68,21 @@ export default {
     },
     onUpdate() {
       this.loading = true
-      this.updateAction(this.model).then(() => {
-        this.loading = false
-        this.$emit('success', this.model.options)
-        this._success('保存成功', () => {
-          if (this.closeOnSuccess) {
-            this.visible_ = false
-          }
+      this.updateAction(this.model)
+        .then(() => {
+          this.loading = false
+          this.$emit('success', this.model.options)
+          this._success('保存成功', () => {
+            if (this.closeOnSuccess) {
+              this.visible_ = false
+            }
+          })
         })
-      }).catch(() => {
-        this.loading = false
-        this.$emit('error')
-        this._error('保存失败')
-      })
+        .catch(() => {
+          this.loading = false
+          this.$emit('error')
+          this._error('保存失败')
+        })
     }
   }
 }

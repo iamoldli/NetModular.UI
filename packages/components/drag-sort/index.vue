@@ -1,7 +1,7 @@
 <template>
   <section class="nm-drag-sort">
     <draggable tag="ul" v-model="list" v-bind="dragOptions" v-on="dragOn">
-      <li class="nm-drag-sort-item" v-for="(item,index) in list" :key="item.id">{{`${index+1}、${item.label}`}}</li>
+      <li class="nm-drag-sort-item" v-for="(item, index) in list" :key="item.id">{{ `${index + 1}、${item.label}` }}</li>
     </draggable>
   </section>
 </template>

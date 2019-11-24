@@ -1,71 +1,101 @@
 #{$prefix}main {
-    #{$prefix}header {
-        background-color: $pretty-header-background-color;
+  #{$prefix}header {
+    background-color: $pretty-header-background-color;
 
-        &-left {
+    &-left {
+      #{$prefix}sidebar-toggle-btn {
+        color: $pretty-sidebar-toggle-btn-color;
+      }
+      #{$prefix}breadcrumb {
+        .el-breadcrumb__item {
+          .el-breadcrumb__inner {
+            color: $pretty-breadcrumb-color;
 
-            #{$prefix}breadcrumb {
-
-                .el-breadcrumb__item {
-                    .el-breadcrumb__inner {
-                        color: $pretty-breadcrumb-color;
-
-                        &.is-link {
-                            color: $pretty-breadcrumb-link-color;
-                        }
-                    }
-
-                    .el-breadcrumb__separator {
-                        color: $pretty-breadcrumb-separator-color;
-                    }
-                }
+            &.is-link {
+              color: $pretty-breadcrumb-link-color;
             }
-        }
-    }
+          }
 
-    #{$prefix}content {
-        background: $pretty-main-background-color;
+          .el-breadcrumb__separator {
+            color: $pretty-breadcrumb-separator-color;
+          }
+        }
+      }
     }
+  }
+
+  #{$prefix}content {
+    background: $pretty-main-background-color;
+  }
 }
 
 /*侧边栏*/
 #{$prefix}sidebar {
-    background-color: $pretty-sidebar-background-color;
+  background-color: $pretty-sidebar-background-color;
 
-    /*logo*/
-    #{$prefix}logo {
-        &-box {
-            background-color: $pretty-logo-box-background-color;
-        }
-
-        &-text {
-            color: $pretty-logo-text-color;
-        }
+  /*logo*/
+  #{$prefix}logo {
+    &-box {
+      background-color: $pretty-logo-box-background-color;
     }
+
+    &-text {
+      color: $pretty-logo-text-color;
+    }
+  }
 }
 
 #{$prefix}menus {
-    background-color: $pretty-menus-background-color !important;
+  background-color: $pretty-menus-background-color !important;
 }
 
 .el-menu,
 .el-menu--vertical {
-    background-color: $pretty-menus-background-color !important;
+  background-color: $pretty-menus-background-color !important;
 
-    .el-menu-item,
-    .el-submenu__title {
-        color: $pretty-menus-menu-color !important;
+  .el-menu-item,
+  .el-submenu__title {
+    color: $pretty-menus-menu-color !important;
 
-        &:active,
-        &:focus,
-        &:hover {
-            background: $pretty-menus-menu-hover-background-color !important;
-            color: $pretty-menus-menu-hover-color !important;
-        }
-
-        &.is-active {
-            background: $pretty-menus-menu-active-background-color !important;
-            color: $pretty-menus-menu-active-color !important;
-        }
+    &:active,
+    &:focus,
+    &:hover {
+      background: $pretty-menus-menu-hover-background-color;
+      color: $pretty-menus-menu-hover-color !important;
     }
+
+    &.is-active {
+      background: $pretty-menus-menu-active-background-color;
+      color: $pretty-menus-menu-active-color !important;
+    }
+  }
+}
+
+//树
+#{$prefix}tree {
+  .el-tree--highlight-current {
+    .el-tree-node.is-current {
+      > .el-tree-node__content {
+        background-color: $pretty-tree-background-color;
+        color: $pretty-tree-color;
+      }
+    }
+  }
+}
+//标签导航激活
+#{$prefix}tabnav-tabs {
+  .el-tabs__header {
+    .el-tabs__nav {
+      .el-tabs__item {
+        &.is-active,
+        &:hover {
+          color: $pretty-theme-color;
+          font-weight: bold;
+          &::before {
+            background-color: $pretty-theme-color;
+          }
+        }
+      }
+    }
+  }
 }

@@ -15,7 +15,7 @@
       </div>
       <div class="nm-form-page-footer-right">
         <slot name="fotter">
-          <el-button v-if="btnOk" :type="btnOkType" @click="submit" :size="fontSize">{{btnOkText}}</el-button>
+          <el-button v-if="btnOk" :type="btnOkType" @click="submit" :size="fontSize">{{ btnOkText }}</el-button>
           <el-button v-if="btnReset" type="info" @click="reset" :size="fontSize">重置</el-button>
         </slot>
       </div>
@@ -163,9 +163,9 @@ export default {
       this.$refs.form.closeLoading()
     },
     // 成功
-    onSuccess(data) {
+    onSuccess(model, data) {
       this.loading = false
-      this.$emit('success', data)
+      this.$emit('success', model, data)
     },
     onError() {
       this.loading = false
