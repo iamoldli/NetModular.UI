@@ -54,8 +54,8 @@ export default {
         this.afterReset()
       }
     },
-    onSuccess(model, data) {
-      this.$emit('success', model, data)
+    onSuccess(data) {
+      this.$emit('success', this.form.model, data)
     },
     onOpen() {
       if (!this.id) {
