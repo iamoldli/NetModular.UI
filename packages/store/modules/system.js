@@ -6,54 +6,64 @@ export default {
     /************************************************************/
     /** 可在管理平台配置的属性 */
     /************************************************************/
-    /** 标题 */
-    title: '',
-    /** logo */
-    logo: '',
-    /** 首页 */
-    home: '',
-    /** 工具栏 */
-    toolbar: {
-      // 全屏
-      fullscreen: true,
-      // 皮肤切换
-      skin: true,
-      // 退出
-      logout: true,
-      // 用户信息
-      userInfo: true
+    /**基础配置 */
+    config: {
+      base: {
+        /** 标题 */
+        title: '',
+        /** logo */
+        logo: '',
+        /** 首页 */
+        home: '',
+        /** 用户信息页(路由名称) */
+        userInfoPage: 'userinfo',
+        /** 版权声明 */
+        copyright: ''
+      },
+      /**权限配置 */
+      permission: {
+        //开启按钮权限
+        button: false
+      },
+      /**登录设置 */
+      login: {
+        //登录页类型
+        type: null,
+        //是否启用验证码
+        verifyCode: false
+      },
+      /** 工具栏 */
+      toolbar: {
+        // 全屏
+        fullscreen: true,
+        // 皮肤切换
+        skin: true,
+        // 退出
+        logout: true,
+        // 用户信息
+        userInfo: true
+      },
+      /**组件配置 */
+      component: {
+        //菜单
+        menu: {
+          //是否只能打开一个菜单
+          uniqueOpened: false
+        },
+        //对话框
+        dialog: {
+          //点击模态框是否可关闭对话框
+          closeOnClickModal: false
+        },
+        //列表页
+        list: {
+          //序号表头名称
+          serialNumberName: null
+        },
+        //自定义样式
+        customCss: null
+      }
     },
-    /**
-     * 是否启用按钮权限
-     */
-    buttonPermission: true,
-    /** 是否启用权限验证功能 */
-    permissionValidate: true,
-    /** 菜单只能打开一个 */
-    menuUniqueOpened: true,
-    /** 用户信息页(路由名称) */
-    userInfoPage: 'userinfo',
-    /** 设置对话框是否可以点击模态框关闭 */
-    dialogCloseOnClickModal: false,
-    // 登录配置
-    loginOptions: {
-      // 登录页类型
-      type: 'default',
-      // 登录类型选项
-      typeOptions: [],
-      // 是否启用验证码
-      verifyCode: false,
-      /** 登录账户类型列表
-      * [
-          { label: '管理员', value: 0 },
-          { label: '企业', value: 2 },
-          { label: '员工', value: 1 }
-         ]
-      */
-      accountTypes: null
-    },
-    /** 版权声明 */
-    copyright: '',
     /************************************************************/
     /** 需要在代码中设置的属性 */
     /************************************************************/
@@ -105,13 +115,39 @@ export default {
   mutations: {
     init(state, { system }) {
       _.merge(state, system)
-      state.logo = state.logoUrl
-      if (!state.logo) {
-        state.logo = './images/logo.png'
+      let base = state.config.base
+      if (!base.logo) {
+        base.logo = './images/logo.png'
       }
-      if (!state.userInfoPage) {
-        state.userInfoPage = 'userinfo'
+      if (!base.userInfoPage) {
+        base.userInfoPage = 'userinfo'
       }
+    },
+    /**设置 */
+    setBaseConfig(state, baseConfig) {
+      state.config.base = baseConfig
+      if (!baseConfig.logo) {
+        state.config.base.logo = './images/logo.png'
+      }
+      if (!baseConfig.userInfoPage) {
+        state.config.base.userInfoPage = 'userinfo'
+      }
+    },
+    /**设置权限配置 */
+    setPermissionConfig(state, permissionConfig) {
+      state.config.permission = permissionConfig
+    },
+    /**设置登录配置 */
+    setLoginConfig(state, loginConfig) {
+      state.config.login = loginConfig
+    },
+    /**设置组件配置 */
+    setComponentConfig(state, componentConfig) {
+      state.config.component = componentConfig
+    },
+    /**设置工具栏配置 */
+    setToolbarConfig(state, toolbarConfig) {
+      state.config.toolbar = toolbarConfig
     }
   }
 }

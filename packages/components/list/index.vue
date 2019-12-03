@@ -28,7 +28,7 @@
         <!-- 序号 -->
         <el-table-column v-if="showNo" fixed="left" align="center" type="index" :index="getNo">
           <template v-slot:header>
-            <slot name="col-no-header">序号</slot>
+            <slot name="col-no-header">{{ serialNumberName || '#' }}</slot>
           </template>
           <template slot-scope="{ row, $index }">
             <div class="nm-list-no">
@@ -207,6 +207,7 @@ export default {
   },
   computed: {
     ...mapState('app/loading', { loadingText_: 'text', loadingBackground: 'background', loadingSpinner: 'spinner' }),
+    ...mapState('app/system', { serialNumberName: s => s.config.component.list.serialNumberName }),
     class_() {
       return ['nm-list', this.fontSize ? `nm-list-${this.fontSize}` : '', this.fullscreen ? 'fullscreen' : '']
     },

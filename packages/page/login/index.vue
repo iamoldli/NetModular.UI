@@ -7,7 +7,7 @@
 import { mapState } from 'vuex'
 export default {
   computed: {
-    ...mapState('app/system', { loginOptions: s => s.loginOptions }),
+    ...mapState('app/system', { loginOptions: s => s.config.login }),
     type() {
       if (!this.loginOptions.type || !this.loginOptions.typeOptions.includes(this.loginOptions.type)) {
         return 'default'

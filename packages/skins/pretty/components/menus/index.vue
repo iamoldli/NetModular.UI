@@ -1,7 +1,7 @@
 <template>
   <section class="nm-menus">
     <el-scrollbar>
-      <el-menu :default-active="active" :unique-opened="menuUniqueOpened" :collapse="collapse" :collapse-transition="false">
+      <el-menu :default-active="active" :unique-opened="uniqueOpened" :collapse="collapse" :collapse-transition="false">
         <template v-for="item in menus">
           <menu-item v-if="item.show" :key="item.id" :menu="item" />
         </template>
@@ -16,7 +16,7 @@ export default {
   components: { MenuItem },
   computed: {
     ...mapState('app/account', ['menus', 'routeMenus']),
-    ...mapState('app/system', ['menuUniqueOpened']),
+    ...mapState('app/system', { uniqueOpened: s => s.config.component.menu.uniqueOpened }),
     ...mapState('app/page', ['current']),
     ...mapState('app/skins/pretty/sidebar', ['collapse']),
     active: {

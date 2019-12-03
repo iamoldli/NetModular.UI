@@ -7,7 +7,7 @@ const has = {
     if (!binding.value) return
 
     // 验证是否开启按钮验证
-    if (store.state.app.system.buttonPermission) {
+    if (store.state.app.system.config.permission.button) {
       var buttons = store.state.app.account.buttons
       const code = binding.value
       if (buttons.every(c => c.toLowerCase() !== code.toLowerCase())) {

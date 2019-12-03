@@ -1,4 +1,3 @@
-import './font/iconfont.js'
 import Vue from 'vue'
 import lodash from 'lodash'
 import ElementUI from 'element-ui'
@@ -24,14 +23,15 @@ Vue.config.productionTip = false
 
 // 附加自定义样式
 const appendCustomCss = system => {
-  if (system.customCss) {
+  const customCss = system.config.component.customCss
+  if (customCss) {
     var style = document.createElement('style')
     style.type = 'text/css'
     if (style.styleSheet) {
-      style.styleSheet.cssText = system.customCss
+      style.styleSheet.cssText = customCss
     } else {
       // w3c浏览器中只要创建文本节点插入到style元素中就行了
-      var textNode = document.createTextNode(system.customCss)
+      var textNode = document.createTextNode(customCss)
       style.appendChild(textNode)
     }
     document.head.appendChild(style)
@@ -63,7 +63,7 @@ export default {
    */
   use: async ({ system }) => {
     // 设置标题
-    document.title = system.title
+    document.title = system.config.base.title
 
     // 将lodash添加到Vue的实例属性
     Vue.prototype.$_ = lodash
@@ -101,9 +101,6 @@ export default {
     // 回调方法
     let callbacks = []
 
-    // 登录组件列表
-    system.loginOptions.typeOptions = loginComponents
-
     // 加载模块信息
     system.modules.forEach(m => {
       // 注入路由信息
@@ -126,11 +123,12 @@ export default {
 
           // 判断是否是登录组件
           if (c.name.startsWith('nm-login-')) {
-            system.loginOptions.typeOptions.push(c.name.replace('nm-login-', ''))
+            loginComponents.push(c.name.replace('nm-login-', ''))
           }
         })
       }
     })
+    system.config.login.typeOptions = loginComponents
 
     // 使用状态
     UseStore()

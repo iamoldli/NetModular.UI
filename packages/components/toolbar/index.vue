@@ -16,7 +16,7 @@ export default {
   name: 'Toolbar',
   components: { NmFullscreen, NmLogout, NmSkinToggle, NmUserinfo },
   computed: {
-    ...mapState('app/system', ['toolbar'])
+    ...mapState('app/system', { toolbar: s => s.config.toolbar })
   }
 }
 </script>

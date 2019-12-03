@@ -103,11 +103,11 @@ export default {
   },
   computed: {
     ...mapState('app/system', {
-      title: s => s.title,
-      logo: s => s.logo,
-      loginOptions: s => s.loginOptions,
+      title: s => s.config.base.title,
+      logo: s => s.config.base.logo,
+      loginOptions: s => s.config.login,
       getVerifyCode: s => s.actions.getVerifyCode,
-      copyright: s => s.copyright
+      copyright: s => s.config.base.copyright
     })
   },
   mounted() {

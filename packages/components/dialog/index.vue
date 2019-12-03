@@ -134,7 +134,7 @@ export default {
     footerCloseButton: Boolean
   },
   computed: {
-    ...mapState('app/system', ['dialogCloseOnClickModal']),
+    ...mapState('app/system', { sysCloseOnClickModal: s => s.config.component.dialog.closeOnClickModal }),
     ...mapState('app/loading', { loadingText: 'text', loadingBackground: 'background', loadingSpinner: 'spinner' }),
     elScrollbarViewEl() {
       return this.$refs.dialog.$el.querySelector('.el-scrollbar__view')
@@ -150,7 +150,7 @@ export default {
     },
     closeOnClickModal_() {
       if (this.closeOnClickModal === null) {
-        return this.dialogCloseOnClickModal
+        return this.sysCloseOnClickModal
       }
       return this.closeOnClickModal
     },
