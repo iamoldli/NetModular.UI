@@ -1,22 +1,47 @@
+const TerserPlugin = require('terser-webpack-plugin')
 // 增加环境变量
 process.env.VUE_APP_COPYRIGHT = '版权所有：尼古拉斯·老李 | 用代码改变世界 Powered by .NET Core 3.0.0 on Linux'
 process.env.VUE_APP_BUILD_TIME = require('dayjs')().format('YYYYMDHHmmss')
 process.env.VUE_APP_VERSION = require('./package.json').version
+const isDev = process.env.NODE_ENV === 'development' // 开发环境
 
 module.exports = {
   devServer: {
     port: 6220
   },
   publicPath: '/docs/ui',
-  configureWebpack: {
-    module: {
-      rules: [
-        {
-          test: /^demo.vue$/,
-          use: 'raw-loader'
-        }
-      ]
+  configureWebpack() {
+    let config = {
+      module: {
+        rules: [
+          {
+            test: /^demo.vue$/,
+            use: 'raw-loader'
+          }
+        ]
+      }
     }
+
+    if (!isDev) {
+      //自定义代码压缩
+      config.optimization = {
+        minimize: true,
+        minimizer: [
+          new TerserPlugin({
+            cache: true,
+            parallel: true,
+            sourceMap: false,
+            terserOptions: {
+              compress: {
+                drop_console: true,
+                drop_debugger: true
+              }
+            }
+          })
+        ]
+      }
+    }
+    return config
   },
   chainWebpack: config => {
     /**
