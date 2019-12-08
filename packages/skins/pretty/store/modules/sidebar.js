@@ -8,24 +8,24 @@ export default {
     /**
      * @description 切换折叠状态
      */
-    toggle ({ state, commit }) {
+    toggle({ state, commit }) {
       commit('collapseSet', !state.collapse)
     },
     /**
      * @description 隐藏
      */
-    hide ({ commit }) {
+    hide({ commit }) {
       commit('collapseSet', false)
     },
     /**
      * @description 显示
      */
-    show ({ commit }) {
+    show({ commit }) {
       commit('collapseSet', true)
     }
   },
   mutations: {
-    collapseSet (state, collapse) {
+    collapseSet(state, collapse) {
       state.collapse = collapse
     }
   }

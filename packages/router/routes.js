@@ -3,8 +3,7 @@ export default [
     // 默认页
     path: '/',
     name: 'default',
-    component: () =>
-      import(/* webpackChunkName: "default" */ '../page/default/'),
+    component: () => import(/* webpackChunkName: "default" */ '../page/default/'),
     meta: {
       title: '默认页',
       cache: false
@@ -25,8 +24,7 @@ export default [
     // 默认个人信息页
     path: '/userinfo',
     name: 'userinfo',
-    component: () =>
-      import(/* webpackChunkName: "userinfo" */ '../page/userInfo/'),
+    component: () => import(/* webpackChunkName: "userinfo" */ '../page/userInfo/'),
     meta: {
       title: '个人信息',
       cache: false

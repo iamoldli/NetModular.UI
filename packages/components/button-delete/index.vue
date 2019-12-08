@@ -69,8 +69,18 @@ export default {
   methods: {
     async remove() {
       this._delete(async () => {
-        await this.action(this.id)
-        this.$emit('success')
+        this._openLoading('正在删除，请稍后...')
+        this.action(this.id)
+          .then(() => {
+            this._closeLoading()
+            this._success('删除成功~')
+            this.$emit('success')
+          })
+          .catch(() => {
+            this._closeLoading()
+            this._error('删除失败~')
+            this.$emit('error')
+          })
       }, this.msg).catch(() => {})
     }
   }

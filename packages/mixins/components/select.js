@@ -1,6 +1,8 @@
 export default {
   data() {
     return {
+      //初始值
+      initValue: this.value,
       value_: this.value,
       options: [],
       action: null,
@@ -106,6 +108,9 @@ export default {
     },
     onFocus(event) {
       this.$emit('focus', event)
+    },
+    reset() {
+      this.onChange(this.initValue)
     }
   },
   watch: {

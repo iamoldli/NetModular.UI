@@ -1,5 +1,5 @@
 // 判断参数是否是其中之一
-export function oneOf (value, validList) {
+export function oneOf(value, validList) {
   for (let i = 0; i < validList.length; i++) {
     if (value === validList[i]) {
       return true
@@ -8,7 +8,7 @@ export function oneOf (value, validList) {
   return false
 }
 
-function typeOf (obj) {
+function typeOf(obj) {
   const toString = Object.prototype.toString
   const map = {
     '[object Boolean]': 'boolean',
@@ -26,7 +26,7 @@ function typeOf (obj) {
 }
 
 // deepCopy
-export function deepCopy (data) {
+export function deepCopy(data) {
   const t = typeOf(data)
   let o
 

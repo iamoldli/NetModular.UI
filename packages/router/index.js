@@ -62,13 +62,7 @@ export default (store, system) => {
               next()
               // 关闭进度条
               NProgress.done()
-            } else if (
-              !store.state.app.system.permissionValidate ||
-              store.getters['app/account/routes'].includes(to.name) ||
-              to.path === homeRoute ||
-              to.name === 'iframe' ||
-              to.name === 'userinfo'
-            ) {
+            } else if (!store.state.app.system.permissionValidate || store.getters['app/account/routes'].includes(to.name) || to.path === homeRoute || to.name === 'iframe' || to.name === 'userinfo') {
               // 打开页面
               store.dispatch('app/page/open', to, { root: true }).then(() => {
                 next()

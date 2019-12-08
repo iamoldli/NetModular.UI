@@ -57,8 +57,7 @@ export default {
 
       // 执行删除操作
       if (action || typeof action === 'function') {
-        await action()
-        this._success('删除成功~')
+        action()
       }
     }
   }

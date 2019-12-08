@@ -4,13 +4,13 @@ export default {
     id: 1000
   },
   actions: {
-    open ({ state, commit }) {
+    open({ state, commit }) {
       commit('setId')
       return state.id
     }
   },
   mutations: {
-    setId (state) {
+    setId(state) {
       state.id++
     }
   }

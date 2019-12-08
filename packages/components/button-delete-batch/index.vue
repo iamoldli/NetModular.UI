@@ -85,11 +85,21 @@ export default {
         type: 'warning'
       })
         .then(async () => {
-          // 执行删除操作
           if (this.action || typeof action === 'function') {
-            await this.action(this.selection.map(item => item.id))
-            this._success('删除成功~')
-            this.$emit('success')
+            this._openLoading('正在删除，请稍后...')
+
+            this.action(this.selection.map(item => item.id))
+              .then(() => {
+                this._closeLoading()
+                this._success('删除成功~')
+                this.$emit('success')
+              })
+              .catch(() => {
+                this._closeLoading()
+                this._error('删除失败~')
+                this.$emit('error')
+              }, this.msg)
+              .catch(() => {})
           }
         })
         .catch(() => {})

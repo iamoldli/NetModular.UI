@@ -2,6 +2,7 @@
 import message from './global/message'
 import fontSize from './global/fontSize'
 import setTabName from './global/setTabName'
+import _loading from './global/loading'
 
 // 局部混入
 import dialog from './components/dialog'
@@ -11,7 +12,7 @@ import formDialogEdit from './components/form-dialog-edit'
 import loading from './components/loading'
 
 export default {
-  global (Vue) {
+  global(Vue) {
     // 消息提示
     Vue.mixin(message)
 
@@ -20,6 +21,9 @@ export default {
 
     // 设置标签页名称
     Vue.mixin(setTabName)
+
+    // 设置loading
+    Vue.mixin(_loading)
   },
   components: {
     dialog,
