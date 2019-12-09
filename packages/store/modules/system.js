@@ -22,6 +22,8 @@ export default {
       },
       /**权限配置 */
       permission: {
+        //开启权限验证
+        validate: true,
         //开启按钮权限
         button: false
       },

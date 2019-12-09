@@ -27,7 +27,7 @@ export default (store, system) => {
     // 开始进度条
     NProgress.start()
     // 默认页
-    const homeRoute = system.home
+    const homeRoute = system.config.base.home
     // 如果访问的时 / 或者 /default，则跳转到首页
     if (homeRoute && (to.path === '/' || to.path === '/default')) {
       if (homeRoute.startsWith('http://') || homeRoute.startsWith('https://')) {
@@ -62,7 +62,13 @@ export default (store, system) => {
               next()
               // 关闭进度条
               NProgress.done()
-            } else if (!store.state.app.system.permissionValidate || store.getters['app/account/routes'].includes(to.name) || to.path === homeRoute || to.name === 'iframe' || to.name === 'userinfo') {
+            } else if (
+              !store.state.app.system.permission.validate ||
+              store.getters['app/account/routes'].includes(to.name) ||
+              to.path === homeRoute ||
+              to.name === 'iframe' ||
+              to.name === 'userinfo'
+            ) {
               // 打开页面
               store.dispatch('app/page/open', to, { root: true }).then(() => {
                 next()
