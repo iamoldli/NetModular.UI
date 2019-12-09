@@ -63,7 +63,7 @@ export default (store, system) => {
               // 关闭进度条
               NProgress.done()
             } else if (
-              !store.state.app.system.permission.validate ||
+              !store.state.app.system.config.permission.validate ||
               store.getters['app/account/routes'].includes(to.name) ||
               to.path === homeRoute ||
               to.name === 'iframe' ||
