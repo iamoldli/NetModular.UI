@@ -33,7 +33,7 @@ const get = () => {
       /** 主题 */
       theme: '',
       /** 字号 medium/small/mini */
-      fontSize: ''
+      fontSize: 'small'
     }
   }
 }

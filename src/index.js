@@ -1,6 +1,7 @@
 import store from './store'
 import routes from './routes'
 import login from './views/login'
+import NetModularMap from 'netmodular-ui-map'
 export default {
   module: {
     name: 'nm-module-admin',
@@ -15,5 +16,8 @@ export default {
       name: 'nm-login-auto',
       component: login
     }
-  ]
+  ],
+  callback({ Vue }) {
+    NetModularMap.init(Vue, { ak: 'q96f4kWdHsVg1Y8tlclqYvrlpdnhlz5l' })
+  }
 }

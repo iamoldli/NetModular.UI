@@ -313,7 +313,7 @@ export default {
         }
         // 设置内边距
         if (this.padding) {
-          this.dialogEl.querySelector('.el-scrollbar__view').style.padding = this.padding + 'px'
+          this.dialogEl.querySelector(this.noScrollbar ? '.nm-dialog-main' : '.el-scrollbar__view').style.padding = this.padding + 'px'
         }
         this.hasInit = true
       }

@@ -26,6 +26,14 @@ let componentMenus = [
     level: 1,
     show: true,
     children: []
+  },
+  {
+    name: '地图组件',
+    type: 0,
+    icon: 'chart-map',
+    level: 1,
+    show: true,
+    children: []
   }
 ]
 const requireComponent = require.context('./', true, /\page.js$/)
