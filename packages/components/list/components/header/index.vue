@@ -7,10 +7,12 @@
     <div class="nm-list-header-toolbar">
       <!--工具栏插槽-->
       <slot name="toolbar" />
+      <!--导出按钮-->
+      <nm-button v-if="exportEnabled" icon="export" @click="onExportClick" v-nm-has="exportBtnCode" />
       <!--刷新按钮-->
       <nm-button v-if="!noRefresh" icon="refresh" @click="refresh" />
       <!--全屏按钮-->
-      <nm-button v-if="!noFullscreen" :icon="fullscreen ? 'min' : 'max'" @click="onFullscreenClict" />
+      <nm-button v-if="!noFullscreen" :icon="fullscreen ? 'min' : 'max'" @click="onFullscreenClick" />
     </div>
   </header>
 </template>
@@ -22,17 +24,18 @@ export default {
     title: String,
     /** 图标 */
     icon: String,
-    /** 不显示全屏按钮 */
-    noFullscreen: Boolean,
     /** 是否全屏 */
     fullscreen: Boolean,
+    /** 不显示全屏按钮 */
+    noFullscreen: Boolean,
     /** 不显示刷新按钮 */
-    noRefresh: Boolean
+    noRefresh: Boolean,
+    /**显示导出按钮 */
+    exportEnabled: Boolean,
+    /**导出按钮权限编码 */
+    exportBtnCode: String
   },
   methods: {
-    onFullscreenClict() {
-      this.$emit('update:fullscreen', !this.fullscreen)
-    },
     query() {
       this.$parent.page.index = 1
       this.$parent.query()
@@ -42,6 +45,12 @@ export default {
     },
     refresh() {
       this.$parent.refresh()
+    },
+    onFullscreenClick() {
+      this.$parent.triggerFullscreen()
+    },
+    onExportClick() {
+      this.$parent.triggerExport()
     }
   }
 }

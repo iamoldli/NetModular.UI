@@ -1,19 +1,20 @@
 #{$prefix}checkbox-group {
-    min-height: 200px;
+  margin-bottom: 5px;
+  height: auto;
 
-    #{$prefix}box-header {
-        @include vertical-center(30px !important);
-    }
+  #{$prefix}box-header {
+    @include vertical-center(30px !important);
+  }
 
-    .el-checkbox {
-        margin-right: 10px !important;
-    }
+  .el-checkbox {
+    margin-right: 10px !important;
+  }
 
-    .el-checkbox.is-bordered+.el-checkbox.is-bordered {
-        margin-left: 0 !important;
-    }
+  .el-checkbox.is-bordered + .el-checkbox.is-bordered {
+    margin-left: 0 !important;
+  }
 
-    #{$prefix}box-content {
-        padding: 10px !important;
-    }
+  #{$prefix}box-content {
+    padding: 10px !important;
+  }
 }

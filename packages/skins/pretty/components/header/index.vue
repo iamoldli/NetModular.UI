@@ -21,8 +21,7 @@ import Breadcrumb from './components/breadcrumb'
 export default {
   components: { Breadcrumb },
   computed: {
-    ...mapState('app/skins/pretty/sidebar', { sidebarCollapse: 'collapse' }),
-    ...mapState('app/system', ['toolbar'])
+    ...mapState('app/skins/pretty/sidebar', { sidebarCollapse: 'collapse' })
   },
   methods: {
     ...mapActions('app/skins/pretty/sidebar', { sidebarToggle: 'toggle' })

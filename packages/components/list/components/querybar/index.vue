@@ -4,10 +4,13 @@
     <nm-form ref="normalForm" class="nm-list-querybar-normal" :model="model_" :rules="rules" :inline="true">
       <slot />
       <el-form-item v-if="!noSearch">
-        <nm-button type="primary" @click="query" :icon="!noSearchButtonIcon ? 'search' : ''" text="查询" />
+        <nm-button type="success" @click="query" :icon="!noSearchButtonIcon ? 'search' : ''" text="查询" />
       </el-form-item>
       <el-form-item v-if="!noSearch">
         <nm-button type="info" @click="reset" :icon="!noSearchButtonIcon ? 'refresh' : ''" text="重置" />
+      </el-form-item>
+      <el-form-item v-if="exportEnabled" v-nm-has="exportBtnCode">
+        <nm-button type="primary" @click="onExport" icon="export" text="导出" />
       </el-form-item>
       <el-form-item v-if="advanced_.enabled">
         <nm-button ref="showAdvnacedBtn" type="warning" @click="onAdvancedClick">
@@ -79,7 +82,11 @@ export default {
     /** 不显示按钮图标 */
     noSearchButtonIcon: Boolean,
     /** 不需要查询 */
-    noSearch: Boolean
+    noSearch: Boolean,
+    /**显示导出按钮 */
+    exportEnabled: Boolean,
+    /**导出按钮权限编码 */
+    exportBtnCode: String
   },
   computed: {
     model_() {
@@ -150,6 +157,9 @@ export default {
           }
         })
       }
+    },
+    onExport() {
+      this.$parent.triggerExport()
     }
   },
   mounted() {

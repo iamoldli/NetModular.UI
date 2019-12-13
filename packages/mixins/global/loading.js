@@ -8,9 +8,9 @@ export default {
     _openLoading(msg) {
       this.__loading = this.$loading({
         lock: true,
-        text: msg || '正在加载数据，请稍后...',
-        spinner: 'el-icon-loading',
-        background: 'rgba(0, 0, 0, 0.6)'
+        text: msg || '正在努力加载...',
+        background: 'rgba(255, 255, 255, 0.6)',
+        spinner: 'el-icon-loading'
       })
     },
     _closeLoading() {

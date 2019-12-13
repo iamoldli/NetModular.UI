@@ -1,6 +1,6 @@
 export default [
   {
-    name: 'toggerFullscreen',
+    name: 'triggerFullscreen',
     desc: '全屏切换',
     params: '-'
   },

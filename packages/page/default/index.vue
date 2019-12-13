@@ -7,7 +7,7 @@
 import { mapState } from 'vuex'
 export default {
   computed: {
-    ...mapState('app/system', ['title'])
+    ...mapState('app/system', { title: s => s.config.base.title })
   }
 }
 </script>

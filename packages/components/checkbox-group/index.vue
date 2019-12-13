@@ -104,6 +104,7 @@ export default {
   watch: {
     value(val) {
       this.value_ = val
+      this.setCheckAll()
     }
   }
 }

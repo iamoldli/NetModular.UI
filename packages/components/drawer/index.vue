@@ -28,7 +28,7 @@
               <slot name="toolbar" />
 
               <!--全屏按钮-->
-              <nm-button v-if="fullscreen" :icon="this.fullscreen_ ? 'min' : 'max'" @click="onFullscreen" />
+              <nm-button v-if="fullscreen" :icon="fullscreen_ ? 'min' : 'max'" @click="triggerFullscreen" />
               <!--关闭按钮-->
               <nm-button icon="close" @click="close" />
             </div>
@@ -138,7 +138,7 @@ export default {
   computed: {
     ...mapState('app/loading', { loadingText: 'text', loadingBackground: 'background', loadingSpinner: 'spinner' }),
     class_() {
-      return ['nm-drawer', this.placement, this.fullscreen_ ? 'fullscreen' : '', this.draggable ? 'draggable' : '', this.customClass, this.noPadding ? 'no-padding' : '']
+      return ['nm-drawer', this.placement, this.fullscreen_ ? 'fullscreen' : '', this.draggable ? 'draggable' : '', this.customClass, this.noPadding ? 'no-padding' : '', this.fontSize]
     }
   },
   methods: {
@@ -169,12 +169,8 @@ export default {
       this.$emit('fullscreen-change', this.fullscreen_)
     },
     /** 全屏事件 */
-    onFullscreen() {
-      if (this.fullscreen) {
-        this.closeFullscreen()
-      } else {
-        this.openFullscreen()
-      }
+    triggerFullscreen() {
+      this.fullscreen_ ? this.closeFullscreen() : this.openFullscreen()
     },
     onModalClick() {
       if (this.modal && this.modalClickClose) {

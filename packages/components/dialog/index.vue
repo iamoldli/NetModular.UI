@@ -24,7 +24,7 @@
         <!--工具栏插槽-->
         <slot name="toolbar" />
         <!--全屏按钮-->
-        <nm-button v-if="fullscreen" :icon="hasFullscreen ? 'fullscreen-c' : 'fullscreen-o'" @click="toggerFullscreen" />
+        <nm-button v-if="fullscreen" :icon="hasFullscreen ? 'fullscreen-c' : 'fullscreen-o'" @click="triggerFullscreen" />
         <!--关闭按钮-->
         <nm-button icon="close" @click="close" />
       </section>
@@ -164,7 +164,7 @@ export default {
   methods: {
     ...mapActions('app/dialog', ['open']),
     /** 全屏切换 */
-    toggerFullscreen() {
+    triggerFullscreen() {
       if (this.hasFullscreen) {
         this.closeFullscreen()
       } else {

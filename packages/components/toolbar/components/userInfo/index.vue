@@ -33,7 +33,7 @@ export default {
   },
   computed: {
     ...mapState('app/account', { userName: 'name' }),
-    ...mapState('app/system', ['userInfoPage'])
+    ...mapState('app/system', { userInfoPage: s => s.config.base.userInfoPage })
   },
   methods: {
     openUserInfo() {

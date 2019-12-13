@@ -1,6 +1,6 @@
 const TerserPlugin = require('terser-webpack-plugin')
 // 增加环境变量
-process.env.VUE_APP_COPYRIGHT = '版权所有：尼古拉斯·老李 | 用代码改变世界 Powered by .NET Core 3.0.0 on Linux'
+process.env.VUE_APP_COPYRIGHT = '版权所有：尼古拉斯·老李 | 用代码改变世界 Powered by .NET Core 3.1.0 on Linux'
 process.env.VUE_APP_BUILD_TIME = require('dayjs')().format('YYYYMDHHmmss')
 process.env.VUE_APP_VERSION = require('./package.json').version
 const isDev = process.env.NODE_ENV === 'development' // 开发环境
@@ -10,6 +10,7 @@ module.exports = {
     port: 6220
   },
   publicPath: '/docs/ui',
+  transpileDependencies: ['netmodular-*', 'element-ui'],
   configureWebpack() {
     let config = {
       module: {

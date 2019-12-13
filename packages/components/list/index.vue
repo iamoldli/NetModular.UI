@@ -1,7 +1,7 @@
 <template>
   <section :class="class_" v-loading="showLoading" :element-loading-text="loadingText || loadingText_" :element-loading-background="loadingBackground" :element-loading-spinner="loadingSpinner">
     <!--header-->
-    <query-header v-if="!noHeader" :title="title" :icon="icon" :no-fullscreen="noFullscreen" :fullscreen.sync="fullscreen" :no-refresh="noRefresh">
+    <query-header v-if="!noHeader" v-bind="header">
       <template v-slot:toolbar>
         <slot name="header-toolbar" :total="total" :selection="selection" />
       </template>
@@ -84,41 +84,24 @@
       <slot name="footer" :total="total" :selection="selection" :data="data" />
     </query-footer>
     <slot />
+
+    <!--导出-->
+    <query-export v-if="exportAdvancedEnabled" :options="exportOptions_" :list-title="title" :cols="columns" :visible.sync="showExport" />
   </section>
 </template>
 <script>
 import { mapState } from 'vuex'
+import _ from 'lodash'
+import def from './default.js'
 import QueryHeader from './components/header'
 import Querybar from './components/querybar'
 import QueryTable from './components/table'
 import QueryFooter from './components/footer'
+import QueryExport from './components/export'
 
-// 默认列信息
-const defaultColumnInfo = {
-  // 列的字段名称
-  name: '',
-  // 列的显示名称
-  label: '',
-  // 宽度
-  width: '',
-  // 排序
-  sortable: false,
-  // 固定列
-  fixed: false,
-  // 对其方式
-  align: 'center',
-  // 表头对其方式
-  headerAlign: 'center',
-  // 是否显示
-  show: true,
-  // 格式化，暂时针对日期，采用dayjs组件 https://github.com/iamkun/dayjs/blob/dev/docs/zh-cn/API-reference.md
-  format: '',
-  // 当内容过长被隐藏时显示 tooltip
-  showOverflowTooltip: true
-}
 export default {
   name: 'List',
-  components: { QueryHeader, Querybar, QueryTable, QueryFooter },
+  components: { QueryHeader, Querybar, QueryTable, QueryFooter, QueryExport },
   data() {
     return {
       loading_: false,
@@ -136,7 +119,7 @@ export default {
       // 总数量
       total: 0,
       selection: [],
-      columns: this.getColumns()
+      showExport: false
     }
   },
   props: {
@@ -203,26 +186,49 @@ export default {
     queryOnCreated: {
       type: Boolean,
       default: true
-    }
+    },
+    /**导出配置 */
+    exportOptions: Object
   },
   computed: {
     ...mapState('app/loading', { loadingText_: 'text', loadingBackground: 'background', loadingSpinner: 'spinner' }),
     ...mapState('app/system', { serialNumberName: s => s.config.component.list.serialNumberName }),
+    header() {
+      const { title, icon, noFullscreen, fullscreen, noRefresh, exportOptions_ } = this
+      return { title, icon, noFullscreen, fullscreen, noRefresh, exportEnabled: exportOptions_.enabled && exportOptions_.btnLocation !== 'querybar', exportBtnCode: exportOptions_.btnCode }
+    },
     class_() {
       return ['nm-list', this.fontSize ? `nm-list-${this.fontSize}` : '', this.fullscreen ? 'fullscreen' : '']
     },
     querybar() {
+      const { model, rules, inputWidth, advanced, noSearch, noSearchButtonIcon, exportOptions_ } = this
       return {
-        model: this.model,
-        rules: this.rules,
-        inputWidth: this.inputWidth,
-        advanced: this.advanced,
-        noSearch: this.noSearch,
-        noSearchButtonIcon: this.noSearchButtonIcon
+        model,
+        rules,
+        inputWidth,
+        advanced,
+        noSearch,
+        noSearchButtonIcon,
+        exportEnabled: exportOptions_.enabled && exportOptions_.btnLocation === 'querybar',
+        exportBtnCode: exportOptions_.btnCode
       }
     },
     showLoading() {
       return this.loading || this.loading_
+    },
+    columns() {
+      if (this.cols) {
+        return this.cols.map(col => {
+          return _.assignIn({}, def.columnInfo, col)
+        })
+      }
+      return []
+    },
+    exportOptions_() {
+      return _.assignIn({ title: this.title }, def.exportOptions, this.exportOptions)
+    },
+    exportAdvancedEnabled() {
+      return this.exportOptions_.enabled && this.exportOptions_.advanced
     }
   },
   methods: {
@@ -257,6 +263,33 @@ export default {
           this.loading_ = false
         })
     },
+    export_(exportModel) {
+      if (!exportModel.columns || exportModel.columns.length < 1) {
+        this._error('请选择要导出的列')
+        return
+      }
+      if (!this.exportOptions_.action) {
+        this._error('未设置导出方法')
+        return
+      }
+
+      this._openLoading('正在导出数据，请稍后...')
+
+      let model = Object.assign({}, this.model)
+
+      // 设置分页
+      model.page = this.page
+      //设置导出信息
+      model.export = exportModel
+      this.exportOptions_
+        .action(model)
+        .then(() => {
+          this._closeLoading()
+        })
+        .catch(() => {
+          this._closeLoading()
+        })
+    },
     /** 刷新 */
     refresh() {
       this.page.index = 1
@@ -275,17 +308,74 @@ export default {
     getNo(index) {
       return (this.page.index - 1) * this.page.size + index + 1
     },
-    getColumns() {
-      if (this.cols) {
-        return this.cols.map(col => {
-          return Object.assign({}, defaultColumnInfo, col)
-        })
-      }
-      return []
-    },
     // 重新绘制布局
     doLayout() {
       this.$refs.table.doLayout()
+    },
+    /** 全屏切换 */
+    triggerFullscreen() {
+      this.fullscreen ? this.closeFullscreen() : this.openFullscreen()
+    },
+    /** 开启全屏 */
+    openFullscreen() {
+      this.fullscreen = true
+      this.$emit('fullscreen-change', this.fullscreen)
+    },
+    /** 关闭全屏 */
+    closeFullscreen() {
+      this.fullscreen = false
+      this.$emit('fullscreen-change', this.fullscreen)
+    },
+    /**切换导出对话框显示状态 */
+    triggerExport() {
+      let exp = this.exportOptions_
+      //未启用高级，直接执行导出操作
+      if (!exp.advanced) {
+        const { format, mode, showTitle, showCopyright, showColName, showExportDate, showExportPeople } = exp
+
+        let model = { format, mode, showTitle, showCopyright, showColName, showExportDate, showExportPeople }
+        model.title = this.title
+        model.fileName = `${this.title}_${this.$dayjs().format('YYYYMMDDHHmmss')}`
+        model.columns = []
+
+        this.columns.forEach(m => {
+          if (m.show) {
+            model.columns.push(this.listCol2ExportCol(m))
+          }
+        })
+
+        this.export_(model)
+      }
+
+      this.showExport ? this.closeExport() : this.openExport()
+    },
+    /**打开导出对话框 */
+    openExport() {
+      this.showExport = true
+      this.$emit('export-change', this.showExport)
+    },
+    closeExport() {
+      this.showExport = false
+      this.$emit('export-change', this.showExport)
+    },
+    /**列表的列转导出的列 */
+    listCol2ExportCol(m) {
+      let col = {
+        name: m.name,
+        label: m.label,
+        align: m.align,
+        format: m.format,
+        width: 0
+      }
+
+      //设置导出专属vip配置~
+      if (m.export.width > 0) {
+        col.width = m.export.width
+      } else {
+        let w = parseInt(m.width)
+        if (w) col.width = w / 10 + 4 //默认取列表页中设置的宽度，该宽度与导出的Excel的列宽度比例大概10:1，所以这里进行一下转换, 转换后在+4，保可以保证有内边距，不会挤在一起
+      }
+      return col
     }
   },
   mounted() {
