@@ -21,7 +21,10 @@ const system = systemService.get()
 system.modules = [Admin]
 system.api = { baseUrl: '' }
 
-// 设置个时间，防止等待页面闪烁
-setTimeout(() => {
-  Skins.use({ system })
-}, 500)
+window.loaded = true
+const t = setInterval(() => {
+  if (window.loadProgress > 98) {
+    clearInterval(t)
+    Skins.use({ system })
+  }
+}, 20)

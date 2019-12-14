@@ -55,7 +55,6 @@
 </template>
 <script>
 import { mapState, mapActions } from 'vuex'
-import 'particles.js'
 import particlesJson from './particles.json'
 export default {
   name: 'LoginNeon',

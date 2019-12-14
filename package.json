@@ -1,6 +1,6 @@
 {
   "name": "netmodular-ui",
-  "version": "1.2.10",
+  "version": "1.2.11",
   "description": "NetModular前端组件库",
   "author": "Oldli",
   "license": "ISC",
@@ -16,6 +16,7 @@
     "pub": "cd ./script && npm_publish.ps1"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.7.0",
     "axios": "^0.19.0",
     "codemirror": "^5.48.4",
     "core-js": "^3.3.2",
@@ -39,7 +40,6 @@
     "vuex": "^3.1.2"
   },
   "devDependencies": {
-    "@babel/polyfill": "^7.7.0",
     "@vue/cli-plugin-babel": "^4.0.0",
     "@vue/cli-plugin-eslint": "^4.0.0",
     "@vue/cli-plugin-router": "^4.0.0",

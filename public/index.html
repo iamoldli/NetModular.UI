@@ -14,33 +14,42 @@
       <strong>很抱歉，如果没有 JavaScript，系统将不能正常工作。请启用浏览器的 JavaScript 然后继续。</strong>
     </noscript>
     <div id="app">
-      <div class="nm-home">
-        <div class="nm-home-loading">
-          <div class="lds-default">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
+      <div class="nm-loader-box">
+        <div id="particles-background"></div>
+        <div id="particles-foreground"></div>
+        <div class="nm-loader-wrapper">
+          <div class="nm-loader"></div>
+          <div id="nm-progress" class="nm-progress">0%</div>
+          <div class="nm-loader-title">
+            初次加载资源可能需要较多时间，请您耐心等待~
           </div>
-          <p class="nm-home-loading-title">正在努力加载...</p>
-          <div class="nm-home-loading-subtitle">
-            初次加载资源可能需要较多时间 请耐心等待
-          </div>
+          <div class="nm-loader-section section-left"></div>
+          <div class="nm-loader-section section-right"></div>
         </div>
-        <div class="nm-home-footer">
-          <p class="nm-home-footer-title"><%= VUE_APP_COPYRIGHT %></p>
+        <div class="nm-loader-footer">
+          <p class="nm-loader-copyright"><%= VUE_APP_COPYRIGHT %></p>
         </div>
       </div>
     </div>
-    <script src="./font/iconfont.js?v=201912101553"></script>
+
+    <script src="./lib/font/iconfont.js?v=201912101553"></script>
+    <script src="./lib/particles.js-2.0.0/particles.min.js"></script>
+    <script>
+      //粒子效果
+      particlesJS.load('particles-foreground', 'lib/particles.js-2.0.0/particles.json')
+      //加载进度
+      window.loadProgress = 10
+      window.loaded = false
+      var propressEl = document.getElementById('nm-progress')
+      var progressTimer = setInterval(function() {
+        if (!window.loaded && window.loadProgress > 96) return
+        window.loadProgress += 2
+        propressEl.innerText = window.loadProgress + '%'
+        if (window.loadProgress > 98) {
+          clearInterval(progressTimer)
+        }
+      }, 10)
+    </script>
     <!-- built files will be auto injected -->
   </body>
 </html>
