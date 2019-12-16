@@ -26,7 +26,7 @@
     "netmodular-ui-map": "^1.0.3",
     "nprogress": "^0.2.0",
     "particles.js": "^2.0.0",
-    "qs": "^6.9.0",
+    "qs": "^6.9.1",
     "resize-observer-polyfill": "^1.5.1",
     "screenfull": "^4.2.1",
     "store": "^2.0.12",
