@@ -18,10 +18,10 @@
   </nm-dialog>
 </template>
 <script>
-import dialog from '../../mixins/components/dialog.js'
+import visible from '../../mixins/components/visible'
 export default {
   name: 'FormDialog',
-  mixins: [dialog],
+  mixins: [visible],
   data() {
     return {
       loading_: false,
@@ -67,10 +67,7 @@ export default {
     /** 验证规则 */
     rules: Object,
     /** 提交请求 */
-    action: {
-      type: Function,
-      required: true
-    },
+    action: Function,
     /** 行内表单 */
     inline: {
       type: Boolean,
@@ -178,8 +175,10 @@ export default {
     },
     /** 重置 */
     reset() {
-      this.$refs.form.reset()
-      this.$emit('reset')
+      this.$nextTick(() => {
+        this.$refs.form.reset()
+        this.$emit('reset')
+      })
     },
     /** 清除验证信息 */
     clearValidate() {

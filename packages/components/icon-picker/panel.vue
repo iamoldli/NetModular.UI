@@ -13,9 +13,9 @@
   </nm-dialog>
 </template>
 <script>
-import dialog from '../../mixins/components/dialog.js'
+import visible from '../../mixins/components/visible.js'
 export default {
-  mixins: [dialog],
+  mixins: [visible],
   data() {
     return {
       list: [],

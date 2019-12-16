@@ -39,11 +39,11 @@
 </template>
 <script>
 import { mapState } from 'vuex'
-import dialog from '../../mixins/components/dialog.js'
+import visible from '../../mixins/components/visible.js'
 
 export default {
   name: 'UploadDialog',
-  mixins: [dialog],
+  mixins: [visible],
   data() {
     return {
       fileList: [],

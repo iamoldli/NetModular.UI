@@ -10,6 +10,8 @@ import select from './components/select'
 import drawer from './components/drawer'
 import formDialogEdit from './components/form-dialog-edit'
 import loading from './components/loading'
+import formSave from './components/form-save'
+import visible from './components/visible'
 
 export default {
   global(Vue) {
@@ -30,6 +32,8 @@ export default {
     select,
     drawer,
     formDialogEdit,
-    loading
+    loading,
+    formSave,
+    visible
   }
 }

@@ -57,10 +57,10 @@
 import { mapState, mapActions } from 'vuex'
 import { addResizeListener, removeResizeListener } from 'element-ui/src/utils/resize-event'
 import { on, off } from '../../utils/dom'
-import dialog from '../../mixins/components/dialog.js'
+import visible from '../../mixins/components/visible.js'
 export default {
   name: 'Dialog',
-  mixins: [dialog],
+  mixins: [visible],
   data() {
     return {
       id: '',

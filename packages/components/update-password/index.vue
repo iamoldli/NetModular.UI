@@ -29,12 +29,12 @@
   </nm-form-dialog>
 </template>
 <script>
-import dialog from '../../mixins/components/dialog.js'
+import visible from '../../mixins/components/visible.js'
 import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'UpdatePassword',
-  mixins: [dialog],
+  mixins: [visible],
   data() {
     // 密码验证
     const validator = (rule, value, callback) => {

@@ -4,7 +4,7 @@
     <nm-form ref="normalForm" class="nm-list-querybar-normal" :model="model_" :rules="rules" :inline="true">
       <slot />
       <el-form-item v-if="!noSearch">
-        <nm-button type="success" @click="query" :icon="!noSearchButtonIcon ? 'search' : ''" text="查询" />
+        <nm-button type="primary" @click="query" :icon="!noSearchButtonIcon ? 'search' : ''" text="查询" />
       </el-form-item>
       <el-form-item v-if="!noSearch">
         <nm-button type="info" @click="reset" :icon="!noSearchButtonIcon ? 'refresh' : ''" text="重置" />
