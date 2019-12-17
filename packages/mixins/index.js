@@ -12,6 +12,7 @@ import formDialogEdit from './components/form-dialog-edit'
 import loading from './components/loading'
 import formSave from './components/form-save'
 import visible from './components/visible'
+import list from './components/list'
 
 export default {
   global(Vue) {
@@ -34,6 +35,7 @@ export default {
     formDialogEdit,
     loading,
     formSave,
-    visible
+    visible,
+    list
   }
 }

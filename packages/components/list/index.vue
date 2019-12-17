@@ -38,10 +38,10 @@
         </el-table-column>
 
         <!-- 自动生成列 -->
-        <template v-for="col in columns">
+        <template v-for="(col, i) in columns">
           <el-table-column
             v-if="col.show"
-            :key="col.name"
+            :key="i"
             :prop="col.name"
             :width="col.width"
             :sortable="col.sortable"
@@ -91,7 +91,6 @@
 </template>
 <script>
 import { mapState } from 'vuex'
-import _ from 'lodash'
 import def from './default.js'
 import QueryHeader from './components/header'
 import Querybar from './components/querybar'
@@ -119,7 +118,8 @@ export default {
       // 总数量
       total: 0,
       selection: [],
-      showExport: false
+      showExport: false,
+      columns: []
     }
   },
   props: {
@@ -216,16 +216,8 @@ export default {
     showLoading() {
       return this.loading || this.loading_
     },
-    columns() {
-      if (this.cols) {
-        return this.cols.map(col => {
-          return _.assignIn({}, def.columnInfo, col)
-        })
-      }
-      return []
-    },
     exportOptions_() {
-      return _.assignIn({ title: this.title }, def.exportOptions, this.exportOptions)
+      return this.$_.assignIn({ title: this.title }, def.exportOptions, this.exportOptions)
     },
     exportAdvancedEnabled() {
       return this.exportOptions_.enabled && this.exportOptions_.advanced
@@ -384,6 +376,13 @@ export default {
         this.query()
       }
     })
+  },
+  created() {
+    if (this.cols) {
+      this.columns = this.cols.map(col => {
+        return this.$_.assignIn({}, def.columnInfo, col)
+      })
+    }
   },
   activated() {
     this.doLayout()

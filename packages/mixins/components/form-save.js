@@ -6,6 +6,7 @@ export default {
       // 存储表单数据
       model_: {},
       form: {
+        icon: '',
         action: null,
         model: {
           id: null
@@ -39,12 +40,18 @@ export default {
     }
   },
   methods: {
-    /**设置图标 */
-    setIcon() {
+    /**设置信息 */
+    setInfo() {
       if (this.isAdd_) {
+        this.form.title = `新增${this.title}`
         this.form.icon = 'add'
+        this.form.customResetFunction = null
+        this.form.action = this.actions.add
       } else {
-        this.form.icon = this.readonly ? 'edit' : 'preview'
+        this.form.title = `${this.readonly ? '查看' : '编辑'}${this.title}`
+        this.form.icon = this.readonly ? 'preview' : 'edit'
+        this.form.customResetFunction = this.reset
+        this.form.action = this.actions.update
       }
     },
     //获取编辑信息
@@ -78,11 +85,7 @@ export default {
     },
     onOpen() {
       //设置图标
-      this.setIcon()
-      //设置重置方法
-      this.form.customResetFunction = this.isEdit_ ? this.reset : null
-      //设置表单action
-      this.form.action = this.isAdd_ ? this.actions.add : this.actions.update
+      this.setInfo()
 
       if (this.isEdit_) {
         if (this.allRefresh || this.id !== this.form.model.id) {
