@@ -73,6 +73,21 @@ Http.prototype.download = (url, params, config) => {
   return axios.get(url, config_)
 }
 
+Http.prototype.preview = (url, params, config) => {
+  const config_ = Object.assign({ responseType: 'blob', headers: { preview: true } }, config, {
+    // 参数
+    params,
+    // 修改参数序列化方法
+    paramsSerializer: p => {
+      // 使用逗号分隔参数
+      return qs.stringify(p, {
+        allowDots: true
+      })
+    }
+  })
+  return axios.get(url, config_)
+}
+
 Http.prototype.export = (url, params, config) => {
   return axios.post(url, params, Object.assign({ responseType: 'blob' }, config))
 }
@@ -187,8 +202,7 @@ export default config => {
       const { config } = response
       // 文件下载/预览
       if (config.responseType && config.responseType === 'blob') {
-        handleDownload(response)
-        return
+        return handleDownload(response)
       }
 
       if (response.data.code === 1) {
