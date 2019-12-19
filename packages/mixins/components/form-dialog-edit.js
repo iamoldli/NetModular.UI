@@ -48,11 +48,6 @@ export default {
     },
     onReset() {
       this.form.model = this.$_.merge({}, this.model_)
-
-      // 重置后的回调方法
-      if (this.afterReset) {
-        this.afterReset()
-      }
     },
     onSuccess(data) {
       this.$emit('success', this.form.model, data)

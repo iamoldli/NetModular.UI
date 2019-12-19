@@ -31,6 +31,7 @@ export default {
       formOn: {
         success: this.onSuccess,
         error: this.onError,
+        reset: this.onReset,
         'validate-error': this.onValidateError
       }
     }
@@ -145,8 +146,9 @@ export default {
     },
     /** 重置 */
     reset() {
-      this.$refs.form.reset()
-      this.$emit('reset')
+      this.$nextTick(() => {
+        this.$refs.form.reset()
+      })
     },
     /** 清除验证信息 */
     clearValidate() {
@@ -166,6 +168,9 @@ export default {
     onSuccess(data) {
       this.loading = false
       this.$emit('success', data)
+    },
+    onReset() {
+      this.$emit('reset')
     },
     onError() {
       this.loading = false

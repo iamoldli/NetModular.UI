@@ -27,7 +27,9 @@ export default {
     //id不为空，标识编辑或预览，反之为新增
     id: [String, Number],
     /**是否只读 */
-    readonly: Boolean
+    readonly: Boolean,
+    /**总数，用于有排序需求的默认值 */
+    total: Number
   },
   computed: {
     //是否添加
@@ -42,43 +44,39 @@ export default {
   methods: {
     /**设置信息 */
     setInfo() {
+      const { form, title, readonly, actions } = this
+      //添加
       if (this.isAdd_) {
-        this.form.title = `新增${this.title}`
-        this.form.icon = 'add'
-        this.form.customResetFunction = null
-        this.form.action = this.actions.add
-      } else {
-        this.form.title = `${this.readonly ? '查看' : '编辑'}${this.title}`
-        this.form.icon = this.readonly ? 'preview' : 'edit'
-        this.form.customResetFunction = this.reset
-        this.form.action = this.actions.update
+        form.title = `新增${title}`
+        form.icon = 'add'
+        form.customResetFunction = null
+        form.action = actions.add
+        return
       }
+      //编辑
+      form.title = `${readonly ? '查看' : '编辑'}${title}`
+      form.icon = readonly ? 'preview' : 'edit'
+      form.customResetFunction = this.reset
+      form.action = actions.update
+    },
+    reset() {
+      this.form.model = this.$_.merge({}, this.model_)
     },
     //获取编辑信息
     edit() {
-      this.form.loading = true
-      this.actions
-        .edit(this.id)
+      const { id, form, actions } = this
+      form.loading = true
+      actions
+        .edit(id)
         .then(data => {
-          this.form.model = data
-          this.model_ = this.$_.merge({}, this.form.model)
-          this.form.loading = false
-          //编辑刷新事件
-          this.$emit('edit-refresh')
+          this.model_ = this.$_.merge({}, data)
+          //重置
+          this.$refs.form.reset()
+          form.loading = false
         })
         .catch(() => {
-          this.form.loading = false
-          //编辑刷新失败事件
-          this.$emit('edit-refresh-error')
+          form.loading = false
         })
-    },
-    reset() {
-      if (this.isEdit_) {
-        this.form.model = this.$_.merge({}, this.model_)
-        this.$emit('reset')
-      } else {
-        this.$refs.form.reset()
-      }
     },
     onSuccess(data) {
       this.$emit('success', this.form.model, data)
@@ -88,11 +86,18 @@ export default {
       this.setInfo()
 
       if (this.isEdit_) {
+        //编辑时是否总是刷新或者id不同时也刷新
         if (this.allRefresh || this.id !== this.form.model.id) {
           this.edit()
         }
       } else {
+        //如果是新增则要重置
         this.$refs.form.reset()
+      }
+
+      //打开后执行的方法
+      if (this.afterOpen) {
+        this.afterOpen()
       }
     }
   },

@@ -28,6 +28,7 @@ export default {
       formOn: {
         success: this.onSuccess,
         error: this.onError,
+        reset: this.onReset,
         'validate-error': this.onValidateError
       },
       dialogOn: {
@@ -177,7 +178,6 @@ export default {
     reset() {
       this.$nextTick(() => {
         this.$refs.form.reset()
-        this.$emit('reset')
       })
     },
     /** 清除验证信息 */
@@ -200,6 +200,9 @@ export default {
       }
       this.loading_ = false
       this.$emit('success', data)
+    },
+    onReset() {
+      this.$emit('reset')
     },
     onError() {
       this.loading_ = false

@@ -1,11 +1,11 @@
 import lib from '../library'
 import has from './has'
 
-const directive = [has]
+const directives = [has]
 
 const install = {
   install: Vue => {
-    directive.forEach(o => {
+    directives.forEach(o => {
       Vue.directive(`${lib.prefix}${o.name}`, o.directive)
     })
   }

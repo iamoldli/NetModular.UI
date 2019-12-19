@@ -6,7 +6,9 @@ export default {
       dialog: {
         save: false
       },
+      //只读
       readonly: false,
+      //总数量
       total: 0
     }
   },
