@@ -307,6 +307,7 @@ export default {
     /** 全屏切换 */
     triggerFullscreen() {
       this.fullscreen ? this.closeFullscreen() : this.openFullscreen()
+      this.doLayout()
     },
     /** 开启全屏 */
     openFullscreen() {

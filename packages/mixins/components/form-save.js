@@ -13,6 +13,7 @@ export default {
         },
         customResetFunction: null,
         disabled: this.readonly,
+        footerCloseButton: true,
         loading: false
       },
       //编辑时，是否总是刷新

@@ -11,8 +11,8 @@
     <template v-slot:footer>
       <slot name="footer-buttons" />
       <slot name="footer">
-        <el-button v-if="btnOk" :type="btnOkType" @click="submit" :size="fontSize">{{ btnOkText }}</el-button>
-        <el-button v-if="btnReset" type="info" @click="reset" :size="fontSize">重置</el-button>
+        <el-button v-if="btnOk && !disabled" type="success" @click="submit" :size="fontSize">{{ btnOkText }}</el-button>
+        <el-button v-if="btnReset && !disabled" type="warning" @click="reset" :size="fontSize">重置</el-button>
       </slot>
     </template>
   </nm-dialog>
@@ -99,11 +99,6 @@ export default {
     btnOkText: {
       type: String,
       default: '保存'
-    },
-    /** Ok按钮类型 */
-    btnOkType: {
-      type: String,
-      default: 'primary'
     },
     /** reset按钮 */
     btnReset: {
