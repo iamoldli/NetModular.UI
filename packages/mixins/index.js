@@ -1,7 +1,6 @@
 // 全局混入
 import message from './global/message'
 import fontSize from './global/fontSize'
-import setTabName from './global/setTabName'
 import _loading from './global/loading'
 
 // 局部混入
@@ -21,9 +20,6 @@ export default {
 
     // 字号
     Vue.mixin(fontSize)
-
-    // 设置标签页名称
-    Vue.mixin(setTabName)
 
     // 设置loading
     Vue.mixin(_loading)

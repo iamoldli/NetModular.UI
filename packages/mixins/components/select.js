@@ -7,7 +7,8 @@ export default {
       options: [],
       action: null,
       loading: false,
-      hasInit: false
+      hasInit: false,
+      remoteTimer: null
     }
   },
   props: {
@@ -41,7 +42,14 @@ export default {
     /** 是否默认选中第一个 */
     checkedFirst: Boolean,
     /** 头部的图标 */
-    icon: String
+    icon: String,
+    /**远程搜索 */
+    remote: Boolean,
+    /**远程查询间隔，默认800ms */
+    remoteQueryInterval: {
+      type: Number,
+      default: 800
+    }
   },
   computed: {
     selection() {
@@ -77,6 +85,9 @@ export default {
   methods: {
     // 刷新
     refresh() {
+      //远程搜索使用远程方法
+      if (this.filterable && this.remote) return
+
       this.loading = true
       this.action().then(options => {
         this.options = options
@@ -111,6 +122,25 @@ export default {
     },
     reset() {
       this.onChange(this.initValue)
+    },
+    remoteMethod(keyword) {
+      if (this.remoteTimer) clearTimeout(this.remoteTimer)
+      this.remoteTimer = setTimeout(() => {
+        if (keyword !== '') {
+          this.loading = true
+          this.action(keyword).then(options => {
+            this.options = options
+
+            if (this.checkedFirst && options.length > 0) {
+              this.value_ = options[0].value
+              this.onChange()
+            }
+            this.loading = false
+          })
+        } else {
+          this.options = []
+        }
+      }, this.remoteQueryInterval)
     }
   },
   watch: {
@@ -168,7 +198,9 @@ export default {
                   size: this.fontSize,
                   filterable: this.filterable,
                   multipleLimit: this.multipleLimit,
-                  placeholder: this.placeholder
+                  placeholder: this.placeholder,
+                  remote: this.remote,
+                  remoteMethod: this.remoteMethod
                 },
                 on: {
                   change: this.onChange,

@@ -226,34 +226,39 @@ export default {
   methods: {
     /** 查询方法 */
     query() {
-      if (this.loading_) {
-        return
-      }
+      this.$refs.querybar.validate(async valid => {
+        console.log(valid)
+        if (!valid) return
 
-      this.loading_ = true
-      let fullModel = Object.assign({}, this.model)
+        if (this.loading_) {
+          return
+        }
 
-      // 设置分页
-      fullModel.page = this.page
+        this.loading_ = true
+        let fullModel = Object.assign({}, this.model)
 
-      this.action(fullModel)
-        .then(data => {
-          this.rows = data.rows
-          this.total = data.total
-          this.data = data.data
+        // 设置分页
+        fullModel.page = this.page
 
-          // 回到顶部
-          this.$refs.table.scrollTop()
-          // 重新绘制布局
-          this.$refs.table.doLayout()
-          this.loading_ = false
+        this.action(fullModel)
+          .then(data => {
+            this.rows = data.rows
+            this.total = data.total
+            this.data = data.data
 
-          // 查询事件
-          this.$emit('query', data)
-        })
-        .catch(() => {
-          this.loading_ = false
-        })
+            // 回到顶部
+            this.$refs.table.scrollTop()
+            // 重新绘制布局
+            this.$refs.table.doLayout()
+            this.loading_ = false
+
+            // 查询事件
+            this.$emit('query', data)
+          })
+          .catch(() => {
+            this.loading_ = false
+          })
+      })
     },
     export_(exportModel) {
       if (!exportModel.columns || exportModel.columns.length < 1) {

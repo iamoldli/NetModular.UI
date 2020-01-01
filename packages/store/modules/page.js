@@ -371,7 +371,6 @@ export default {
     },
     setTabName(state, name) {
       if (!state.current || !state.opened) return
-
       let page = state.opened.find(p => p.path === state.current.path)
       if (page) {
         page.tabName = name

@@ -11,6 +11,7 @@ import Layout from './layout'
 import Components, { loginComponents } from './components'
 import Mixins from './mixins/'
 import Directive from './directive'
+import regex from './utils/regex'
 import dayjs from 'dayjs'
 import echarts from 'echarts'
 import VCharts from 'v-charts'
@@ -182,4 +183,4 @@ export default {
 const mixins = Mixins.components
 
 // 导出混入组件、状态实例、路由实例
-export { mixins, store, router }
+export { mixins, store, router, regex }

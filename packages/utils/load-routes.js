@@ -26,5 +26,11 @@ const loadPage = config => {
  * @param {Object} pages 页面数组
  */
 export default pages => {
-  return pages.map(item => loadPage(item))
+  let routes = []
+  pages.forEach(item => {
+    if (item) {
+      routes.push(loadPage(item))
+    }
+  })
+  return routes
 }
