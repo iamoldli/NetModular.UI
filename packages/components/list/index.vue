@@ -227,7 +227,6 @@ export default {
     /** 查询方法 */
     query() {
       this.$refs.querybar.validate(async valid => {
-        console.log(valid)
         if (!valid) return
 
         if (this.loading_) {

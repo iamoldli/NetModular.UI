@@ -38,7 +38,6 @@ export default {
   methods: {
     openUserInfo() {
       let routeName = this.userInfoPage || 'userinfo'
-      console.log(routeName)
       this.$router.push({ name: routeName, query: { tn_: '账户信息' } })
     }
   }

@@ -15,7 +15,7 @@
     <!--头部-->
     <template v-slot:title>
       <section v-if="icon" class="nm-dialog-icon">
-        <nm-icon :name="icon" />
+        <nm-icon :name="icon" :style="{ color: iconColor || '' }" />
       </section>
       <section ref="title" class="nm-dialog-title">
         <slot name="title">{{ title }}</slot>
@@ -87,6 +87,8 @@ export default {
     title: String,
     /** 图标 */
     icon: String,
+    /**图标颜色 */
+    iconColor: String,
     /** Dialog 的宽度 */
     width: {
       type: [Number, String],

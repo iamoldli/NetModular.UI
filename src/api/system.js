@@ -13,6 +13,7 @@ const get = () => {
         type: 'auto'
       },
       component: {
+        menu: { uniqueOpened: true },
         customCss: ''
       }
     },
