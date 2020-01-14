@@ -1,14 +1,14 @@
 <template>
   <div class="nm-wrapper">
-    <nm-sidebar />
+    <nm-header />
     <nm-main />
   </div>
 </template>
 <script>
-import NmSidebar from './components/sidebar'
+import NmHeader from './components/header'
 import NmMain from './components/main'
 export default {
-  components: { NmSidebar, NmMain }
+  components: { NmHeader, NmMain }
 }
 </script>
 <style lang="scss">

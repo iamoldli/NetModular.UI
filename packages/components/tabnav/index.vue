@@ -3,8 +3,12 @@
     <slot name="before" />
     <div class="nm-tabnav-tabs">
       <el-tabs :value="current.path" type="card" :closable="true" @tab-click="click" @edit="edit">
-        <el-tab-pane label="首页" :name="defaultPage"></el-tab-pane>
-        <el-tab-pane v-for="item in opened" :key="item.path" :label="item.tabName" :name="item.path" />
+        <el-tab-pane :name="defaultPage">
+          <span slot="label"> <nm-icon v-if="showIcon" name="home" /> 首页</span>
+        </el-tab-pane>
+        <el-tab-pane v-for="item in opened" :key="item.path" :name="item.path"
+          ><span slot="label"> <nm-icon v-if="showIcon && item.icon" :name="item.icon" />{{ item.tabName }}</span>
+        </el-tab-pane>
       </el-tabs>
     </div>
     <div class="nm-tabnav-control">
@@ -27,7 +31,8 @@ import { mapState, mapActions } from 'vuex'
 export default {
   name: 'Tabnav',
   computed: {
-    ...mapState('app/page', { opened: 'opened', current: 'current', defaultPage: 'default' })
+    ...mapState('app/page', { opened: 'opened', current: 'current', defaultPage: 'default' }),
+    ...mapState('app/system', { showIcon: s => s.config.component.tabnav.showIcon })
   },
   methods: {
     ...mapActions('app/page', ['close', 'closeLeft', 'closeRight', 'closeOther', 'closeAll']),
@@ -67,6 +72,9 @@ export default {
           break
       }
     }
+  },
+  mounted() {
+    console.log(this.opened)
   }
 }
 </script>

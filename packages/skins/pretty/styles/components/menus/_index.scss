@@ -47,6 +47,7 @@
     }
   }
 }
+
 /**这些代码需要放在body下**/
 .el-menu,
 .el-menu--vertical {
@@ -69,8 +70,6 @@
 }
 
 .el-menu--collapse {
-  width: 55px;
-
   > .el-menu-item,
   > .el-submenu > .el-submenu__title {
     padding: 0 15px !important;

@@ -1,14 +1,23 @@
 #{$prefix}main {
+  display: flex;
+  align-items: stretch;
+  flex-grow: 1;
+  flex-direction: row;
+  overflow: hidden;
+
+  &-left {
+    flex-shrink: 0;
+    z-index: 1;
+  }
+  &-right {
     display: flex;
     align-items: stretch;
     flex-grow: 1;
     flex-direction: column;
-    overflow: hidden;
-
-    @import '../header/index';
 
     #{$prefix}content {
-        position: relative;
-        flex-grow: 1;
+      position: relative;
+      flex-grow: 1;
     }
+  }
 }

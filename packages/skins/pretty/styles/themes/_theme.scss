@@ -1,52 +1,55 @@
-#{$prefix}main {
-  #{$prefix}header {
-    background-color: $pretty-header-background-color;
+#{$prefix}header {
+  background-color: $pretty-header-background-color;
 
-    &-left {
-      #{$prefix}sidebar-toggle-btn {
-        color: $pretty-sidebar-toggle-btn-color;
+  &-left {
+    /*logo*/
+    #{$prefix}logo {
+      &-box {
+        background-color: $pretty-logo-box-background-color;
       }
-      #{$prefix}breadcrumb {
-        .el-breadcrumb__item {
-          .el-breadcrumb__inner {
-            color: $pretty-breadcrumb-color;
 
-            &.is-link {
-              color: $pretty-breadcrumb-link-color;
-            }
-          }
+      &-text {
+        color: $pretty-logo-text-color;
+      }
+    }
 
-          .el-breadcrumb__separator {
-            color: $pretty-breadcrumb-separator-color;
+    //菜单栏切换
+    #{$prefix}sidebar-toggle-btn {
+      color: $pretty-sidebar-toggle-btn-color;
+    }
+
+    //面包屑
+    #{$prefix}breadcrumb {
+      .el-breadcrumb__item {
+        .el-breadcrumb__inner {
+          color: $pretty-breadcrumb-color;
+
+          &.is-link {
+            color: $pretty-breadcrumb-link-color;
           }
         }
+
+        .el-breadcrumb__separator {
+          color: $pretty-breadcrumb-separator-color;
+        }
       }
+    }
+  }
+}
+
+#{$prefix}main {
+  /*侧边栏*/
+  #{$prefix}sidebar {
+    background-color: $pretty-sidebar-background-color;
+
+    #{$prefix}menus {
+      background-color: $pretty-menus-background-color !important;
     }
   }
 
   #{$prefix}content {
     background: $pretty-main-background-color;
   }
-}
-
-/*侧边栏*/
-#{$prefix}sidebar {
-  background-color: $pretty-sidebar-background-color;
-
-  /*logo*/
-  #{$prefix}logo {
-    &-box {
-      background-color: $pretty-logo-box-background-color;
-    }
-
-    &-text {
-      color: $pretty-logo-text-color;
-    }
-  }
-}
-
-#{$prefix}menus {
-  background-color: $pretty-menus-background-color !important;
 }
 
 .el-menu,
@@ -84,6 +87,7 @@
     }
   }
 }
+
 //标签导航激活
 #{$prefix}tabnav-tabs {
   .el-tabs__header {
@@ -92,10 +96,12 @@
         &.is-active,
         &:hover {
           color: $pretty-theme-color;
-          font-weight: bold;
           &::before {
             background-color: $pretty-theme-color;
           }
+        }
+        &.is-active {
+          font-weight: bold;
         }
       }
     }

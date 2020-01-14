@@ -62,6 +62,11 @@ export default {
           //序号表头名称
           serialNumberName: null
         },
+        //标签页
+        tabnav: {
+          //是否显示图标
+          showIcon: true
+        },
         //自定义样式
         customCss: null
       }

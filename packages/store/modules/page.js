@@ -112,6 +112,11 @@ export default {
         params: route.params,
         tabName: route.params.tn_ || route.query.tn_ || route.meta.title
       }
+      //设置菜单图表
+      const menu = rootState.app.account.routeMenus.get(route.name)
+      if (menu) {
+        page.icon = menu.menu.icon
+      }
 
       // 内嵌链接
       if (route.name === '_iframe') {
