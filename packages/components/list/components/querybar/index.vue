@@ -114,7 +114,7 @@ export default {
     /** 表单重置 */
     reset() {
       if (this.$refs.normalForm) {
-        this.$refs.normalForm.reset()
+        this.$refs.normalForm.resetFields()
       }
       if (this.$refs.advancedForm) {
         this.$refs.advancedForm.reset()

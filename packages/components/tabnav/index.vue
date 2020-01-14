@@ -72,9 +72,6 @@ export default {
           break
       }
     }
-  },
-  mounted() {
-    console.log(this.opened)
   }
 }
 </script>
