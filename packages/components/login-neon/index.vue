@@ -55,7 +55,8 @@
 </template>
 <script>
 import { mapState, mapActions } from 'vuex'
-import particlesJson from '../../../public/lib/particles.js-2.0.0/particles.json'
+import particlesJS from 'particles.js'
+import particlesJson from './particles.json'
 export default {
   name: 'LoginNeon',
   data() {

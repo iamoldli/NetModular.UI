@@ -1,5 +1,5 @@
 <template>
-  <nm-box header refresh title="饼图" icon="chart-pie">
+  <nm-box header page refresh title="饼图" icon="chart-pie">
     <template v-slot:toolbar-before>
       <el-date-picker
         size="mini"

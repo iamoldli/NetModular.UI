@@ -63,6 +63,7 @@ export default {
     if (!this.end) {
       this.$emit('update:end', val[1])
     }
+    this.value = val
   },
   watch: {
     start(val) {

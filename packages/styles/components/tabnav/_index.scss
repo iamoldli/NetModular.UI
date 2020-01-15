@@ -4,7 +4,8 @@
   align-items: stretch;
 
   &-tabs {
-    overflow: auto;
+    overflow-y: hidden;
+    overflow-x: auto;
     flex-grow: 1;
     background: #ebf1f6;
 
@@ -108,6 +109,8 @@
   @mixin tabnav-size($height, $fontSize, $beforeTop) {
     #{$prefix}tabnav {
       &-tabs {
+        height: $height + 10;
+
         .el-tabs__header {
           .el-tabs__nav {
             .el-tabs__item {
