@@ -8,7 +8,7 @@
     </query-header>
 
     <!--查询栏-->
-    <querybar ref="querybar" v-if="!noQuerybar" v-bind="querybar">
+    <querybar ref="querybar" v-if="!noQuerybar" v-bind="querybar" @reset="onQueryBarReset">
       <template v-slot>
         <slot name="querybar" />
       </template>
@@ -174,6 +174,8 @@ export default {
     noSearch: Boolean,
     /** 不显示查询按钮图标 */
     noSearchButtonIcon: Boolean,
+    /**不显示重置按钮 */
+    noReset: Boolean,
     /** 底部反转 */
     footerReverse: Boolean,
     /** 合并行列的方法 */
@@ -201,13 +203,14 @@ export default {
       return ['nm-list', this.fontSize ? `nm-list-${this.fontSize}` : '', this.fullscreen ? 'fullscreen' : '']
     },
     querybar() {
-      const { model, rules, inputWidth, advanced, noSearch, noSearchButtonIcon, exportOptions_ } = this
+      const { model, rules, inputWidth, advanced, noSearch, noReset, noSearchButtonIcon, exportOptions_ } = this
       return {
         model,
         rules,
         inputWidth,
         advanced,
         noSearch,
+        noReset,
         noSearchButtonIcon,
         exportEnabled: exportOptions_.enabled && exportOptions_.btnLocation === 'querybar',
         exportBtnCode: exportOptions_.btnCode
@@ -292,13 +295,8 @@ export default {
       this.query()
     },
     /** 查询表单重置 */
-    reset(from) {
-      if (!from) {
-        this.$refs.querybar.reset()
-      } else {
-        this.$refs.table.clearSort()
-        this.page.index = 1
-      }
+    reset() {
+      this.$refs.querybar.reset()
     },
     /** 获取序号 */
     getNo(index) {
@@ -373,6 +371,11 @@ export default {
         if (w) col.width = w / 10 + 4 //默认取列表页中设置的宽度，该宽度与导出的Excel的列宽度比例大概10:1，所以这里进行一下转换, 转换后在+4，保可以保证有内边距，不会挤在一起
       }
       return col
+    },
+    /**查询栏重置事件 */
+    onQueryBarReset() {
+      this.$refs.table.clearSort()
+      this.$emit('reset')
     }
   },
   mounted() {

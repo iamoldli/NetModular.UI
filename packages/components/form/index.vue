@@ -105,15 +105,13 @@ export default {
     },
     /** 重置 */
     reset() {
-      this.$nextTick(() => {
-        if (this.customResetFunction) {
-          this.customResetFunction()
-        } else {
-          this.resetChildren(this.$refs.form)
-          this.$refs.form.resetFields()
-        }
-        this.$emit('reset')
-      })
+      if (this.customResetFunction) {
+        this.customResetFunction()
+      } else {
+        this.resetChildren(this.$refs.form)
+        this.$refs.form.resetFields()
+      }
+      this.$emit('reset')
     },
     /** 重置子组件 */
     resetChildren(vnode) {
