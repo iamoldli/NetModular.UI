@@ -229,38 +229,44 @@ export default {
   methods: {
     /** 查询方法 */
     query() {
-      this.$refs.querybar.validate(async valid => {
-        if (!valid) return
+      if (this.$refs.querybar) {
+        this.$refs.querybar.validate(async valid => {
+          if (!valid) return
+          this.doQuery()
+        })
+      } else {
+        this.doQuery()
+      }
+    },
+    doQuery() {
+      if (this.loading_) {
+        return
+      }
 
-        if (this.loading_) {
-          return
-        }
+      this.loading_ = true
+      let fullModel = Object.assign({}, this.model)
 
-        this.loading_ = true
-        let fullModel = Object.assign({}, this.model)
+      // 设置分页
+      fullModel.page = this.page
 
-        // 设置分页
-        fullModel.page = this.page
+      this.action(fullModel)
+        .then(data => {
+          this.rows = data.rows
+          this.total = data.total
+          this.data = data.data
 
-        this.action(fullModel)
-          .then(data => {
-            this.rows = data.rows
-            this.total = data.total
-            this.data = data.data
+          // 回到顶部
+          this.$refs.table.scrollTop()
+          // 重新绘制布局
+          this.$refs.table.doLayout()
+          this.loading_ = false
 
-            // 回到顶部
-            this.$refs.table.scrollTop()
-            // 重新绘制布局
-            this.$refs.table.doLayout()
-            this.loading_ = false
-
-            // 查询事件
-            this.$emit('query', data)
-          })
-          .catch(() => {
-            this.loading_ = false
-          })
-      })
+          // 查询事件
+          this.$emit('query', data)
+        })
+        .catch(() => {
+          this.loading_ = false
+        })
     },
     export_(exportModel) {
       if (!exportModel.columns || exportModel.columns.length < 1) {

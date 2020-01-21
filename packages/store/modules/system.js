@@ -78,14 +78,19 @@ export default {
      * 方法集合
      */
     actions: {
-      /** 登录 */
-      login: null,
-      /** 获取验证码 */
-      getVerifyCode: null,
+      /**身份认证 */
+      auth: {
+        /** 登录 */
+        login: null,
+        /** 获取验证码 */
+        getVerifyCode: null,
+        /**刷新令牌 */
+        refreshToken: null,
+        /**获取认证信息 */
+        getAuthInfo: null
+      },
       /** 修改密码 */
       updatePassword: null,
-      /** 查询登录信息 */
-      getLoginInfo: null,
       /** 保存皮肤配置信息 */
       saveSkin: null
     },
@@ -101,12 +106,8 @@ export default {
       // 配置页面信息
       await dispatch('app/page/load', null, { root: true })
     },
-    async login({ state }, params) {
-      var data = await state.actions.login(params)
-      if (data) {
-        token.set(data)
-      }
-      return data
+    login({ state }, params) {
+      return state.actions.auth.login(params)
     },
     /**
      * @description 退出

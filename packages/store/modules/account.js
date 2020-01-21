@@ -69,21 +69,21 @@ export default {
       if (state.id) return
 
       try {
-        let account = await rootState.app.system.actions.getLoginInfo()
+        let authInfo = await rootState.app.system.actions.auth.getAuthInfo()
 
         // 设置皮肤
-        dispatch('app/skins/init', account.skin, { root: true })
+        dispatch('app/skins/init', authInfo.skin, { root: true })
 
         // 初始化
-        commit('init', account)
+        commit('init', authInfo)
 
         // 初始化路由菜单数组
-        dispatch('initRouteMenus', account)
+        dispatch('initRouteMenus', authInfo)
 
         const accountId = await dispatch('cacheGet')
 
         // 如果账户变了，则需要清除原有的一些数据
-        if (account.id !== accountId) {
+        if (authInfo.id !== accountId) {
           dispatch('app/page/reset', null, { root: true })
         }
 

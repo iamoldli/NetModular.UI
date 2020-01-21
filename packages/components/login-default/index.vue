@@ -104,7 +104,7 @@ export default {
       title: s => s.config.base.title,
       logo: s => s.config.base.logo,
       loginOptions: s => s.config.login,
-      getVerifyCode: s => s.actions.getVerifyCode,
+      getVerifyCode: s => s.actions.auth.getVerifyCode,
       copyright: s => s.config.base.copyright
     })
   },

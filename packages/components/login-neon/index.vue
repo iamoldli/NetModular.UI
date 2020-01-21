@@ -1,6 +1,5 @@
 <template>
   <div class="nm-login-neon">
-    <div id="particles"></div>
     <div class="login-header">
       <div class="login-logo">
         <img :src="logo" />
@@ -55,8 +54,6 @@
 </template>
 <script>
 import { mapState, mapActions } from 'vuex'
-import particlesJS from 'particles.js'
-import particlesJson from './particles.json'
 export default {
   name: 'LoginNeon',
   data() {
@@ -106,7 +103,7 @@ export default {
       title: s => s.config.base.title,
       logo: s => s.config.base.logo,
       loginOptions: s => s.config.login,
-      getVerifyCode: s => s.actions.getVerifyCode,
+      getVerifyCode: s => s.actions.auth.getVerifyCode,
       copyright: s => s.config.base.copyright
     })
   },
@@ -118,10 +115,6 @@ export default {
       if (e.keyCode === 13) {
         this.tryLogin()
       }
-    })
-
-    this.$nextTick(() => {
-      particlesJS('particles', particlesJson)
     })
   },
   methods: {

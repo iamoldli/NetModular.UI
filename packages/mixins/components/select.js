@@ -94,8 +94,7 @@ export default {
         this.loading = false
 
         if (this.checkedFirst && !this.hasInit && options.length > 0) {
-          this.value_ = options[0].value
-          this.onChange()
+          this.onChange(options[0].value)
           this.hasInit = true
         }
       })

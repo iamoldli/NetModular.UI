@@ -2,7 +2,7 @@ import axios from 'axios'
 import qs from 'qs'
 import dayjs from 'dayjs'
 import token from './token'
-import { Message } from 'element-ui'
+import { Message, MessageBox } from 'element-ui'
 import { store } from '../store'
 import { router } from '../router'
 
@@ -121,6 +121,8 @@ if (!window.$http) window.$http = new Http()
 
 // 消息提醒显示时长(ms)
 const messageDuration = 1500
+//是否显示了账户在其他地方登录的提示框
+let showLoginOnOtherPlaces = false
 
 //处理文件下载请求
 const handleDownload = response => {
@@ -177,6 +179,16 @@ const handleDownload = response => {
   document.body.removeChild(link)
 }
 
+//刷新令牌
+const refreshToken = () => {
+  let t = token.get()
+  if (t && t.refreshToken) {
+    return store.state.app.system.actions.auth.refreshToken(t.refreshToken)
+  }
+
+  Promise.reject('refresh token error')
+}
+
 // 初始化
 export default config => {
   // 接口根路径
@@ -224,15 +236,24 @@ export default config => {
       if (error && error.response) {
         switch (error.response.status) {
           case 401:
-            // 删除token
-            token.remove()
-            router.push({
-              name: 'login',
-              query: {
-                redirect
-              }
-            })
-            break
+            return refreshToken()
+              .then(data => {
+                //重新初始化令牌
+                store.commit('app/token/init', data)
+                //重新发一起一次上次的的请求
+                error.config.headers.Authorization = 'Bearer ' + data.accessToken
+                return axios.request(error.config)
+              })
+              .catch(() => {
+                // 如果刷新失败，需要删除token并跳转到登录页面
+                token.remove()
+                router.push({
+                  name: 'login',
+                  query: {
+                    redirect
+                  }
+                })
+              })
           case 403:
             store.dispatch(
               'app/page/close',
@@ -245,6 +266,29 @@ export default config => {
               },
               { root: true }
             )
+            break
+          case 622:
+            //单账户登录功能
+            if (!showLoginOnOtherPlaces) {
+              showLoginOnOtherPlaces = true
+              MessageBox.confirm('账户已在别处登录, 请重新登录~', '提示', {
+                confirmButtonText: '确定',
+                type: 'warning',
+                center: true,
+                showCancelButton: false,
+                callback() {
+                  // 删除token
+                  token.remove()
+                  router.push({
+                    name: 'login',
+                    query: {
+                      redirect
+                    }
+                  })
+                  showLoginOnOtherPlaces = false
+                }
+              })
+            }
             break
           default:
             console.error(error.response.data.msg)
