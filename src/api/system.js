@@ -18,11 +18,14 @@ const get = () => {
       }
     },
     actions: {
-      login: accountApi.login,
-      getVerifyCode() {
-        return new Promise(resolve => {
-          resolve()
-        })
+      auth: {
+        login: accountApi.login,
+        getVerifyCode() {
+          return new Promise(resolve => {
+            resolve()
+          })
+        },
+        getAuthInfo: accountApi.get
       },
       // 修改密码
       updatePassword() {
@@ -30,7 +33,6 @@ const get = () => {
           resolve()
         })
       },
-      getLoginInfo: accountApi.get,
       saveSkin: accountApi.skinUpdate
     }
   }

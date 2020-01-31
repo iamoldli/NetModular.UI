@@ -3,7 +3,7 @@
     <section class="nm-header-left">
       <!--Logo-->
       <section class="nm-logo-box">
-        <img :src="logo" class="nm-logo-img" :alt="title" :title="title" />
+        <img :src="logoUrl" class="nm-logo-img" :alt="title" :title="title" />
         <div class="nm-logo-text">{{ title }}</div>
       </section>
       <!--折叠按钮-->
@@ -27,7 +27,7 @@ import Breadcrumb from './components/breadcrumb'
 export default {
   components: { Breadcrumb },
   computed: {
-    ...mapState('app/system', { title: s => s.config.base.title, logo: s => s.config.base.logo }),
+    ...mapState('app/system', { title: s => s.config.base.title, logoUrl: s => s.config.base.logoUrl }),
     ...mapState('app/skins/pretty/sidebar', { sidebarCollapse: 'collapse' })
   },
   methods: {
