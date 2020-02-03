@@ -3,7 +3,7 @@
     <section class="nm-header-left">
       <!--Logo-->
       <section class="nm-logo-box">
-        <img :src="logoUrl" class="nm-logo-img" :alt="title" :title="title" />
+        <img :src="logoUrl || './images/logo.png'" class="nm-logo-img" :alt="title" :title="title" />
         <div class="nm-logo-text">{{ title }}</div>
       </section>
       <!--折叠按钮-->
