@@ -9,7 +9,7 @@ module.exports = {
   devServer: {
     port: 6220
   },
-  publicPath: '/docs/ui',
+  publicPath: '/ui',
   transpileDependencies: ['netmodular.*', 'element-ui'],
   configureWebpack() {
     let config = {

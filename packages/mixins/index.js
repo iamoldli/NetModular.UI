@@ -2,6 +2,7 @@
 import message from './global/message'
 import fontSize from './global/fontSize'
 import _loading from './global/loading'
+import setTabName from './global/setTabName'
 
 // 局部混入
 import dialog from './components/dialog'
@@ -23,6 +24,9 @@ export default {
 
     // 设置loading
     Vue.mixin(_loading)
+
+    //设置标签导航名称
+    Vue.mixin(setTabName)
   },
   components: {
     dialog,
