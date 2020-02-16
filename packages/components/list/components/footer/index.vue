@@ -9,7 +9,7 @@
         :current-page="value.index"
         :page-size="value.size"
         :total="total"
-        :page-sizes="[10, 15, 50, 100]"
+        :page-sizes="pageSizes"
         layout="total, sizes, prev, pager, next, jumper"
         @size-change="onSizeChange"
         @current-change="onIndexChange"
@@ -35,7 +35,14 @@ export default {
     /** 不显示选择列按钮 */
     noSelectColumn: Boolean,
     /** 左右反转 */
-    reverse: Boolean
+    reverse: Boolean,
+    /** 页数选择项 */
+    pageSizes: {
+      type: Array,
+      default() {
+        return [10, 15, 50, 100]
+      }
+    }
   },
   methods: {
     onSizeChange(size) {

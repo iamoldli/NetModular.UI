@@ -80,7 +80,7 @@
     </section>
 
     <!--footer-->
-    <query-footer v-if="!noFooter" v-model="page" :total="total" :columns.sync="columns" :no-select-column="noSelectColumn" :reverse="footerReverse">
+    <query-footer v-if="!noFooter" v-model="page" :page-sizes="pageSizes" :total="total" :columns.sync="columns" :no-select-column="noSelectColumn" :reverse="footerReverse">
       <slot name="footer" :total="total" :selection="selection" :data="data" />
     </query-footer>
     <slot />
@@ -190,7 +190,14 @@ export default {
       default: true
     },
     /**导出配置 */
-    exportOptions: Object
+    exportOptions: Object,
+    /** 页数选择项 */
+    pageSizes: {
+      type: Array,
+      default() {
+        return [10, 15, 50, 100]
+      }
+    }
   },
   computed: {
     ...mapState('app/loading', { loadingText_: 'text', loadingBackground: 'background', loadingSpinner: 'spinner' }),

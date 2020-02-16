@@ -80,7 +80,7 @@ export default {
         })
     },
     onSuccess(data) {
-      this.$emit('success', this.form.model, data)
+      this.$emit('success', this.form.model, data, this.isAdd_)
     },
     onOpen() {
       //设置图标
