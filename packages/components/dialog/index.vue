@@ -3,8 +3,8 @@
     ref="dialog"
     :id="id"
     :class="class_"
-    :top="draggable ? '' : top"
-    :modal="modal_"
+    :top="draggable_ ? '' : top"
+    :modal="modal"
     :close-on-click-modal="closeOnClickModal_"
     :fullscreen="hasFullscreen"
     :visible.sync="visible_"
@@ -124,7 +124,10 @@ export default {
     /** 显示加载动画 */
     loading: Boolean,
     /** 可拖拽的 */
-    draggable: Boolean,
+    draggable: {
+      type: Boolean,
+      default: null
+    },
     /** 是否可拖出页面 */
     dragOutPage: Boolean,
     /** 拖拽出页面后保留的最小宽度 */
@@ -136,25 +139,28 @@ export default {
     footerCloseButton: Boolean
   },
   computed: {
-    ...mapState('app/system', { sysCloseOnClickModal: s => s.config.component.dialog.closeOnClickModal }),
+    ...mapState('app/system', { sysDialog: s => s.config.component.dialog }),
     ...mapState('app/loading', { loadingText: 'text', loadingBackground: 'background', loadingSpinner: 'spinner' }),
     elScrollbarViewEl() {
       return this.$refs.dialog.$el.querySelector('.el-scrollbar__view')
     },
     class_() {
-      return ['nm-dialog', this.draggable ? 'draggable' : '']
+      return ['nm-dialog', this.draggable_ ? 'draggable' : '']
     },
     width_() {
       return typeof this.width === 'number' ? (this.width > 0 ? this.width + 'px' : '50%') : this.width
     },
-    modal_() {
-      return !this.draggable && this.modal
-    },
     closeOnClickModal_() {
       if (this.closeOnClickModal === null) {
-        return this.sysCloseOnClickModal
+        return this.sysDialog.closeOnClickModal
       }
       return this.closeOnClickModal
+    },
+    draggable_() {
+      if (this.draggable === null) {
+        return this.sysDialog.draggable
+      }
+      return this.draggable
     },
     dialogEl() {
       return this.$refs.dialog.$el.querySelector('.el-dialog')
@@ -250,7 +256,7 @@ export default {
      * @description 处理拖拽点击
      */
     handleDragDown(e) {
-      if (this.draggable && !this.hasFullscreen) {
+      if (this.draggable_ && !this.hasFullscreen) {
         this.isDragDown = true
         this.dragDownState = e
 
@@ -300,7 +306,7 @@ export default {
           addResizeListener(this.elScrollbarViewEl, this.resize)
         }
 
-        if (!this.draggable) return
+        if (!this.draggable_) return
         on(this.titleEl, 'mousedown', this.handleDragDown)
       })
 
@@ -309,7 +315,7 @@ export default {
     onOpened() {
       if (!this.hasInit) {
         // 如果是可拖拽的，需要计算绝对定位
-        if (this.draggable) {
+        if (this.draggable_) {
           this.dialogEl.style.left = (document.body.offsetWidth - this.dialogEl.offsetWidth) / 2 + 'px'
           this.dialogEl.style.top = this.top
         }

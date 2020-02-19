@@ -1,5 +1,8 @@
 <template>
   <nm-dialog class="nm-list-dialog" v-bind="dialog" v-on="on" :visible.sync="visible_">
+    <template v-slot:title>
+      <slot name="title" />
+    </template>
     <template v-slot:toolbar>
       <!--刷新按钮-->
       <nm-button icon="refresh" @click="refresh" />
@@ -65,7 +68,8 @@ export default {
         width: this.width,
         height: this.height,
         fullscreen: this.fullscreen,
-        closeOnClickModal: this.closeOnClickModal
+        closeOnClickModal: this.closeOnClickModal,
+        draggable: this.draggable
       }
     }
   },

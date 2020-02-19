@@ -55,7 +55,9 @@ export default {
         //对话框
         dialog: {
           //点击模态框是否可关闭对话框
-          closeOnClickModal: false
+          closeOnClickModal: false,
+          //对话框默认是否可拖拽
+          draggable: false
         },
         //列表页
         list: {
