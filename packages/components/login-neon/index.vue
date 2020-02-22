@@ -32,8 +32,8 @@
         </el-form-item>
         <div v-if="loginOptions.verifyCode" class="verifycode">
           <div class="verifycode-input">
-            <el-form-item prop="code">
-              <el-input v-model="form.code" autocomplete="off" placeholder="验证码">
+            <el-form-item prop="verifyCode.code">
+              <el-input v-model="form.verifyCode.code" autocomplete="off" placeholder="验证码">
                 <template v-slot:prefix>
                   <nm-icon name="verifycode"></nm-icon>
                 </template>
@@ -63,9 +63,11 @@ export default {
       form: {
         userName: '',
         password: '',
-        code: '',
-        pictureId: '',
-        accountType: 0
+        accountType: 0,
+        verifyCode: {
+          id: '',
+          code: ''
+        }
       },
       rules: {
         userName: [
@@ -123,7 +125,7 @@ export default {
     async refreshVierifyCode() {
       let data = await this.getVerifyCode()
       this.verifyCodeUrl = data.base64String
-      this.form.pictureId = data.id
+      this.form.verifyCode.id = data.id
     },
     // 登录
     tryLogin() {
