@@ -2,7 +2,7 @@
   <div class="nm-login-neon">
     <div class="login-header">
       <div class="login-logo">
-        <img :src="logo" />
+        <img :src="logoUrl" />
       </div>
       <div class="login-title">{{ title }}</div>
     </div>
@@ -53,7 +53,7 @@
   </div>
 </template>
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 export default {
   name: 'LoginNeon',
   data() {
@@ -99,9 +99,9 @@ export default {
     }
   },
   computed: {
+    ...mapGetters('app/system', ['logoUrl']),
     ...mapState('app/system', {
       title: s => s.config.base.title,
-      logo: s => s.config.base.logo,
       loginOptions: s => s.config.login,
       getVerifyCode: s => s.actions.auth.getVerifyCode,
       copyright: s => s.config.base.copyright

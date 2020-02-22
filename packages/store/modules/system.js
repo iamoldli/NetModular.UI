@@ -13,6 +13,8 @@ export default {
         title: '',
         /** logo */
         logo: '',
+        /** logo完整Url */
+        logoUrl: '',
         /** 首页 */
         home: '',
         /** 用户信息页(路由名称) */
@@ -101,6 +103,11 @@ export default {
     /************************************************************/
     /** 模块列表 */
     modules: []
+  },
+  getters: {
+    logoUrl: s => {
+      return s.config.base.logoUrl || './images/logo.png'
+    }
   },
   actions: {
     async init({ commit, dispatch }, { system }) {

@@ -3,7 +3,7 @@
     <section class="nm-header-left">
       <!--Logo-->
       <section class="nm-logo-box">
-        <img :src="logoUrl || './images/logo.png'" class="nm-logo-img" :alt="title" :title="title" />
+        <img :src="logoUrl" class="nm-logo-img" :alt="title" :title="title" />
         <div class="nm-logo-text">{{ title }}</div>
       </section>
       <!--折叠按钮-->
@@ -22,12 +22,13 @@
   </section>
 </template>
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 import Breadcrumb from './components/breadcrumb'
 export default {
   components: { Breadcrumb },
   computed: {
-    ...mapState('app/system', { title: s => s.config.base.title, logoUrl: s => s.config.base.logoUrl }),
+    ...mapGetters('app/system', ['logoUrl']),
+    ...mapState('app/system', { title: s => s.config.base.title }),
     ...mapState('app/skins/pretty/sidebar', { sidebarCollapse: 'collapse' })
   },
   methods: {

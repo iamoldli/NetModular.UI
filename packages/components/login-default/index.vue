@@ -4,7 +4,7 @@
     <div class="nm-login-box">
       <div class="nm-login-content">
         <div class="nm-login-logo">
-          <img class="nm-login-logo-img" :src="logo" />
+          <img class="nm-login-logo-img" :src="logoUrl" />
           <h1 class="nm-login-logo-title">{{ title }}</h1>
         </div>
         <el-form ref="form" :model="form" :rules="rules">
@@ -54,7 +54,7 @@
   </div>
 </template>
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 export default {
   name: 'LoginDefault',
   data() {
@@ -100,9 +100,9 @@ export default {
     }
   },
   computed: {
+    ...mapGetters('app/system', ['logoUrl']),
     ...mapState('app/system', {
       title: s => s.config.base.title,
-      logo: s => s.config.base.logo,
       loginOptions: s => s.config.login,
       getVerifyCode: s => s.actions.auth.getVerifyCode,
       copyright: s => s.config.base.copyright
