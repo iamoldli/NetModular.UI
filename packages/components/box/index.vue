@@ -19,11 +19,11 @@
           <!--工具栏插槽-->
           <slot name="toolbar" />
           <!--全屏按钮-->
-          <nm-button v-if="fullscreen" :icon="this.fullscreen_ ? 'min' : 'max'" @click="onFullscreen" />
+          <nm-button v-if="fullscreen" :icon="fullscreen_ ? 'min' : 'max'" @click="onFullscreen" />
           <!--刷新按钮-->
           <nm-button v-if="refresh" icon="refresh" @click="onRefresh" />
           <!--折叠按钮-->
-          <nm-button v-if="collapse" :icon="this.collapse_ ? 'angle-down' : 'angle-up'" @click="onCollapse" />
+          <nm-button v-if="collapse" :icon="collapse_ ? 'angle-down' : 'angle-up'" @click="onCollapse" />
         </div>
       </slot>
     </header>

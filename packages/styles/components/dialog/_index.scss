@@ -103,8 +103,8 @@
   }
 
   &.draggable {
-    bottom: auto !important;
-    right: auto !important;
+    width: 100% !important;
+    height: 100% !important;
 
     #{$prefix}dialog-title {
       cursor: move;

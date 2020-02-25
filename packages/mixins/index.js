@@ -13,6 +13,7 @@ import loading from './components/loading'
 import formSave from './components/form-save'
 import visible from './components/visible'
 import list from './components/list'
+import treeSelect from '../../packages/components/tree-select/mixins.vue'
 
 export default {
   global(Vue) {
@@ -36,6 +37,7 @@ export default {
     loading,
     formSave,
     visible,
-    list
+    list,
+    treeSelect
   }
 }

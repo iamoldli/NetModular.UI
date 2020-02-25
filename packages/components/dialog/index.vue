@@ -214,6 +214,19 @@ export default {
       this.dialogEl.style.height = height
       this.dialogEl.style.width = this.width_
 
+      if (!this.hasInit) {
+        // 如果是可拖拽的，需要计算绝对定位
+        if (this.draggable_) {
+          this.dialogEl.style.left = (document.body.offsetWidth - this.dialogEl.offsetWidth) / 2 + 'px'
+          this.dialogEl.style.top = this.top
+        }
+        // 设置内边距
+        if (this.padding) {
+          this.dialogEl.querySelector(this.noScrollbar ? '.nm-dialog-main' : '.el-scrollbar__view').style.padding = this.padding + 'px'
+        }
+        this.hasInit = true
+      }
+
       this.updateScrollbar()
     },
     // 获取对话框的高度信息
@@ -313,18 +326,6 @@ export default {
       this.$emit('open')
     },
     onOpened() {
-      if (!this.hasInit) {
-        // 如果是可拖拽的，需要计算绝对定位
-        if (this.draggable_) {
-          this.dialogEl.style.left = (document.body.offsetWidth - this.dialogEl.offsetWidth) / 2 + 'px'
-          this.dialogEl.style.top = this.top
-        }
-        // 设置内边距
-        if (this.padding) {
-          this.dialogEl.querySelector(this.noScrollbar ? '.nm-dialog-main' : '.el-scrollbar__view').style.padding = this.padding + 'px'
-        }
-        this.hasInit = true
-      }
       this.$emit('opened')
     },
     onClose() {

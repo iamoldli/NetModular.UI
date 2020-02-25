@@ -1,0 +1,47 @@
+$treePrefix: #{$prefix}tree-select;
+
+#{$treePrefix}-popover {
+  padding: 0;
+  box-sizing: border-box;
+
+  #{$treePrefix}-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    #{$treePrefix}-search-wrapper {
+      padding: 0 5px;
+      flex-shrink: 0;
+      height: 0;
+
+      #{$treePrefix}-search {
+        margin: 5px 0;
+      }
+    }
+
+    #{$treePrefix}-tree-wrapper {
+      position: relative;
+      flex-grow: 1;
+
+      #{$treePrefix}-tree-main {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+
+  &.filterable {
+    #{$treePrefix}-search-wrapper {
+      height: auto;
+    }
+  }
+}
+
+#{$treePrefix}-input {
+  cursor: pointer;
+  .el-input__inner {
+    cursor: pointer;
+  }
+}
