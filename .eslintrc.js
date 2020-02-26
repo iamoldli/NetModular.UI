@@ -13,6 +13,7 @@ module.exports = {
   },
   globals: {
     $http: 'readonly',
+    $const: 'readonly',
     particlesJS: 'readonly',
     BMap: 'readonly',
     BMAP_STATUS_SUCCESS: 'readonly'

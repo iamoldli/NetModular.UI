@@ -1,7 +1,7 @@
 <template>
   <!--使用popover来实现下拉效果-->
   <el-popover ref="popover" :popper-class="popperClass" v-model="visible" :width="width">
-    <nm-box page header no-scrollbar :title="title" :icon="icon" footer :loading="showLoading">
+    <nm-box page header no-scrollbar :title="title_" :icon="icon" footer :loading="showLoading">
       <template v-slot:toolbar>
         <!--全部折叠按钮-->
         <el-tooltip v-if="collapseAll" effect="dark" :content="collapsed ? '展开全部' : '折叠全部'" placement="top">
@@ -58,6 +58,7 @@
 export default {
   data() {
     return {
+      title_: this.title,
       /**树配置 */
       treeOptions: {
         data: [],
@@ -164,7 +165,7 @@ export default {
     refreshTree() {
       this.loading = true
       this.action().then(data => {
-        this.treeOptions.data = [data]
+        this.treeOptions.data = data
         this.change()
         this.loading = false
       })
@@ -173,6 +174,8 @@ export default {
      * @description 选项更改处理
      */
     change() {
+      if (!this.value) return
+
       let data = this.treeOptions.data
       if (data.length < 1) return
 
@@ -207,12 +210,14 @@ export default {
     },
     setLabel(ids) {
       let datas = []
-      ids.map(m => {
-        let nodeData = this.getNodeData(this.treeOptions.data, m)
-        if (nodeData) {
-          datas.push(nodeData)
-        }
-      })
+      if (ids && ids.length > 0) {
+        ids.map(m => {
+          let nodeData = this.getNodeData(this.treeOptions.data, m)
+          if (nodeData) {
+            datas.push(nodeData)
+          }
+        })
+      }
       this.label = datas.map(m => m.label).join(` ${this.separator} `)
     },
     //递归获取当前数据对象
@@ -305,6 +310,9 @@ export default {
     })
   },
   watch: {
+    title(val) {
+      this.title_ = val
+    },
     value(val) {
       if (val !== this.value_) {
         this.change()
