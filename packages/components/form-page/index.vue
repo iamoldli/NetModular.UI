@@ -107,7 +107,9 @@ export default {
       default: true
     },
     /** 禁用表单 */
-    disabled: Boolean
+    disabled: Boolean,
+    /**不显示底部 */
+    noFooter: Boolean
   },
   computed: {
     box() {
@@ -116,7 +118,7 @@ export default {
         title: this.title,
         icon: this.icon,
         header: this.header,
-        footer: true,
+        footer: !this.noFooter,
         fullscreen: this.fullscreen,
         loading: this.loading
       }

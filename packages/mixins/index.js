@@ -11,9 +11,11 @@ import drawer from './components/drawer'
 import loading from './components/loading'
 import formDialogEdit from './components/form-dialog-edit'
 import formSave from './components/form-save'
+import formReadonly from './components/form-readonly'
 import visible from './components/visible'
 import list from './components/list'
 import treeSelect from '../../packages/components/tree-select/mixins.vue'
+import button from './components/button'
 
 export default {
   global(Vue) {
@@ -36,8 +38,10 @@ export default {
     formDialogEdit,
     loading,
     formSave,
+    formReadonly,
     visible,
     list,
-    treeSelect
+    treeSelect,
+    button
   }
 }

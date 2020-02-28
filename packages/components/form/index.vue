@@ -82,7 +82,6 @@ export default {
         // 自定义验证
         if (valid && (!this.validate || this.validate() === true)) {
           this.openLoading()
-
           this.action(this.model)
             .then(data => {
               if (this.successMsg === true) {
