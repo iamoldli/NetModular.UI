@@ -4,10 +4,10 @@
 
 ## Demo(示例)
 
-[https://nm.iamoldli.com/](https://nm.iamoldli.com/)  
+[https://demo.17mkh.com/](https://demo.17mkh.com/)  
 Account: admin  
 Password: admin
 
 ## Documentation(文档)
 
-For full documentation please see [https://nm.iamoldli.com/docs/](https://nm.iamoldli.com/docs/)
+For full documentation please see [https://docs.17mkh.com/](https://docs.17mkh.com/)
