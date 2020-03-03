@@ -12,17 +12,23 @@
     display: flex;
     align-items: stretch;
     flex-shrink: 0;
-    @include vertical-center(40px);
+    @include vertical-center(46px);
     border-top: 1px solid $border-color2;
     border-bottom: 1px solid $border-color3;
     box-sizing: border-box;
 
     #{$prefix}box-header-icon {
-      padding: 0;
-      width: 30px;
+      padding: 0 8px 0 3px;
       font-size: 1.5rem;
       text-align: center;
       flex-shrink: 0;
+
+      #{$prefix}icon {
+        margin-top: 6px;
+        font-size: 18px;
+        padding: 7px;
+        border-radius: 17px;
+      }
     }
 
     #{$prefix}box-header-title {
@@ -79,8 +85,9 @@
     > #{$prefix}box-footer {
       padding: 0 10px;
       flex-shrink: 0;
-      height: 50px;
-      line-height: 47px;
+      flex-grow: 0;
+      height: 42px;
+      line-height: 42px;
       border-top: 1px solid $border-color3;
       text-align: right;
       box-sizing: border-box;
@@ -125,28 +132,6 @@
     height: 100%;
     width: 100%;
     z-index: $z-index-box-fullscreen;
-  }
-
-  &.small {
-    #{$prefix}box-header {
-      @include vertical-center(40px);
-    }
-
-    #{$prefix}box-footer {
-      height: 40px;
-      line-height: 37px;
-    }
-  }
-
-  &.mini {
-    #{$prefix}box-header {
-      @include vertical-center(35px);
-    }
-
-    #{$prefix}box-footer {
-      height: 35px;
-      line-height: 32px;
-    }
   }
 
   &.page {

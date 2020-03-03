@@ -107,3 +107,24 @@
     }
   }
 }
+
+#{$prefix}dialog-icon {
+  #{$prefix}icon {
+    background: $pretty-theme-color;
+    color: $pretty-dialog-icon-color;
+  }
+}
+
+#{$prefix}box-header-icon {
+  #{$prefix}icon {
+    background: $pretty-theme-color;
+    color: $pretty-dialog-icon-color;
+  }
+}
+
+#{$prefix}list-icon {
+  #{$prefix}icon {
+    background: $pretty-theme-color;
+    color: $pretty-dialog-icon-color;
+  }
+}

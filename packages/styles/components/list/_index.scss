@@ -14,7 +14,7 @@
     display: flex;
     align-items: stretch;
     flex-shrink: 0;
-    @include vertical-center(40px);
+    @include vertical-center(45px);
     box-sizing: border-box;
     border-bottom: 1px solid $border-color3;
 
@@ -57,11 +57,18 @@
 
   //图标
   &-icon {
-    padding: 0;
+    padding: 0 8px 0 3px;
     width: 30px;
     font-size: 1.5rem;
     text-align: center;
     flex-shrink: 0;
+
+    #{$prefix}icon {
+      margin-top: 6px;
+      font-size: 18px;
+      padding: 7px;
+      border-radius: 17px;
+    }
   }
 
   //标题

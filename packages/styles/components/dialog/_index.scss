@@ -2,23 +2,33 @@
 #{$prefix}dialog {
   > .el-dialog {
     @include flex-column();
+    border-radius: 6px;
+    overflow: hidden;
 
     > .el-dialog__header {
       padding: 0;
       @include flex-row();
       flex-shrink: 0;
-      @include vertical-center(40px);
+      @include vertical-center(50px);
       box-sizing: border-box;
       border-bottom: 1px solid #eee;
 
       #{$prefix}dialog-icon {
-        padding: 0 5px;
         flex-shrink: 0;
-        font-size: 25px;
+        padding: 0 10px 0 15px;
+        border-radius: 14px;
+        font-size: 16px;
+
+        #{$prefix}icon {
+          margin-top: 11px;
+          padding: 5px;
+          border-radius: 13px;
+        }
       }
 
       #{$prefix}dialog-title {
         flex-grow: 1;
+        font-size: 14px;
       }
 
       #{$prefix}dialog-toolbar {
@@ -33,7 +43,7 @@
           border: none;
           outline: 0;
           cursor: pointer;
-          font-size: 20px;
+          font-size: 18px;
 
           &:hover {
             color: $text-color1;
@@ -76,6 +86,7 @@
           flex-shrink: 0;
           text-align: right;
           z-index: 1;
+          border-top: 1px solid $border-color3;
         }
       }
     }
