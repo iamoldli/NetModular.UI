@@ -38,7 +38,7 @@ export default {
      * @param {Object} skin 皮肤
      */
     init(state, skin) {
-      state.current = skin
+      state.current = Object.assign({}, skin)
       if (state.current.skin === '') {
         state.current.skin = 'pretty'
       }
@@ -48,7 +48,6 @@ export default {
       if (skin.fontSize === 'default') {
         state.current.fontSize = ''
       }
-
       /** 设置body的类 */
       document.body.className = `nm-skin-${state.current.name} theme-${state.current.theme} font-size-${state.current.fontSize}`
       state.initialized = true

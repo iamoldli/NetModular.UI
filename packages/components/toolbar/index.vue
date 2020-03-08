@@ -1,8 +1,11 @@
 <template>
   <div class="nm-toolbar">
+    <template v-for="t in customToolbars">
+      <component :key="t" :is="`nm-toolbar-${t}`" />
+    </template>
     <nm-skin-toggle v-if="toolbar.skin" />
-    <nm-fullscreen v-if="toolbar.fullscreen" />
     <nm-userinfo v-if="toolbar.userInfo" />
+    <nm-fullscreen v-if="toolbar.fullscreen" />
     <nm-logout v-if="toolbar.logout" />
   </div>
 </template>
@@ -16,7 +19,7 @@ export default {
   name: 'Toolbar',
   components: { NmFullscreen, NmLogout, NmSkinToggle, NmUserinfo },
   computed: {
-    ...mapState('app/system', { toolbar: s => s.config.toolbar })
+    ...mapState('app/system', { toolbar: s => s.config.toolbar, customToolbars: s => s.customToolbars })
   }
 }
 </script>

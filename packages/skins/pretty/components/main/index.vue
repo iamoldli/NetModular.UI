@@ -8,7 +8,7 @@
       <section class="nm-content">
         <transition name="fade-transverse">
           <keep-alive :include="keepAlive">
-            <router-view :key="$route.path" />
+            <router-view v-if="routerViewVisible" :key="$route.path" />
           </keep-alive>
         </transition>
       </section>
@@ -17,11 +17,32 @@
 </template>
 <script>
 import NmSidebar from '../sidebar'
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 export default {
   components: { NmSidebar },
+  data() {
+    return {
+      routerViewVisible: true
+    }
+  },
   computed: {
     ...mapState('app/page', ['keepAlive'])
+  },
+  provide() {
+    return {
+      reload: this.reload
+    }
+  },
+  methods: {
+    ...mapMutations('app/page', ['keepAliveRemove']),
+    reload(name) {
+      this.routerViewVisible = false
+      this.keepAliveRemove(name)
+
+      this.$nextTick(() => {
+        this.routerViewVisible = true
+      })
+    }
   }
 }
 </script>

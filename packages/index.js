@@ -101,6 +101,8 @@ export default {
 
     // 全局组件
     let globalComponents = []
+    // 自定义工具栏组件
+    let customToolbars = []
     // 回调方法
     let callbacks = []
 
@@ -128,10 +130,15 @@ export default {
           if (c.name.startsWith('nm-login-')) {
             loginComponents.push(c.name.replace('nm-login-', ''))
           }
+          // 判断是否是登录组件
+          if (c.name.startsWith('nm-toolbar-')) {
+            customToolbars.push(c.name.replace('nm-toolbar-', ''))
+          }
         })
       }
     })
     system.config.login.typeOptions = loginComponents
+    system.customToolbars = customToolbars
 
     // 使用状态
     UseStore()

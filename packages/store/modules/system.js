@@ -69,7 +69,9 @@ export default {
         //标签页
         tabnav: {
           //是否显示图标
-          showIcon: true
+          showIcon: true,
+          //最大页面数量
+          maxOpenCount: 20
         },
         //自定义样式
         customCss: null
@@ -102,7 +104,9 @@ export default {
     /** 系统中自动设置的属性 */
     /************************************************************/
     /** 模块列表 */
-    modules: []
+    modules: [],
+    /**自定义工具栏列表 */
+    customToolbars: []
   },
   getters: {
     logoUrl: s => {

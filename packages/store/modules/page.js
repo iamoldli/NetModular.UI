@@ -5,25 +5,6 @@ import { oneOf } from '../../utils/assist'
 let defaultPageList = ['/', '/default', '/default/']
 
 /**
- * @description 根据路径查询页面信息以及下标
- * @param {Array} opened vuex
- * @param {String} path 路径
- */
-const getPage = (path, opened) => {
-  let index = -1
-  let page
-  opened.every((p, i) => {
-    if (p.path === path) {
-      index = i
-      page = p
-      return false
-    }
-    return true
-  })
-  return { index, page }
-}
-
-/**
  * @description 页面是否缓存
  * @param {Object} page
  */
@@ -84,8 +65,8 @@ export default {
      * @param {*} route 路由信息
      */
     async open({ state, commit, dispatch, rootState }, route) {
-      // 默认页直接返回
       if (defaultPageList.indexOf(route.path.toLowerCase()) > -1) {
+        // 默认页直接返回
         // 判断是否缓存
         if (isCache(route)) commit('keepAlivePush', route.name)
 
@@ -95,6 +76,21 @@ export default {
           isDefault: true
         })
         return
+      }
+
+      //判断是否超出最大可打开页面数，如果超出，从前面删除超出的页面
+      const maxOpenCount = rootState.app.system.config.component.tabnav.maxOpenCount
+      if (maxOpenCount > 0 && state.opened.length > maxOpenCount - 1) {
+        let removeCount = state.opened.length - maxOpenCount
+        for (let i = 0; i <= removeCount; i++) {
+          const page = state.opened[0]
+          commit('remove', 0)
+          await dispatch('cacheInsert')
+
+          if (isCache(page) === true) {
+            commit('keepAliveRemove', page.name)
+          }
+        }
       }
 
       // 不在框架中显示的页面，直接返回
@@ -151,9 +147,9 @@ export default {
      * @param {String} path 页面的路径
      * @param {Object} router 路由对象
      */
-    async close({ state, commit, dispatch }, { path, router, to }) {
-      let newPage = to || '/'
-      let { index, page } = getPage(path, state.opened)
+    async close({ state, commit, dispatch }, { index, router, to }) {
+      let newPage = to
+      const page = state.opened[index]
       if (index > -1) {
         if (!to) {
           // 如果关闭的页面就是当前显示的页面
@@ -161,6 +157,8 @@ export default {
             // 打开一个新的页面
             if (index > 0) {
               newPage = state.opened[index - 1]
+            } else {
+              newPage = state.default
             }
           }
         }
@@ -171,30 +169,27 @@ export default {
           commit('keepAliveRemove', page.name)
         }
       }
-      router.push(newPage)
+
+      if (newPage) router.push(newPage)
     },
     /**
      * @description 关闭左侧标签
      * @param {String} path 选择的页面路径
      * @param {Object} router 路由对象
      */
-    closeLeft({ state, commit, dispatch }, { path, router }) {
-      path = path || state.current.path
-      let { index, page } = getPage(path, state.opened)
+    closeLeft({ state, commit, dispatch }, { index, router }) {
       if (index > 0) {
+        const page = state.opened[index]
         state.opened.splice(0, index).forEach(item => {
           if (isCache(item) === true) commit('keepAliveRemove', item.name)
+
+          //如果关闭的页面包括当前打开的页面，则跳转到选择的页
+          if (item === state.current) {
+            router.push(page)
+          }
         })
 
         dispatch('cacheInsert')
-        // 如果选择的页面不是当前页面，则跳转一下
-        if (path !== state.current.path) {
-          router.push({
-            path: page.path,
-            query: page.query,
-            params: page.params
-          })
-        }
       }
     },
     /**
@@ -202,22 +197,18 @@ export default {
      * @param {String} path 选择的页面路径
      * @param {Object} router 路由对象
      */
-    closeRight({ state, commit, dispatch }, { path, router }) {
-      path = path || state.current.path
-      let { index, page } = getPage(path, state.opened)
+    closeRight({ state, commit, dispatch }, { index, router }) {
       if (index < state.opened.length - 1) {
+        const page = state.opened[index]
         state.opened.splice(index + 1).forEach(item => {
           if (isCache(item) === true) commit('keepAliveRemove', item.name)
+
+          //如果关闭的页面包括当前打开的页面，则跳转到选择的页
+          if (item.path === state.current.path) {
+            router.push(page)
+          }
         })
         dispatch('cacheInsert')
-        // 如果选择的页面不是当前页面，则跳转一下
-        if (path !== state.current) {
-          router.push({
-            path: page.path,
-            query: page.query,
-            params: page.params
-          })
-        }
       }
     },
     /**
@@ -225,27 +216,28 @@ export default {
      * @param {String} path 选择的页面路径
      * @param {Object} router 路由对象
      */
-    closeOther({ state, commit, dispatch }, { path, router }) {
-      path = path || state.current.path
-      let { index, page } = getPage(path, state.opened)
+    closeOther({ state, commit, dispatch }, { index, router }) {
       if (index > -1) {
+        const page = state.opened[index]
         // 删除右侧
         state.opened.splice(index + 1).forEach(item => {
           if (isCache(item) === true) commit('keepAliveRemove', item.name)
+
+          //如果关闭的页面包括当前打开的页面，则跳转到选择的页
+          if (item.path === state.current.path) {
+            router.push(page)
+          }
         })
         // 删除左侧
         state.opened.splice(0, index).forEach(item => {
           if (isCache(item) === true) commit('keepAliveRemove', item.name)
+
+          //如果关闭的页面包括当前打开的页面，则跳转到选择的页
+          if (item.path === state.current.path) {
+            router.push(page)
+          }
         })
         dispatch('cacheInsert')
-        // 如果选择的页面不是当前页面，则跳转一下
-        if (path !== state.current.path) {
-          router.push({
-            path: page.path,
-            query: page.query,
-            params: page.params
-          })
-        }
       } else {
         dispatch('closeAll')
       }
