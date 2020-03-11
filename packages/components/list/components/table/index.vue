@@ -23,7 +23,8 @@ export default {
         'header-click': this.onHeaderClick,
         'header-contextmenu': this.onHeaderContextmenu,
         'sort-change': this.onSortChange,
-        'current-change': this.onCurrentChange
+        'current-change': this.onCurrentChange,
+        'expand-change': this.onExpandChange
       }
     }
   },
@@ -43,7 +44,17 @@ export default {
       }
     },
     /** 合并行列方法 */
-    spanMethod: Function
+    spanMethod: Function,
+    /**渲染嵌套数据的配置选项 */
+    treeProps: Object,
+    /*行数据的 Key，用来优化 Table 的渲染；
+    在使用 reserve-selection 功能与显示树形数据时，该属性是必填的。
+    类型为 String 时，支持多层访问：user.info.id，但不支持 user.info[0].id，此种情况请使用 Function。*/
+    rowKey: [Function, String],
+    /*是否懒加载子节点数据*/
+    lazy: Boolean,
+    /**加载子节点数据的函数，lazy 为 true 时生效，函数第二个参数包含了节点的层级信息 */
+    load: Function
   },
   computed: {
     table() {
@@ -55,7 +66,11 @@ export default {
         height: this.height,
         spanMethod: this.spanMethod,
         headerRowClassName: 'nm-list-body-table-header',
-        data: this.rows
+        data: this.rows,
+        treeProps: this.treeProps,
+        rowKey: this.rowKey,
+        lazy: this.lazy,
+        load: this.load
       }
     }
   },
@@ -140,6 +155,10 @@ export default {
     /** 当表格的当前行发生变化的时候会触发该事件，如果要高亮当前行，请打开表格的 highlight-current-row 属性 */
     onCurrentChange(currentRow, oldCurrentRow) {
       this.$parent.$emit('current-change', currentRow, oldCurrentRow)
+    },
+    /**当用户对某一行展开或者关闭的时候会触发该事件（展开行时，回调的第二个参数为 expandedRows；树形表格时第二参数为 expanded） */
+    onExpandChange(currentRow, expandedRows) {
+      this.$parent.$emit('expand-change', currentRow, expandedRows)
     }
   }
 }

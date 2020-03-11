@@ -20,6 +20,8 @@ export default {
         title: '简单列表',
         icon: 'list',
         action: this.query,
+        rowKey: 'id',
+        treeProps: { children: 'children', hasChildren: 'hasChildren' },
         model: {
           name: ''
         },
@@ -50,7 +52,26 @@ export default {
     query() {
       const rows = [
         { id: 1, name: '张三', age: 22, birthday: '1991-1-8' },
-        { id: 2, name: '李四', age: 26, birthday: '1991-1-8 10:33' },
+        {
+          id: 2,
+          name: '李四',
+          age: 26,
+          birthday: '1991-1-8 10:33',
+          children: [
+            {
+              id: 31,
+              age: 29,
+              birthday: '2016-05-01',
+              name: '王小虎'
+            },
+            {
+              id: 32,
+              age: 78,
+              birthday: '2016-05-01',
+              name: '王小虎'
+            }
+          ]
+        },
         { id: 3, name: '王五', age: 26, birthday: '1991-1-8' }
       ]
       return new Promise(resolve => {
