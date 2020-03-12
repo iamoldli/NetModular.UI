@@ -21,7 +21,7 @@
     </querybar>
 
     <section class="nm-list-body">
-      <query-table ref="table" :rows="rows" :cols="cols" :span-method="spanMethod" :selection.sync="selection" :row-key="rowKey" :tree-props="treeProps">
+      <query-table ref="table" :rows="rows" :cols="cols" :span-method="spanMethod" :selection.sync="selection" :row-key="rowKey" :tree-props="treeProps" :default-expand-all="defaultExpandAll">
         <!-- 多选 -->
         <el-table-column v-if="multiple" fixed="left" align="center" type="selection" width="55" />
 
@@ -207,7 +207,9 @@ export default {
     /*是否懒加载子节点数据*/
     lazy: Boolean,
     /**加载子节点数据的函数，lazy 为 true 时生效，函数第二个参数包含了节点的层级信息 */
-    load: Function
+    load: Function,
+    /**是否默认展开所有行，当 Table 包含展开行存在或者为树形表格时有效 */
+    defaultExpandAll: Boolean
   },
   computed: {
     ...mapState('app/loading', { loadingText_: 'text', loadingBackground: 'background', loadingSpinner: 'spinner' }),

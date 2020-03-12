@@ -54,7 +54,9 @@ export default {
     /*是否懒加载子节点数据*/
     lazy: Boolean,
     /**加载子节点数据的函数，lazy 为 true 时生效，函数第二个参数包含了节点的层级信息 */
-    load: Function
+    load: Function,
+    /**是否默认展开所有行，当 Table 包含展开行存在或者为树形表格时有效 */
+    defaultExpandAll: Boolean
   },
   computed: {
     table() {
@@ -70,7 +72,8 @@ export default {
         treeProps: this.treeProps,
         rowKey: this.rowKey,
         lazy: this.lazy,
-        load: this.load
+        load: this.load,
+        defaultExpandAll: this.defaultExpandAll
       }
     }
   },
