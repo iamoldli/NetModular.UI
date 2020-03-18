@@ -1,8 +1,24 @@
 <template>
-  <nm-box ref="page" class="nm-form-page" v-bind="box">
+  <nm-box ref="page" class="nm-form-page" page :title="title" :icon="icon" :header="header" :footer="!noFooter" :fullscreen="fullscreen" :loading="!noLoading && loading">
     <section class="nm-form-page-body">
       <nm-scrollbar :horizontal="false">
-        <nm-form class="nm-form-page-main" ref="form" v-bind="form" v-on="formOn">
+        <nm-form
+          class="nm-form-page-main"
+          ref="form"
+          no-loading
+          :model="model"
+          :rules="rules"
+          :action="action"
+          :label-width="labelWidth"
+          :label-position="labelPosition"
+          :validate="validate"
+          :success-msg="successMsg"
+          :success-msg-text="successMsgText"
+          :disabled="disabled"
+          :inline="inline"
+          :custom-reset-function="customResetFunction"
+          v-on="formOn"
+        >
           <slot />
         </nm-form>
       </nm-scrollbar>
@@ -15,8 +31,8 @@
       </div>
       <div class="nm-form-page-footer-right">
         <slot name="fotter">
-          <el-button v-if="btnOk" :type="btnOkType" @click="submit" :size="fontSize">{{ btnOkText }}</el-button>
-          <el-button v-if="btnReset" type="info" @click="reset" :size="fontSize">重置</el-button>
+          <el-button v-if="btnOk" :type="btnOkType" @click="submit" :size="fontSize" :disabled="disabled">{{ btnOkText }}</el-button>
+          <el-button v-if="btnReset" type="info" @click="reset" :size="fontSize" :disabled="disabled">重置</el-button>
         </slot>
       </div>
     </template>
@@ -109,36 +125,9 @@ export default {
     /** 禁用表单 */
     disabled: Boolean,
     /**不显示底部 */
-    noFooter: Boolean
-  },
-  computed: {
-    box() {
-      return {
-        page: true,
-        title: this.title,
-        icon: this.icon,
-        header: this.header,
-        footer: !this.noFooter,
-        fullscreen: this.fullscreen,
-        loading: this.loading
-      }
-    },
-    form() {
-      return {
-        noLoading: true,
-        model: this.model,
-        rules: this.rules,
-        action: this.action,
-        labelWidth: this.labelWidth,
-        labelPosition: this.labelPosition,
-        validate: this.validate,
-        successMsg: this.successMsg,
-        successMsgText: this.successMsgText,
-        disabled: this.disabled,
-        inline: this.inline,
-        customResetFunction: this.customResetFunction
-      }
-    }
+    noFooter: Boolean,
+    /**不显示加载动画 */
+    noLoading: Boolean
   },
   methods: {
     /** 提交 */

@@ -1,5 +1,12 @@
 export default [
   {
+    name: 'header',
+    desc: '显示头部',
+    type: 'Boolean',
+    opt: '-',
+    def: 'true'
+  },
+  {
     name: 'title',
     desc: 'Dialog 的标题，也可通过具名 title传入',
     type: 'String',

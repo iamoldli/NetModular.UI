@@ -1,7 +1,25 @@
 <template>
-  <nm-dialog ref="form" class="nm-upload-dialog" v-bind="dialog" :visible.sync="visible_" @close="onClose">
+  <nm-dialog ref="form" class="nm-upload-dialog" :title="title" :icon="icon" :width="width" :height="height" :loading="loading" footer no-scrollbar :visible.sync="visible_" @close="onClose">
     <div class="nm-upload-dialog-top">
-      <el-upload ref="upload" v-bind="upload">
+      <el-upload
+        ref="upload"
+        :action="action"
+        :headers="{
+          Authorization: 'Bearer ' + accessToken
+        }"
+        :data="data"
+        :accept="accept"
+        :limit="limit"
+        :drag="drag"
+        multiple
+        :autoUpload="false"
+        :show-file-list="false"
+        :before-upload="onBeforeUpload"
+        :on-change="onChange"
+        :on-success="onSuccess"
+        :on-error="onError"
+        :on-exceed="onExceed"
+      >
         <div>
           <i class="el-icon-upload"></i>
           <div class="el-upload__text">
@@ -99,37 +117,6 @@ export default {
   },
   computed: {
     ...mapState('app/token', ['accessToken']),
-    dialog() {
-      return {
-        title: this.title,
-        icon: this.icon,
-        width: this.width,
-        height: this.height,
-        loading: this.loading,
-        footer: true,
-        noScrollbar: true
-      }
-    },
-    upload() {
-      return {
-        action: this.action,
-        headers: {
-          Authorization: 'Bearer ' + this.accessToken
-        },
-        data: this.data,
-        accept: this.accept,
-        limit: this.limit,
-        drag: this.drag,
-        multiple: true,
-        autoUpload: false,
-        showFileList: false,
-        beforeUpload: this.onBeforeUpload,
-        onChange: this.onChange,
-        onSuccess: this.onSuccess,
-        onError: this.onError,
-        onExceed: this.onExceed
-      }
-    },
     maxSizeBytes() {
       if (this.maxSize) {
         const max = this.maxSize.toLowerCase()

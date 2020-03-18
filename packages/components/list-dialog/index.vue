@@ -1,5 +1,17 @@
 <template>
-  <nm-dialog class="nm-list-dialog" v-bind="dialog" v-on="on" :visible.sync="visible_">
+  <nm-dialog
+    class="nm-list-dialog"
+    no-scrollbar
+    :title:="title"
+    :icon="icon"
+    :width="width"
+    :height="height"
+    :fullscreen="fullscreen"
+    :close-on-click-modal="closeOnClickModal"
+    :draggable="draggable"
+    v-on="on"
+    :visible.sync="visible_"
+  >
     <template v-slot:title>
       <slot name="title" />
     </template>
@@ -57,20 +69,6 @@ export default {
     draggable: {
       type: Boolean,
       default: false
-    }
-  },
-  computed: {
-    dialog() {
-      return {
-        noScrollbar: true,
-        title: this.title,
-        icon: this.icon,
-        width: this.width,
-        height: this.height,
-        fullscreen: this.fullscreen,
-        closeOnClickModal: this.closeOnClickModal,
-        draggable: this.draggable
-      }
     }
   },
   methods: {

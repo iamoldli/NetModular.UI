@@ -1,6 +1,3 @@
-<template>
-  <h1>123</h1>
-</template>
 <script>
 import { mapActions } from 'vuex'
 export default {

@@ -1,6 +1,35 @@
 <template>
-  <nm-dialog ref="dialog" class="nm-form-dialog" v-bind="dialog" v-on="dialogOn" :visible.sync="visible_">
-    <nm-form ref="form" v-bind="form" v-on="formOn">
+  <nm-dialog
+    ref="dialog"
+    class="nm-form-dialog"
+    :title="title"
+    :icon="icon"
+    :width="width"
+    :height="height"
+    :footer="footer"
+    :fullscreen="fullscreen"
+    :close-on-click-modal="closeOnClickModal"
+    :loading="showLoading"
+    :footer-close-button="footerCloseButton"
+    v-on="dialogOn"
+    :visible.sync="visible_"
+  >
+    <nm-form
+      ref="form"
+      no-loading
+      :model="model"
+      :rules="rules"
+      :action="action"
+      :label-width="labelWidth"
+      :label-position="labelPosition"
+      :validate="validate"
+      :success-msg="successMsg"
+      :success-msg-text="successMsgText"
+      :disabled="disabled"
+      :inline="inline"
+      :customResetFunction="customResetFunction"
+      v-on="formOn"
+    >
       <slot />
     </nm-form>
 
@@ -130,35 +159,6 @@ export default {
     footerCloseButton: Boolean
   },
   computed: {
-    dialog() {
-      return {
-        title: this.title,
-        icon: this.icon,
-        width: this.width,
-        height: this.height,
-        footer: this.footer,
-        fullscreen: this.fullscreen,
-        closeOnClickModal: this.closeOnClickModal,
-        loading: this.showLoading,
-        footerCloseButton: this.footerCloseButton
-      }
-    },
-    form() {
-      return {
-        noLoading: true,
-        model: this.model,
-        rules: this.rules,
-        action: this.action,
-        labelWidth: this.labelWidth,
-        labelPosition: this.labelPosition,
-        validate: this.validate,
-        successMsg: this.successMsg,
-        successMsgText: this.successMsgText,
-        disabled: this.disabled,
-        inline: this.inline,
-        customResetFunction: this.customResetFunction
-      }
-    },
     showLoading() {
       return !this.noLoading && (this.loading_ || this.loading)
     }

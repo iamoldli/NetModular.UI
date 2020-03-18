@@ -6,6 +6,7 @@
   overflow: hidden;
   border-width: 0 1px;
   border-style: solid;
+  border-top: 1px solid $border-color2;
 
   > #{$prefix}box-header {
     padding: 0 5px;
@@ -13,7 +14,6 @@
     align-items: stretch;
     flex-shrink: 0;
     @include vertical-center(46px);
-    border-top: 1px solid $border-color2;
     border-bottom: 1px solid $border-color3;
     box-sizing: border-box;
 
@@ -115,10 +115,14 @@
         width: 100%;
         height: 100%;
 
-        > &-scrollbar {
-          > .el-scrollbar__wrap {
-            padding-left: 10px;
-            padding-right: 10px;
+        #{$prefix}box-wrapper {
+          height: 100%;
+
+          > &-scrollbar {
+            > .el-scrollbar__wrap {
+              padding-left: 10px;
+              padding-right: 10px;
+            }
           }
         }
       }

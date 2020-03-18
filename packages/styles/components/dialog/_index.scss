@@ -127,6 +127,13 @@
     }
   }
 
+  &.no-header {
+    > .el-dialog {
+      > .el-dialog__header {
+        display: none;
+      }
+    }
+  }
   &-tabs {
     .el-tabs__item {
       #{$prefix}icon {

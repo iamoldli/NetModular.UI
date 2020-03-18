@@ -83,6 +83,13 @@ export default {
     }
   },
   props: {
+    /**
+     * @description 显示头部
+     */
+    header: {
+      type: Boolean,
+      default: true
+    },
     /** Dialog 的标题，也可通过具名 title传入 */
     title: String,
     /** 图标 */
@@ -145,7 +152,7 @@ export default {
       return this.$refs.dialog.$el.querySelector('.el-scrollbar__view')
     },
     class_() {
-      return ['nm-dialog', this.draggable_ ? 'draggable' : '']
+      return ['nm-dialog', this.draggable_ ? 'draggable' : '', this.header ? '' : 'no-header']
     },
     width_() {
       return typeof this.width === 'number' ? (this.width > 0 ? this.width + 'px' : '50%') : this.width

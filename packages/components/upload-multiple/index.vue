@@ -1,6 +1,22 @@
 <template>
   <nm-box class="nm-upload-multiple" :loading="loading">
-    <el-upload ref="upload" v-bind="upload">
+    <el-upload
+      ref="upload"
+      :action="action"
+      :headers="{
+        Authorization: 'Bearer ' + accessToken
+      }"
+      multiple
+      :data="data"
+      :accept="accept"
+      :limit="limit"
+      :drag="drag"
+      :show-file-list="false"
+      :before-upload="onBeforeUpload"
+      :on-success="onSuccess"
+      :on-error="onError"
+      :on-exceed="onExceed"
+    >
       <div>
         <i class="el-icon-upload"></i>
         <div class="el-upload__text">
@@ -72,24 +88,6 @@ export default {
   },
   computed: {
     ...mapState('app/token', ['accessToken']),
-    upload() {
-      return {
-        action: this.action,
-        headers: {
-          Authorization: 'Bearer ' + this.accessToken
-        },
-        multiple: true,
-        data: this.data,
-        accept: this.accept,
-        limit: this.limit,
-        drag: this.drag,
-        showFileList: false,
-        beforeUpload: this.onBeforeUpload,
-        onSuccess: this.onSuccess,
-        onError: this.onError,
-        onExceed: this.onExceed
-      }
-    },
     maxSizeBytes() {
       if (this.maxSize) {
         const max = this.maxSize.toLowerCase()

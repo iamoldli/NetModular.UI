@@ -115,7 +115,7 @@ export default {
     /** 重置子组件 */
     resetChildren(vnode) {
       if (vnode.$children && vnode.$children.length > 0) {
-        vnode.$children.map(item => {
+        vnode.$children.forEach(item => {
           if (item && item.reset && typeof item.reset === 'function') {
             item.reset()
           }

@@ -1,5 +1,5 @@
 <template>
-  <nm-dialog v-bind="dialog" :visible.sync="visible_" @open="onOpen">
+  <nm-dialog class="nm-drag-sort-dialog" :title="title" :icon="icon" :width="width" :height="height" footer :loading="loading" :visible.sync="visible_" @open="onOpen">
     <nm-drag-sort v-model="model.options" />
     <template v-slot:footer>
       <nm-button type="success" text="保存" @click="onUpdate" />
@@ -46,19 +46,6 @@ export default {
     },
     /** 保存成功后关闭 */
     closeOnSuccess: Boolean
-  },
-  computed: {
-    dialog() {
-      return {
-        class: 'nm-drag-sort-dialog',
-        title: this.title,
-        icon: this.icon,
-        width: this.width,
-        height: this.height,
-        footer: true,
-        loading: this.loading
-      }
-    }
   },
   methods: {
     onOpen() {

@@ -4,7 +4,24 @@
       <el-input :value="fileName" disabled />
     </div>
     <div class="button">
-      <el-upload ref="upload" v-bind="upload">
+      <el-upload
+        ref="upload"
+        :action="action"
+        :headers="{
+          Authorization: 'Bearer ' + accessToken
+        }"
+        :multiple="false"
+        :data="data"
+        :accept="accept"
+        :limit="1"
+        :drag="false"
+        :disabled="loading"
+        auto-upload
+        :show-file-list="false"
+        :on-success="onSuccess"
+        :on-error="onError"
+        :before-upload="onBeforeUpload"
+      >
         <nm-button :type="btnType" text="上传" :icon="icon_" @click="onClick" :loading="loading" />
       </el-upload>
     </div>
@@ -66,25 +83,6 @@ export default {
     },
     icon_() {
       return this.loading ? 'loading' : this.noIcon ? '' : 'upload'
-    },
-    upload() {
-      return {
-        action: this.action,
-        headers: {
-          Authorization: 'Bearer ' + this.accessToken
-        },
-        multiple: false,
-        data: this.data,
-        accept: this.accept,
-        limit: 1,
-        drag: false,
-        disabled: this.loading,
-        autoUpload: true,
-        showFileList: false,
-        onSuccess: this.onSuccess,
-        onError: this.onError,
-        beforeUpload: this.onBeforeUpload
-      }
     }
   },
   methods: {
