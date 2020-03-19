@@ -140,6 +140,9 @@ export default {
     system.config.login.typeOptions = loginComponents
     system.customToolbars = customToolbars
 
+    //保存全局组件列表
+    system.globalComponents = globalComponents.map(m => m.name)
+
     // 使用状态
     UseStore()
 
