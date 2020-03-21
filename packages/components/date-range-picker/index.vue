@@ -51,8 +51,9 @@ export default {
     }
   },
   created() {
-    var end = new Date()
-    const start = new Date(end.getFullYear(), end.getMonth(), 1)
+    var mow = new Date()
+    const start = this.$dayjs(mow).format('YYYY-MM-01')
+    const end = this.$dayjs(mow).format('YYYY-MM-DD')
 
     let val = []
     val.push(this.start || start)
