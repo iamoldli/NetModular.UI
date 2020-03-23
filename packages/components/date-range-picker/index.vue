@@ -1,6 +1,17 @@
 <template>
   <div :style="{ display: 'inline-block', width }">
-    <el-date-picker v-model="value" v-bind="options" @change="onChange" />
+    <el-date-picker
+      v-model="value"
+      :size="this.size || this.fontSize"
+      type="daterange"
+      range-separator="至"
+      start-placeholder="开始日期"
+      end-placeholder="结束日期"
+      value-format="yyyy-MM-dd"
+      :clearable="clearable"
+      :picker-options="pickerOptions"
+      @change="onChange"
+    />
   </div>
 </template>
 <script>
@@ -23,20 +34,9 @@ export default {
     width: {
       type: String,
       default: '240px'
-    }
-  },
-  computed: {
-    options() {
-      return {
-        size: this.size || this.fontSize,
-        type: 'daterange',
-        rangeSeparator: '至',
-        startPlaceholder: '开始日期',
-        endPlaceholder: '结束日期',
-        valueFormat: 'yyyy-MM-dd',
-        clearable: this.clearable
-      }
-    }
+    },
+    /**当前时间日期选择器特有的选项 */
+    pickerOptions: Object
   },
   methods: {
     onChange(val) {
