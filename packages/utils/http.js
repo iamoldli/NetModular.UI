@@ -137,7 +137,6 @@ const handleDownload = response => {
         Message.error({
           message: data.msg,
           showClose: true,
-          center: true,
           duration: messageDuration
         })
         return
@@ -223,7 +222,6 @@ export default config => {
         Message.error({
           message: response.data.msg,
           showClose: true,
-          center: true,
           duration: messageDuration
         })
         return Promise.reject(response.data.msg)
@@ -274,7 +272,6 @@ export default config => {
               MessageBox.confirm('账户已在别处登录, 请重新登录~', '提示', {
                 confirmButtonText: '确定',
                 type: 'warning',
-                center: true,
                 showCancelButton: false,
                 callback() {
                   // 删除token
