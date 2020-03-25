@@ -10,6 +10,7 @@
     :visible.sync="visible_"
     :show-close="false"
     :append-to-body="true"
+    :destroy-on-close="destroyOnClose"
     v-on="on"
   >
     <!--头部-->
@@ -143,7 +144,9 @@ export default {
       default: 100
     },
     /** 是否显示底部关闭按钮 */
-    footerCloseButton: Boolean
+    footerCloseButton: Boolean,
+    /**关闭时销毁 Dialog 中的元素 */
+    destroyOnClose: Boolean
   },
   computed: {
     ...mapState('app/system', { sysDialog: s => s.config.component.dialog }),
