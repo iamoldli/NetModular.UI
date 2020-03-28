@@ -21,9 +21,6 @@ import { mapActions } from 'vuex'
 import { open } from '../../../../utils/menu'
 export default {
   name: 'MenuItem',
-  data() {
-    return {}
-  },
   props: {
     parentIndex: {
       type: String,
