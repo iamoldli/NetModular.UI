@@ -53,10 +53,11 @@ export default {
       // 设置默认页以及当前页为默认页
       let defaultPage = '/'
       // 自定义的默认页添加到默认页路径列表中
-      if (sys.config.base.home) {
-        defaultPage = sys.config.base.home.toLowerCase()
+      if (sys.config.component.tabnav.homeUrl) {
+        defaultPage = sys.config.component.tabnav.homeUrl.toLowerCase()
         defaultPageList.push(defaultPage)
       }
+
       // 设置默认页以及当前页为默认页
       commit('defaultSet', defaultPage)
     },

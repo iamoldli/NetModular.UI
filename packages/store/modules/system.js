@@ -15,8 +15,6 @@ export default {
         logo: '',
         /** logo完整Url */
         logoUrl: '',
-        /** 首页 */
-        home: '',
         /** 用户信息页(路由名称) */
         userInfoPage: 'userinfo',
         /** 版权声明 */
@@ -68,6 +66,12 @@ export default {
         },
         //标签页
         tabnav: {
+          //是否启用
+          enabled: true,
+          //是否显示首页
+          showHome: true,
+          /** 首页 */
+          homeUrl: '',
           //是否显示图标
           showIcon: true,
           //最大页面数量

@@ -14,7 +14,10 @@ const get = () => {
       },
       component: {
         menu: { uniqueOpened: true },
-        customCss: ''
+        customCss: '',
+        tabnav: {
+          homeUrl: ''
+        }
       }
     },
     actions: {

@@ -139,6 +139,11 @@ table {
   border-spacing: 0;
 }
 
+a {
+  text-decoration: none;
+  color: #409eff;
+}
+
 /************加载动画*************/
 .nm-loader-box {
   position: fixed;

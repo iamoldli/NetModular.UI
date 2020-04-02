@@ -4,12 +4,14 @@
       <nm-sidebar />
     </div>
     <div class="nm-main-right">
-      <nm-tabnav />
+      <nm-tabnav v-if="showTabnav" />
       <section class="nm-content">
         <transition name="fade-transverse">
-          <keep-alive :include="keepAlive">
+          <keep-alive v-if="showTabnav" :include="keepAlive">
             <router-view v-if="routerViewVisible" :key="$route.path" />
           </keep-alive>
+
+          <router-view v-if="!showTabnav && routerViewVisible" :key="$route.path" />
         </transition>
       </section>
     </div>
@@ -26,7 +28,8 @@ export default {
     }
   },
   computed: {
-    ...mapState('app/page', ['keepAlive'])
+    ...mapState('app/page', ['keepAlive']),
+    ...mapState('app/system', { showTabnav: s => s.config.component.tabnav.enabled })
   },
   provide() {
     return {

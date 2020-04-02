@@ -1,0 +1,22 @@
+/*内边距*/
+@for $i from 0 through 50 {
+  #{$prefix}p-#{$i} {
+    padding: #{$i}px !important;
+  }
+
+  #{$prefix}p-t-#{$i} {
+    padding-top: #{$i}px !important;
+  }
+
+  #{$prefix}p-b-#{$i} {
+    padding-bottom: #{$i}px !important;
+  }
+
+  #{$prefix}p-l-#{$i} {
+    padding-left: #{$i}px !important;
+  }
+
+  #{$prefix}p-r-#{$i} {
+    padding-right: #{$i}px !important;
+  }
+}

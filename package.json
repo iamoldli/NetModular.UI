@@ -1,6 +1,6 @@
 {
   "name": "netmodular-ui",
-  "version": "1.7.3",
+  "version": "1.7.5",
   "description": "NetModular前端组件库",
   "author": "Oldli",
   "license": "ISC",
@@ -47,6 +47,7 @@
     "@vue/eslint-config-prettier": "^5.0.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^5.16.0",
+    "eslint-plugin-html": "^6.0.0",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-vue": "^5.0.0",
     "prettier": "^1.18.2",

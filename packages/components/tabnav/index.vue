@@ -3,11 +3,11 @@
     <slot name="before" />
     <div class="nm-tabnav-tabs">
       <el-tabs :value="current.path" type="card" :closable="true" @tab-click="onTabClick" @tab-remove="onTabRemove" @contextmenu.prevent.native="showContextMenu">
-        <el-tab-pane :name="defaultPage">
-          <span slot="label"> <nm-icon v-if="showIcon" name="home" /> 首页</span>
+        <el-tab-pane v-if="config.showHome" :name="defaultPage">
+          <span slot="label"> <nm-icon v-if="config.showIcon" name="home" /> 首页</span>
         </el-tab-pane>
         <el-tab-pane v-for="(item, i) in opened" :key="item.path" :name="item.path"
-          ><span slot="label" :index="i"> <nm-icon v-if="showIcon && item.icon" :name="item.icon" />{{ item.tabName }}</span>
+          ><span slot="label" :index="i"> <nm-icon v-if="config.showIcon && item.icon" :name="item.icon" />{{ item.tabName }}</span>
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -53,7 +53,7 @@ export default {
   },
   computed: {
     ...mapState('app/page', { opened: 'opened', current: 'current', defaultPage: 'default' }),
-    ...mapState('app/system', { showIcon: s => s.config.component.tabnav.showIcon })
+    ...mapState('app/system', { config: s => s.config.component.tabnav })
   },
   inject: ['reload'],
   methods: {

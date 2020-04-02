@@ -218,13 +218,15 @@ export default config => {
 
       if (response.data.code === 1) {
         return response.data.data
-      } else {
+      } else if (response.data.code === 0 && !config.noErrorMsg) {
         Message.error({
           message: response.data.msg,
           showClose: true,
           duration: messageDuration
         })
         return Promise.reject(response.data.msg)
+      } else {
+        return response.data
       }
     },
     error => {

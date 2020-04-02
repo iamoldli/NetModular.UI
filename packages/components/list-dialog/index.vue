@@ -2,7 +2,7 @@
   <nm-dialog
     class="nm-list-dialog"
     no-scrollbar
-    :title:="title"
+    :title="title"
     :icon="icon"
     :width="width"
     :height="height"

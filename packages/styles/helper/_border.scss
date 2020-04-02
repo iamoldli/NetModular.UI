@@ -1,0 +1,90 @@
+/*边框宽度*/
+@for $i from 0 through 30 {
+  /***********旧代码************/
+  #{$prefix}border-#{$i} {
+    border: #{$i}px !important;
+  }
+
+  #{$prefix}border-t-#{$i} {
+    border-top: #{$i}px !important;
+  }
+
+  #{$prefix}border-b-#{$i} {
+    border-bottom: #{$i}px !important;
+  }
+
+  #{$prefix}border-l-#{$i} {
+    border-left: #{$i}px !important;
+  }
+
+  #{$prefix}border-r-#{$i} {
+    border-right: #{$i}px !important;
+  }
+
+  /***********新代码************/
+  #{$prefix}b-#{$i} {
+    border: #{$i}px !important;
+  }
+
+  #{$prefix}b-t-#{$i} {
+    border-top: #{$i}px !important;
+  }
+
+  #{$prefix}b-b-#{$i} {
+    border-bottom: #{$i}px !important;
+  }
+
+  #{$prefix}b-l-#{$i} {
+    border-left: #{$i}px !important;
+  }
+
+  #{$prefix}b-r-#{$i} {
+    border-right: #{$i}px !important;
+  }
+}
+
+/*边框颜色*/
+#{$prefix}b {
+  &-info {
+    border-color: $color-info !important;
+  }
+
+  &-primary {
+    border-color: $color-primary !important;
+  }
+
+  &-success {
+    border-color: $color-success !important;
+  }
+
+  &-warning {
+    border-color: $color-warning !important;
+  }
+
+  &-danger {
+    border-color: $color-danger !important;
+  }
+}
+
+/*边框圆角*/
+@for $i from 0 through 50 {
+  #{$prefix}b-radius#{$i} {
+    border-radius: #{$i}px !important;
+  }
+  #{$prefix}b-t-radius#{$i} {
+    border-top-left-radius: #{$i}px !important;
+    border-top-right-radius: #{$i}px !important;
+  }
+  #{$prefix}b-b-radius#{$i} {
+    border-bottom-left-radius: #{$i}px !important;
+    border-bottom-right-radius: #{$i}px !important;
+  }
+  #{$prefix}b-l-radius#{$i} {
+    border-top-left-radius: #{$i}px !important;
+    border-bottom-left-radius: #{$i}px !important;
+  }
+  #{$prefix}b-r-radius#{$i} {
+    border-top-right-radius: #{$i}px !important;
+    border-bottom-right-radius: #{$i}px !important;
+  }
+}

@@ -27,13 +27,13 @@ export default (store, system) => {
     // 开始进度条
     NProgress.start()
     // 默认页
-    const homeRoute = system.config.base.home
-    // 如果访问的时 / 或者 /default，则跳转到首页
-    if (homeRoute && (to.path === '/' || to.path === '/default')) {
-      if (homeRoute.startsWith('http://') || homeRoute.startsWith('https://')) {
-        next({ name: 'iframe', params: { url: homeRoute, tn_: '首页' } })
+    const homeUrl = system.config.component.tabnav.homeUrl
+    // 如果访问的是 / 或者 /default，则跳转到首页
+    if (homeUrl && (to.path === '/' || to.path === '/default')) {
+      if (homeUrl.startsWith('http://') || homeUrl.startsWith('https://')) {
+        next({ name: 'iframe', params: { url: homeUrl, tn_: '首页' } })
       } else {
-        next(homeRoute)
+        next(homeUrl)
       }
 
       // 关闭进度条
@@ -65,7 +65,9 @@ export default (store, system) => {
             } else if (
               !store.state.app.system.config.permission.validate ||
               store.getters['app/account/routes'].includes(to.name) ||
-              to.path === homeRoute ||
+              to.path === homeUrl ||
+              to.path === '/' ||
+              to.path === '/default' ||
               to.name === 'iframe' ||
               to.name === 'userinfo'
             ) {
@@ -77,7 +79,11 @@ export default (store, system) => {
                 NProgress.done()
               })
             } else {
+              console.log(homeUrl)
               next({ name: 'error403' })
+
+              // 关闭进度条
+              NProgress.done()
             }
           })
       }

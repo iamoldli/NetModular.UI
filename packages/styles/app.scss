@@ -5,7 +5,7 @@
 //动画
 @import './animation/index';
 //帮助类
-@import './helper';
+@import './helper/index';
 //覆盖element样式
 @import './element';
 
@@ -89,11 +89,3 @@
 /*********************主题 Begin*****************************/
 @import './theme';
 /*********************主题 End*******************************/
-
-/*********************皮肤 Begin*****************************/
-// //pretty
-// @import '../skins/pretty/styles/index';
-// //classics
-// @import '../skins/classics/styles/index';
-
-/*********************皮肤 End*******************************/

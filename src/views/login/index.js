@@ -1,4 +1,3 @@
-<script>
 import { mapActions } from 'vuex'
 export default {
   methods: {
@@ -22,4 +21,3 @@ export default {
     })
   }
 }
-</script>

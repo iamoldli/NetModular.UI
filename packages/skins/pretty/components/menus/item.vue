@@ -1,5 +1,4 @@
 <template>
-  <!--节点菜单-->
   <el-submenu v-if="menu.type === 0" :index="menu.id + ''">
     <template v-slot:title>
       <nm-icon :name="menu.icon" class="nm-menus-icon" :style="{ color: menu.iconColor }" />
@@ -10,7 +9,6 @@
     </template>
   </el-submenu>
 
-  <!--链接菜单-->
   <el-menu-item v-else :index="menu.id + ''" :parent-index="parentIndex" @click="go(menu, $event)">
     <nm-icon :name="menu.icon" class="nm-menus-icon" :style="{ color: menu.iconColor }" />
     <span>{{ menu.name }}</span>

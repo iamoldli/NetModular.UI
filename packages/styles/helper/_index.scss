@@ -1,0 +1,18 @@
+/*页*/
+.page {
+  height: 100% !important;
+  box-sizing: border-box;
+}
+
+/*隐藏*/
+.hidden {
+  display: none;
+}
+
+@import './background';
+@import './border';
+@import './boxshadow';
+@import './fontsize';
+@import './margin';
+@import './padding';
+@import './text';

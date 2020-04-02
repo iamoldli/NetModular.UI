@@ -1,0 +1,22 @@
+/*背景颜色*/
+#{$prefix}bg {
+  &-info {
+    background-color: $color-info !important;
+  }
+
+  &-primary {
+    background-color: $color-primary !important;
+  }
+
+  &-success {
+    background-color: $color-success !important;
+  }
+
+  &-warning {
+    background-color: $color-warning !important;
+  }
+
+  &-danger {
+    background-color: $color-danger !important;
+  }
+}

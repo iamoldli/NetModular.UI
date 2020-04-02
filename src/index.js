@@ -1,6 +1,6 @@
 import store from './store'
 import routes from './routes'
-import login from './views/login'
+import login from './views/login/index'
 import NetModularMap from 'netmodular-ui-map'
 export default {
   module: {
