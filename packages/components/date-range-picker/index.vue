@@ -9,7 +9,7 @@
       end-placeholder="结束日期"
       value-format="yyyy-MM-dd"
       :clearable="clearable"
-      :picker-options="pickerOptions"
+      :picker-options="pickerOptions_"
       @change="onChange"
     />
   </div>
@@ -36,7 +36,46 @@ export default {
       default: '240px'
     },
     /**当前时间日期选择器特有的选项 */
-    pickerOptions: Object
+    pickerOptions: Object,
+    /**是否显示日期快捷键 */
+    showPickerOptions: Boolean
+  },
+  computed: {
+    pickerOptions_() {
+      return this.showPickerOptions
+        ? {
+            shortcuts: [
+              {
+                text: '最近一周',
+                onClick(picker) {
+                  const end = new Date()
+                  const start = new Date()
+                  start.setTime(start.getTime() - 3600 * 1000 * 24 * 7)
+                  picker.$emit('pick', [start, end])
+                }
+              },
+              {
+                text: '最近一个月',
+                onClick(picker) {
+                  const end = new Date()
+                  const start = new Date()
+                  start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
+                  picker.$emit('pick', [start, end])
+                }
+              },
+              {
+                text: '最近三个月',
+                onClick(picker) {
+                  const end = new Date()
+                  const start = new Date()
+                  start.setTime(start.getTime() - 3600 * 1000 * 24 * 90)
+                  picker.$emit('pick', [start, end])
+                }
+              }
+            ]
+          }
+        : null
+    }
   },
   methods: {
     onChange(val) {
