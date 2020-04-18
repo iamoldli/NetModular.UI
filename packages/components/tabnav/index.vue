@@ -53,7 +53,7 @@ export default {
   },
   computed: {
     ...mapState('app/page', { opened: 'opened', current: 'current', defaultPage: 'default' }),
-    ...mapState('app/system', { config: s => s.config.component.tabnav })
+    ...mapState('app/config', { config: s => s.component.tabnav })
   },
   inject: ['reload'],
   methods: {

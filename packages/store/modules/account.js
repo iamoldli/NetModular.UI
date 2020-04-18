@@ -69,7 +69,7 @@ export default {
       if (state.id) return
 
       try {
-        let authInfo = await rootState.app.system.actions.auth.getAuthInfo()
+        let authInfo = await rootState.app.system.actions.getAuthInfo()
 
         // 设置皮肤
         dispatch('app/skins/init', authInfo.skin, { root: true })
@@ -88,7 +88,8 @@ export default {
         }
 
         dispatch('cacheSet')
-      } catch {
+      } catch (error) {
+        console.log(error)
         //如果请求失败则退出
         dispatch('app/system/logout', null, { root: true })
       }

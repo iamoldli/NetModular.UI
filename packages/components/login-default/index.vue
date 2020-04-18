@@ -102,12 +102,14 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('app/system', ['logoUrl']),
+    ...mapGetters('app/config', ['logoUrl']),
+    ...mapState('app/config', {
+      title: s => s.system.title,
+      copyright: s => s.system.copyright,
+      loginOptions: s => s.component.login
+    }),
     ...mapState('app/system', {
-      title: s => s.config.base.title,
-      loginOptions: s => s.config.login,
-      getVerifyCode: s => s.actions.auth.getVerifyCode,
-      copyright: s => s.config.base.copyright
+      getVerifyCode: s => s.actions.getVerifyCode
     })
   },
   mounted() {

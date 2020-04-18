@@ -21,12 +21,12 @@ import VueClipboard from 'vue-clipboard2'
 import SkinPretty from './skins/pretty/index'
 // 皮肤集合
 let skins = [SkinPretty]
-//
+
 Vue.config.productionTip = false
 
 // 附加自定义样式
-const appendCustomCss = system => {
-  const customCss = system.config.component.customCss
+const appendCustomCss = config => {
+  const customCss = config.component.customCss
   if (customCss) {
     var style = document.createElement('style')
     style.type = 'text/css'
@@ -64,9 +64,9 @@ export default {
   /**
    * @description 加载皮肤组件
    */
-  use: async ({ system }) => {
+  use: async ({ config, modules, actions }) => {
     // 设置标题
-    document.title = system.config.base.title
+    document.title = config.system.title
 
     // 将lodash添加到Vue的实例属性
     Vue.prototype.$_ = lodash
@@ -107,15 +107,17 @@ export default {
     let callbacks = []
 
     // 加载模块信息
-    system.modules.forEach(m => {
+    modules.forEach(m => {
       // 注入路由信息
       if (m.routes) {
         m.routes.forEach(r => routes.push(r))
       }
+
       // 注入状态信息
       if (m.store) {
         storeOptions.modules.module.modules[m.module.code] = m.store
       }
+
       // 注入回调方法
       if (m.callback) {
         callbacks.push(m.callback)
@@ -137,17 +139,23 @@ export default {
         })
       }
     })
-    system.config.login.typeOptions = loginComponents
-    system.customToolbars = customToolbars
 
-    //保存全局组件列表
-    system.globalComponents = globalComponents.map(m => m.name)
+    // 保存登录页组件
+    config.component.login.pageTypeOptions = loginComponents
+
+    // 系统属性
+    let system = {
+      modules: modules.map(m => m.module),
+      customToolbars: customToolbars,
+      globalComponents: globalComponents.map(m => m.name),
+      actions
+    }
 
     // 使用状态
     UseStore()
 
     // 使用路由
-    UseRouter(store, system)
+    UseRouter(store, config)
 
     // 注册皮肤
     skins.map(s => {
@@ -155,12 +163,10 @@ export default {
     })
 
     // 加载页面数据
-    await store.dispatch('app/system/init', { system, router }, { root: true })
+    await store.dispatch('app/config/init', { config, system }, { root: true })
 
     // 加载本地令牌
     store.commit('app/token/load', null, { root: true })
-
-    Vue.config.productionTip = false
 
     // 注册全局组件
     if (globalComponents) {
@@ -178,14 +184,13 @@ export default {
 
     // 处理回调
     if (callbacks) {
-      let params = { vm, store, router, Vue }
-      callbacks.map(callback => {
-        callback(params)
+      callbacks.forEach(cb => {
+        cb({ vm, store, router, Vue })
       })
     }
 
     // 附加自定义样式
-    appendCustomCss(system)
+    appendCustomCss(config)
 
     return { router, store, vm }
   }

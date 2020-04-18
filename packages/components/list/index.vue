@@ -213,7 +213,7 @@ export default {
   },
   computed: {
     ...mapState('app/loading', { loadingText_: 'text', loadingBackground: 'background', loadingSpinner: 'spinner' }),
-    ...mapState('app/system', { serialNumberName: s => s.config.component.list.serialNumberName }),
+    ...mapState('app/config', { serialNumberName: s => s.component.list.serialNumberName }),
     header() {
       const { title, icon, noFullscreen, fullscreen, noRefresh, exportOptions_ } = this
       return { title, icon, noFullscreen, fullscreen, noRefresh, exportEnabled: exportOptions_.enabled && exportOptions_.btnLocation !== 'querybar', exportBtnCode: exportOptions_.btnCode }

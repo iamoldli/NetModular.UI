@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Skins from '../packages/index'
 import './components'
-import systemService from './api/system'
+import actions from './api/actions'
+import { getUI } from './api/config'
 import 'highlight.js/styles/darkula.css'
 import VueHighlightJS from 'vue-highlightjs'
 import Vuep from 'vuep'
@@ -16,15 +17,15 @@ Vue.use(VueHighlightJS)
 Vue.use(Vuep /*, { codemirror options } */)
 
 // 获取系统信息
-const system = systemService.get()
+getUI().then(config => {
+  let modules = [Admin]
 
-system.modules = [Admin]
-system.api = { baseUrl: '' }
-
-window.loaded = true
-const t = setInterval(() => {
-  if (window.loadProgress > 98) {
-    clearInterval(t)
-    Skins.use({ system })
-  }
-}, 20)
+  window.loaded = true
+  const t = setInterval(() => {
+    if (window.loadProgress > 98) {
+      clearInterval(t)
+      Skins.configApi({ baseUrl: '' })
+      Skins.use({ config, modules, actions })
+    }
+  }, 20)
+})

@@ -15,5 +15,4 @@ const setId = (menus, parentId) => {
   })
 }
 setId(menus)
-console.log(menus)
 export default menus

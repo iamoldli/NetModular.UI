@@ -29,7 +29,7 @@ export default {
   },
   computed: {
     ...mapState('app/page', ['keepAlive']),
-    ...mapState('app/system', { showTabnav: s => s.config.component.tabnav.enabled })
+    ...mapState('app/config', { showTabnav: s => s.component.tabnav.enabled })
   },
   provide() {
     return {

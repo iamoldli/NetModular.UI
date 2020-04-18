@@ -137,7 +137,7 @@ export default {
     options: Object
   },
   computed: {
-    ...mapState('app/system', { copyright: s => s.config.base.copyright }),
+    ...mapState('app/config', { copyright: s => s.system.copyright }),
     ext() {
       return '.xlsx'
     }

@@ -19,7 +19,7 @@ Vue.use(VueRouter)
 NProgress.configure({ minimum: 0.2 })
 
 /** 初始化路由 */
-export default (store, system) => {
+export default (store, config) => {
   router = new VueRouter({ routes })
 
   // 路由过滤器
@@ -27,7 +27,7 @@ export default (store, system) => {
     // 开始进度条
     NProgress.start()
     // 默认页
-    const homeUrl = system.config.component.tabnav.homeUrl
+    const homeUrl = config.component.tabnav.homeUrl
     // 如果访问的是 / 或者 /default，则跳转到首页
     if (homeUrl && (to.path === '/' || to.path === '/default')) {
       if (homeUrl.startsWith('http://') || homeUrl.startsWith('https://')) {
@@ -63,7 +63,7 @@ export default (store, system) => {
               // 关闭进度条
               NProgress.done()
             } else if (
-              !store.state.app.system.config.permission.validate ||
+              !store.state.app.config.permission.validate ||
               store.getters['app/account/routes'].includes(to.name) ||
               to.path === homeUrl ||
               to.path === '/' ||

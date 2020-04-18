@@ -48,13 +48,13 @@ export default {
         commit('keepAliveRefresh')
       }
 
-      const sys = rootState.app.system
+      const config = rootState.app.config
 
       // 设置默认页以及当前页为默认页
       let defaultPage = '/'
       // 自定义的默认页添加到默认页路径列表中
-      if (sys.config.component.tabnav.homeUrl) {
-        defaultPage = sys.config.component.tabnav.homeUrl.toLowerCase()
+      if (config.component.tabnav.homeUrl) {
+        defaultPage = config.component.tabnav.homeUrl.toLowerCase()
         defaultPageList.push(defaultPage)
       }
 
@@ -80,7 +80,7 @@ export default {
       }
 
       //判断是否超出最大可打开页面数，如果超出，从前面删除超出的页面
-      const maxOpenCount = rootState.app.system.config.component.tabnav.maxOpenCount
+      const maxOpenCount = rootState.app.config.component.tabnav.maxOpenCount
       if (maxOpenCount > 0 && state.opened.length > maxOpenCount - 1) {
         let removeCount = state.opened.length - maxOpenCount
         for (let i = 0; i <= removeCount; i++) {

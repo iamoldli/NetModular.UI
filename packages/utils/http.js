@@ -182,7 +182,7 @@ const handleDownload = response => {
 const refreshToken = () => {
   let t = token.get()
   if (t && t.refreshToken) {
-    return store.state.app.system.actions.auth.refreshToken(t.refreshToken)
+    return store.state.app.system.actions.refreshToken(t.refreshToken)
   }
 
   Promise.reject('refresh token error')
@@ -232,7 +232,6 @@ export default config => {
     error => {
       let currentRoute = router.currentRoute
       let redirect = currentRoute.name !== 'login' ? currentRoute.fullPath : '/' // 跳转页面
-
       if (error && error.response) {
         switch (error.response.status) {
           case 401:

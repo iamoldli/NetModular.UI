@@ -7,12 +7,12 @@
 import { mapState } from 'vuex'
 export default {
   computed: {
-    ...mapState('app/system', { loginOptions: s => s.config.login }),
+    ...mapState('app/config', { loginOptions: s => s.component.login }),
     type() {
-      if (!this.loginOptions.type || !this.loginOptions.typeOptions.includes(this.loginOptions.type)) {
+      if (!this.loginOptions.pageType || !this.loginOptions.pageTypeOptions.includes(this.loginOptions.pageType)) {
         return 'default'
       }
-      return this.loginOptions.type
+      return this.loginOptions.pageType
     }
   }
 }

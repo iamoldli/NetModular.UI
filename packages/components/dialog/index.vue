@@ -149,7 +149,7 @@ export default {
     destroyOnClose: Boolean
   },
   computed: {
-    ...mapState('app/system', { sysDialog: s => s.config.component.dialog }),
+    ...mapState('app/config', { config: s => s.component.dialog }),
     ...mapState('app/loading', { loadingText: 'text', loadingBackground: 'background', loadingSpinner: 'spinner' }),
     elScrollbarViewEl() {
       return this.$refs.dialog.$el.querySelector('.el-scrollbar__view')
@@ -162,13 +162,13 @@ export default {
     },
     closeOnClickModal_() {
       if (this.closeOnClickModal === null) {
-        return this.sysDialog.closeOnClickModal
+        return this.config.closeOnClickModal
       }
       return this.closeOnClickModal
     },
     draggable_() {
       if (this.draggable === null) {
-        return this.sysDialog.draggable
+        return this.config.draggable
       }
       return this.draggable
     },

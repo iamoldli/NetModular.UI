@@ -1,7 +1,7 @@
 <template>
   <el-dropdown :hide-on-click="false">
     <span class="el-dropdown-link">
-      <nm-icon name="skin"/>主题
+      <nm-icon name="skin" />主题
       <i class="el-icon-arrow-down el-icon--right"></i>
     </span>
     <el-dropdown-menu v-slot:dropdown>
@@ -15,7 +15,7 @@
 import list from './list'
 import { mapState, mapMutations } from 'vuex'
 export default {
-  data () {
+  data() {
     return {
       list
     }
@@ -23,10 +23,9 @@ export default {
   computed: {
     ...mapState('app/skins', ['current'])
   },
-  methods:
-    {
-      ...mapMutations('app/skins', ['themeChange'])
-    }
+  methods: {
+    ...mapMutations('app/skins', ['themeChange'])
+  }
 }
 </script>
 <style>
