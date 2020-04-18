@@ -23,7 +23,7 @@ const getUI = () => {
         /**登录设置 */
         login: {
           //登录页类型
-          pageType: 'neon',
+          pageType: 'auto',
           //是否启用验证码
           verifyCode: false
         },
