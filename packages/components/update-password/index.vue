@@ -13,7 +13,7 @@
     @success="success"
   >
     <el-alert title="提示" type="warning" description="密码修改成功后，需要重新登录" show-icon :closable="false"></el-alert>
-    <el-row :gutter="20">
+    <el-row>
       <el-col :span="18" :offset="2">
         <el-form-item label="原密码：" prop="oldPassword">
           <el-input type="password" v-model="model.oldPassword"></el-input>

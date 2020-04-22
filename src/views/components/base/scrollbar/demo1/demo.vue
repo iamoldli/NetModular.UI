@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-row :gutter="20">
+    <el-row>
       <el-col :span="12">
         <section style="height:400px;background-color:#fff">
           <nm-scrollbar>

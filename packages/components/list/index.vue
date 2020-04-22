@@ -1,14 +1,35 @@
 <template>
   <section :class="class_" v-loading="showLoading" :element-loading-text="loadingText || loadingText_" :element-loading-background="loadingBackground" :element-loading-spinner="loadingSpinner">
     <!--header-->
-    <query-header v-if="!noHeader" v-bind="header">
+    <query-header
+      v-if="!noHeader"
+      :title="title"
+      :icon="icon"
+      :no-fullscreen="noFullscreen"
+      :fullscreen="fullscreen"
+      :no-refresh="noRefresh"
+      :export-enabled="exportOptions_.enabled && exportOptions_.btnLocation !== 'querybar'"
+      :exportBtnCode="exportOptions_.btnCode"
+    >
       <template v-slot:toolbar>
         <slot name="header-toolbar" :total="total" :selection="selection" />
       </template>
     </query-header>
 
     <!--查询栏-->
-    <querybar ref="querybar" v-if="!noQuerybar" v-bind="querybar" @reset="onQueryBarReset">
+    <querybar
+      ref="querybar"
+      v-if="!noQuerybar"
+      :model="model"
+      :rules="rules"
+      :input-width="inputWidth"
+      :advanced="advanced"
+      :no-search="noSearch"
+      :no-reset="noReset"
+      :export-enabled="exportOptions_.enabled && exportOptions_.btnLocation === 'querybar'"
+      :export-btn-code="exportOptions_.btnCode"
+      @reset="onQueryBarReset"
+    >
       <template v-slot>
         <slot name="querybar" />
       </template>
@@ -21,7 +42,17 @@
     </querybar>
 
     <section class="nm-list-body">
-      <query-table ref="table" :rows="rows" :cols="cols" :span-method="spanMethod" :selection.sync="selection" :row-key="rowKey" :tree-props="treeProps" :default-expand-all="defaultExpandAll">
+      <query-table
+        ref="table"
+        :rows="rows"
+        :cols="cols"
+        :span-method="spanMethod"
+        :selection="selection"
+        :row-key="rowKey"
+        :tree-props="treeProps"
+        :default-expand-all="defaultExpandAll"
+        :no-clear-selection="noClearSelection"
+      >
         <!-- 多选 -->
         <el-table-column v-if="multiple" fixed="left" align="center" type="selection" width="55" />
 
@@ -80,7 +111,16 @@
     </section>
 
     <!--footer-->
-    <query-footer v-if="!noFooter" v-model="page" :page-sizes="pageSizes" :total="total" :columns.sync="columns" :no-select-column="noSelectColumn" :reverse="footerReverse">
+    <query-footer
+      v-if="!noFooter"
+      v-model="page"
+      :page-sizes="pageSizes"
+      :total="total"
+      :columns.sync="columns"
+      :no-select-column="noSelectColumn"
+      :no-search-button-icon="noSearchButtonIcon"
+      :reverse="footerReverse"
+    >
       <slot name="footer" :total="total" :selection="selection" :data="data" />
     </query-footer>
     <slot />
@@ -209,31 +249,15 @@ export default {
     /**加载子节点数据的函数，lazy 为 true 时生效，函数第二个参数包含了节点的层级信息 */
     load: Function,
     /**是否默认展开所有行，当 Table 包含展开行存在或者为树形表格时有效 */
-    defaultExpandAll: Boolean
+    defaultExpandAll: Boolean,
+    /**当刷新时不清空已选择数据 */
+    noClearSelection: Boolean
   },
   computed: {
     ...mapState('app/loading', { loadingText_: 'text', loadingBackground: 'background', loadingSpinner: 'spinner' }),
     ...mapState('app/config', { serialNumberName: s => s.component.list.serialNumberName }),
-    header() {
-      const { title, icon, noFullscreen, fullscreen, noRefresh, exportOptions_ } = this
-      return { title, icon, noFullscreen, fullscreen, noRefresh, exportEnabled: exportOptions_.enabled && exportOptions_.btnLocation !== 'querybar', exportBtnCode: exportOptions_.btnCode }
-    },
     class_() {
       return ['nm-list', this.fontSize ? `nm-list-${this.fontSize}` : '', this.fullscreen ? 'fullscreen' : '']
-    },
-    querybar() {
-      const { model, rules, inputWidth, advanced, noSearch, noReset, noSearchButtonIcon, exportOptions_ } = this
-      return {
-        model,
-        rules,
-        inputWidth,
-        advanced,
-        noSearch,
-        noReset,
-        noSearchButtonIcon,
-        exportEnabled: exportOptions_.enabled && exportOptions_.btnLocation === 'querybar',
-        exportBtnCode: exportOptions_.btnCode
-      }
     },
     showLoading() {
       return this.loading || this.loading_
@@ -280,6 +304,15 @@ export default {
           this.$refs.table.doLayout()
           this.loading_ = false
 
+          if (this.noClearSelection) {
+            this.$nextTick(() => {
+              this.rows.forEach(m => {
+                if (!this.selection.every(n => n.id !== m.id)) {
+                  this.$refs.table.toggleRowSelection(m, true)
+                }
+              })
+            })
+          }
           // 查询事件
           this.$emit('query', data)
         })
@@ -315,8 +348,8 @@ export default {
         })
     },
     /** 刷新 */
-    refresh() {
-      this.page.index = 1
+    refresh(goFirst) {
+      if (goFirst) this.page.index = 1
       this.query()
     },
     /** 查询表单重置 */
@@ -346,7 +379,7 @@ export default {
       this.fullscreen = false
       this.$emit('fullscreen-change', this.fullscreen)
     },
-    /**切换导出对话框显示状态 */
+    /** 切换导出对话框显示状态 */
     triggerExport() {
       let exp = this.exportOptions_
       //未启用高级，直接执行导出操作
@@ -369,7 +402,7 @@ export default {
 
       this.showExport ? this.closeExport() : this.openExport()
     },
-    /**打开导出对话框 */
+    /** 打开导出对话框 */
     openExport() {
       this.showExport = true
       this.$emit('export-change', this.showExport)
@@ -378,7 +411,7 @@ export default {
       this.showExport = false
       this.$emit('export-change', this.showExport)
     },
-    /**列表的列转导出的列 */
+    /** 列表的列转导出的列 */
     listCol2ExportCol(m) {
       let col = {
         name: m.name,
@@ -397,10 +430,20 @@ export default {
       }
       return col
     },
-    /**查询栏重置事件 */
+    /** 查询栏重置事件 */
     onQueryBarReset() {
       this.$refs.table.clearSort()
       this.$emit('reset')
+    },
+    /** 删除行 */
+    removeRow(row) {
+      for (let i = 0; i < this.rows.length; i++) {
+        if (this.rows[i] === row) {
+          this.rows.splice(i, 1)
+          this.total--
+          break
+        }
+      }
     }
   },
   mounted() {

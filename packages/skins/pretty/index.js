@@ -6,7 +6,7 @@ export default {
   component,
   store,
   options: {
-    name: '靓丽',
+    name: '??�',
     code: 'pretty',
     preview,
     themes: [

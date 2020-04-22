@@ -4,7 +4,7 @@
       <div class="nm-default">
         <nm-icon name="work" class="nm-size-100" />
         <h1 class="nm-m-20 nm-size-20">欢迎登录{{ title }}~</h1>
-        <p>本系统使用开源框架 <a class="nm-link" href="https://github.com/iamoldli/NetModular">NetModular</a> 开发</p>
+        <p>本系统使用开源框架 <a class="nm-link" target="_blank" href="https://github.com/iamoldli/NetModular">NetModular</a> 开发</p>
         <img style="width:100%" src="../../../public/images/motto.png" />
       </div>
     </nm-box>

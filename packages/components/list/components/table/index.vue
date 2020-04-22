@@ -1,6 +1,22 @@
 <template>
   <section class="nm-list-body-table">
-    <el-table ref="table" v-bind="table" v-on="on">
+    <el-table
+      ref="table"
+      headerRowClassName="nm-list-body-table-header"
+      border
+      stripe
+      highlight-current-row
+      :size="fontSize"
+      :height="height"
+      :span-method="spanMethod"
+      :data="rows"
+      :tree-props="treeProps"
+      :row-key="rowKey"
+      :lazy="lazy"
+      :load="load"
+      :default-expand-all="defaultExpandAll"
+      v-on="on"
+    >
       <slot />
     </el-table>
   </section>
@@ -29,20 +45,13 @@ export default {
     }
   },
   props: {
-    /** 选择的列 */
-    selection: Array,
     /** 高度 */
     height: {
       type: String,
       default: '100%'
     },
     /** 数据 */
-    rows: {
-      type: Array,
-      default() {
-        return []
-      }
-    },
+    rows: Array,
     /** 合并行列方法 */
     spanMethod: Function,
     /**渲染嵌套数据的配置选项 */
@@ -56,26 +65,9 @@ export default {
     /**加载子节点数据的函数，lazy 为 true 时生效，函数第二个参数包含了节点的层级信息 */
     load: Function,
     /**是否默认展开所有行，当 Table 包含展开行存在或者为树形表格时有效 */
-    defaultExpandAll: Boolean
-  },
-  computed: {
-    table() {
-      return {
-        border: true,
-        stripe: true,
-        highlightCurrentRow: true,
-        size: this.fontSize,
-        height: this.height,
-        spanMethod: this.spanMethod,
-        headerRowClassName: 'nm-list-body-table-header',
-        data: this.rows,
-        treeProps: this.treeProps,
-        rowKey: this.rowKey,
-        lazy: this.lazy,
-        load: this.load,
-        defaultExpandAll: this.defaultExpandAll
-      }
-    }
+    defaultExpandAll: Boolean,
+    /**当刷新时不清空已选择数据 */
+    noClearSelection: Boolean
   },
   methods: {
     /** 清除排序 */
@@ -94,17 +86,58 @@ export default {
         this.$refs.table.doLayout()
       })
     },
+    /** 用于多选表格，切换某一行的选中状态，如果使用了第二个参数，则是设置这一行选中与否（selected 为 true 则选中） */
+    toggleRowSelection(row, selected) {
+      this.$refs.table.toggleRowSelection(row, selected)
+    },
     /** 当用户手动勾选数据行的 Checkbox 时触发的事件 */
     onSelect(selection, row) {
+      if (this.noClearSelection) {
+        let hasSelection = this.$parent.selection
+        if (!selection.every(m => m.id !== row.id)) {
+          //添加
+          hasSelection.push(row)
+        } else {
+          //移除
+          for (let i = 0; i < hasSelection.length; i++) {
+            if (hasSelection[i].id == row.id) {
+              hasSelection.splice(i, 1)
+              break
+            }
+          }
+        }
+      }
       this.$parent.$emit('select', selection, row)
     },
     /** 当用户手动勾选全选 Checkbox 时触发的事件 */
     onSelectAll(selection) {
+      if (this.noClearSelection) {
+        let hasSelection = this.$parent.selection
+        if (selection.length > 0) {
+          this.rows.forEach(m => {
+            if (!hasSelection.every(n => n.id !== m.id)) {
+              hasSelection.push(m)
+            }
+          })
+        } else {
+          //移除
+          this.rows.forEach(m => {
+            for (let i = 0; i < hasSelection.length; i++) {
+              if (hasSelection[i].id == m.id) {
+                hasSelection.splice(i, 1)
+                break
+              }
+            }
+          })
+        }
+      }
       this.$parent.$emit('select-all', selection)
     },
     /** 当选择项发生变化时会触发该事件 */
     onSelectionChange(selection) {
-      this.$emit('update:selection', selection)
+      if (!this.noClearSelection) {
+        this.$parent.selection = selection
+      }
       this.$parent.$emit('selection-change', selection)
     },
     /** 当单元格 hover 进入时会触发该事件 */
