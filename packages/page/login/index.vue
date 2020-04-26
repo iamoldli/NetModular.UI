@@ -10,7 +10,7 @@ export default {
     ...mapState('app/config', { loginOptions: s => s.component.login }),
     type() {
       if (!this.loginOptions.pageType || !this.loginOptions.pageTypeOptions.includes(this.loginOptions.pageType)) {
-        return 'default'
+        return 'neon'
       }
       return this.loginOptions.pageType
     }

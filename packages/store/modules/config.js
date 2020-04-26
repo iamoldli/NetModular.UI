@@ -25,6 +25,8 @@ export default {
       login: {
         //登录页选项
         pageTypeOptions: [],
+        //默认登录账户类型
+        defaultAccountType: 0,
         //登录页类型
         pageType: null,
         //是否启用验证码

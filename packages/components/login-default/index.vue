@@ -161,6 +161,14 @@ export default {
         }
       })
     }
+  },
+  watch: {
+    loginOptions: {
+      immediate: true,
+      handler(val) {
+        this.form.accountType = val.defaultAccountType
+      }
+    }
   }
 }
 </script>
