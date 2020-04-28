@@ -92,8 +92,8 @@ export default {
           this.edit()
         }
       } else {
-        //如果是新增则要重置
-        this.$refs.form.reset()
+        //如果总是刷新则要重置
+        if (this.allRefresh) this.$refs.form.reset()
       }
 
       //打开后执行的方法

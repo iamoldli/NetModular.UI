@@ -45,7 +45,7 @@ export default {
   },
   watch: {
     value() {
-      this.icon = this.value
+      if (this.icon !== this.value) this.icon = this.value
     }
   }
 }
