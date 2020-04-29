@@ -153,16 +153,11 @@ const handleDownload = response => {
 
   let fileName = ''
   // 如果响应头包含'content-disposition'属性，则从该属性中获取文件名称
-  if (response.headers['content-disposition']) {
-    fileName = decodeURI(
-      response.headers['content-disposition']
-        .split(';')
-        .find(m => m.trim().startsWith('filename='))
-        .split('=')[1]
-    )
-      .replace('"', '')
-      .replace('"', '')
+  let cd = response.headers['content-disposition']
+  if (cd) {
+    fileName = decodeURI(cd.split("''")[1])
   }
+  console.log(fileName)
 
   //如果文件名不存在，则使用时间戳
   if (!fileName) {

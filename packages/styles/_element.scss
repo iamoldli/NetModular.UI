@@ -60,18 +60,6 @@ body {
         font-size: $size;
       }
     }
-
-    &.el-input--prefix {
-      .el-input__inner {
-        padding-left: $padding;
-      }
-    }
-
-    &.el-input--suffix {
-      .el-input__inner {
-        padding-right: $padding;
-      }
-    }
   }
 }
 

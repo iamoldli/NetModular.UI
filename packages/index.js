@@ -14,8 +14,6 @@ import Mixins from './mixins/'
 import Directive from './directive'
 import regex from './utils/regex'
 import dayjs from 'dayjs'
-import echarts from 'echarts'
-import VCharts from 'v-charts'
 import VueClipboard from 'vue-clipboard2'
 // 皮肤
 import SkinPretty from './skins/pretty/index'
@@ -71,10 +69,6 @@ export default {
     // 将lodash添加到Vue的实例属性
     Vue.prototype.$_ = lodash
 
-    // 全局引用ECharts，如果需要按需引用，请访问http://echarts.baidu.com/tutorial.html#%E5%9C%A8%20webpack%20%E4%B8%AD%E4%BD%BF%E7%94%A8%20ECharts
-    // eslint-disable-next-line no-undef
-    Vue.prototype.$echarts = echarts
-
     // 日期格式化插件
     Vue.prototype.$dayjs = dayjs
 
@@ -83,9 +77,6 @@ export default {
 
     // 加载饿了么框架
     Vue.use(ElementUI)
-
-    // 加载v-charts组件
-    Vue.use(VCharts)
 
     // 复制到粘贴板组件
     Vue.use(VueClipboard)

@@ -43,7 +43,7 @@ export default {
   },
   watch: {
     value(val) {
-      this.list = val
+      if (val !== this.list) this.list = val
     }
   }
 }

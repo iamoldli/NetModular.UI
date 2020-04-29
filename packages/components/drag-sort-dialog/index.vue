@@ -7,10 +7,10 @@
   </nm-dialog>
 </template>
 <script>
-import dialogMixins from '../../mixins/components/dialog'
+import visibleMixins from '../../mixins/components/visible'
 export default {
   name: 'DragSortDialog',
-  mixins: [dialogMixins],
+  mixins: [visibleMixins],
   data() {
     return {
       model: {
@@ -59,16 +59,13 @@ export default {
         .then(() => {
           this.loading = false
           this.$emit('success', this.model.options)
-          this._success('保存成功', () => {
-            if (this.closeOnSuccess) {
-              this.visible_ = false
-            }
-          })
+          if (this.closeOnSuccess) {
+            this.visible_ = false
+          }
         })
         .catch(() => {
           this.loading = false
           this.$emit('error')
-          this._error('保存失败')
         })
     }
   }
