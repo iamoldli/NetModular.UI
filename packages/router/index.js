@@ -26,6 +26,15 @@ export default (store, config) => {
   router.beforeEach((to, from, next) => {
     // 开始进度条
     NProgress.start()
+
+    //如果是框架外的页面，不走验证逻辑
+    if (to.meta && to.meta.frameIn === false) {
+      next()
+      // 关闭进度条
+      NProgress.done()
+      return
+    }
+
     // 默认页
     const homeUrl = config.component.tabnav.homeUrl
     // 如果访问的是 / 或者 /default，则跳转到首页
