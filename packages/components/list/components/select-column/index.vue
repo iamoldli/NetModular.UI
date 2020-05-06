@@ -10,7 +10,7 @@
       </el-dropdown-item>
       <el-checkbox-group v-model="selection" @change="change">
         <el-dropdown-item v-for="col in columns" :key="col.name">
-          <el-checkbox :label="col.name" :checked="col.show">{{ col.label }}</el-checkbox>
+          <el-checkbox v-if="col.label !==''" :label="col.name" :checked="col.show">{{ col.label }}</el-checkbox>
         </el-dropdown-item>
       </el-checkbox-group>
     </el-dropdown-menu>
