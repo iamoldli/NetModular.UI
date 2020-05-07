@@ -206,7 +206,12 @@ export default {
     },
     /**重置 */
     reset() {
-      this.change()
+      this.selection = this.multiple ? [] : ''
+      this.setCheckedKeys([])
+
+      this.setLabel(this.multiple ? this.value_ : [this.value_])
+      this.$emit('input', this.value_)
+      this.$emit('change', this.value_, this.selection_)
     },
     setLabel(ids) {
       let datas = []

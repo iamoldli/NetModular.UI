@@ -93,7 +93,9 @@ export default {
         }
       } else {
         //如果总是刷新则要重置
-        if (this.allRefresh) this.$refs.form.reset()
+        if (this.allRefresh) {
+          this.$refs.form.reset()
+        }
       }
 
       //打开后执行的方法

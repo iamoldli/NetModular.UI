@@ -88,7 +88,6 @@ export default (store, config) => {
                 NProgress.done()
               })
             } else {
-              console.log(homeUrl)
               next({ name: 'error403' })
 
               // 关闭进度条

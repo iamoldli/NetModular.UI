@@ -157,7 +157,6 @@ const handleDownload = response => {
   if (cd) {
     fileName = decodeURI(cd.split("''")[1])
   }
-  console.log(fileName)
 
   //如果文件名不存在，则使用时间戳
   if (!fileName) {
