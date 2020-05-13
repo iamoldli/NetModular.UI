@@ -163,6 +163,8 @@
   &.no-padding {
     > #{$prefix}box-dialog {
       > #{$prefix}box-content {
+        padding: 0 !important;
+
         > #{$prefix}box-wrapper {
           .el-scrollbar__view {
             padding: 0 !important;
