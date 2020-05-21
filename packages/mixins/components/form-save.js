@@ -21,6 +21,12 @@ export default {
       on: {
         success: this.onSuccess,
         open: this.onOpen
+      },
+      //文本标签
+      labels: {
+        add: '新增',
+        edit: '编辑',
+        read: '查看'
       }
     }
   },
@@ -45,17 +51,17 @@ export default {
   methods: {
     /**设置信息 */
     setInfo() {
-      const { form, title, readonly, actions } = this
+      const { form, title, readonly, actions, labels } = this
       //添加
       if (this.isAdd_) {
-        form.title = `新增${title}`
+        form.title = `${labels.add}${title}`
         form.icon = 'add'
         form.customResetFunction = null
         form.action = actions.add
         return
       }
       //编辑
-      form.title = `${readonly ? '查看' : '编辑'}${title}`
+      form.title = `${readonly ? labels.read : labels.edit}${title}`
       form.icon = readonly ? 'preview' : 'edit'
       form.customResetFunction = this.reset
       form.action = actions.update
