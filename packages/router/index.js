@@ -27,8 +27,8 @@ export default (store, config) => {
     // 开始进度条
     NProgress.start()
 
-    //如果是框架外的页面，不走验证逻辑
-    if (to.meta && to.meta.frameIn === false) {
+    //如果是框架外的页面，或者不不需要权限验证，不走验证逻辑
+    if (to.meta && (to.meta.frameIn === false || to.meta.noPermission)) {
       next()
       // 关闭进度条
       NProgress.done()

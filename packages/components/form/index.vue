@@ -60,7 +60,7 @@ export default {
       default: 'right'
     },
     // 自定义验证
-    validate: Function,
+    customValidate: Function,
     /** 禁用表单 */
     disabled: Boolean,
     /** 显示加载动画 */
@@ -78,24 +78,30 @@ export default {
   methods: {
     /** 提交 */
     submit() {
+      this.validate(() => {
+        this.openLoading()
+        this.action(this.model)
+          .then(data => {
+            if (this.successMsg === true) {
+              this._success(this.successMsgText)
+            }
+
+            this.$emit('success', data)
+
+            this.closeLoading()
+          })
+          .catch(() => {
+            this.$emit('error')
+            this.closeLoading()
+          })
+      })
+    },
+    /** 表单验证 */
+    validate(callback) {
       this.$refs.form.validate(async valid => {
         // 自定义验证
-        if (valid && (!this.validate || this.validate() === true)) {
-          this.openLoading()
-          this.action(this.model)
-            .then(data => {
-              if (this.successMsg === true) {
-                this._success(this.successMsgText)
-              }
-
-              this.$emit('success', data)
-
-              this.closeLoading()
-            })
-            .catch(() => {
-              this.$emit('error')
-              this.closeLoading()
-            })
+        if (valid && (!this.customValidate || this.customValidate() === true)) {
+          callback()
         } else {
           // 验证失败
           this.$emit('validate-error')
@@ -107,8 +113,8 @@ export default {
       if (this.customResetFunction) {
         this.customResetFunction()
       } else {
-        this.resetChildren(this.$refs.form)
         this.$refs.form.resetFields()
+        this.resetChildren(this.$refs.form)
       }
       this.$emit('reset')
     },

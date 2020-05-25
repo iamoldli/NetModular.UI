@@ -1,7 +1,7 @@
 <template>
   <!--工具栏-->
   <section class="nm-list-querybar">
-    <el-form ref="normalForm" class="nm-list-querybar-normal" :model="model_" :rules="rules" :size="fontSize" :inline="true">
+    <nm-form ref="normalForm" class="nm-list-querybar-normal" :model="model_" :rules="rules" :size="fontSize" :inline="true">
       <slot />
       <el-form-item v-if="!noSearch">
         <nm-button type="primary" @click="query" :icon="!noSearchButtonIcon ? 'search' : ''" text="查询" />
@@ -22,7 +22,7 @@
       <el-form-item>
         <slot name="buttons" />
       </el-form-item>
-    </el-form>
+    </nm-form>
 
     <!--高级查询框-->
     <transition name="el-zoom-in-top">
@@ -116,7 +116,7 @@ export default {
     /** 表单重置 */
     reset() {
       if (this.$refs.normalForm) {
-        this.$refs.normalForm.resetFields()
+        this.$refs.normalForm.reset()
       }
       if (this.$refs.advancedForm) {
         this.$refs.advancedForm.reset()

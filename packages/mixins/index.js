@@ -16,6 +16,8 @@ import visible from './components/visible'
 import list from './components/list'
 import treeSelect from '../../packages/components/tree-select/mixins.vue'
 import button from './components/button'
+import radio from './components/radio.vue'
+import checkbox from './components/checkbox.vue'
 
 export default {
   global(Vue) {
@@ -42,6 +44,8 @@ export default {
     visible,
     list,
     treeSelect,
-    button
+    button,
+    radio,
+    checkbox
   }
 }

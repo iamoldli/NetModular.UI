@@ -6,6 +6,9 @@
       border
       stripe
       highlight-current-row
+      :show-summary="showSummary"
+      :sum-text="sumText"
+      :summary-method="summaryMethod"
       :size="fontSize"
       :height="height"
       :span-method="spanMethod"
@@ -67,7 +70,13 @@ export default {
     /**是否默认展开所有行，当 Table 包含展开行存在或者为树形表格时有效 */
     defaultExpandAll: Boolean,
     /**当刷新时不清空已选择数据 */
-    noClearSelection: Boolean
+    noClearSelection: Boolean,
+    /**是否显示合计行 */
+    showSummary: Boolean,
+    /**合计行文本 */
+    sumText: String,
+    /**合计行自定义逻辑方法 */
+    summaryMethod: Function
   },
   methods: {
     /** 清除排序 */

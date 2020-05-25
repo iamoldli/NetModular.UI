@@ -1,5 +1,20 @@
 <template>
   <nm-box ref="page" class="nm-form-page" page :title="title" :icon="icon" :header="header" :footer="!noFooter" :fullscreen="fullscreen" :loading="!noLoading && loading">
+    <!--标题-->
+    <template v-slot:title>
+      <slot name="title"></slot>
+    </template>
+
+    <!--工具栏之前-->
+    <template v-slot:toolbar-before>
+      <slot name="toolbar-before" />
+    </template>
+
+    <!--工具栏插槽-->
+    <template v-slot:toolbar>
+      <slot name="toolbar" />
+    </template>
+
     <section class="nm-form-page-body">
       <nm-scrollbar :horizontal="false">
         <nm-form

@@ -52,6 +52,9 @@
         :tree-props="treeProps"
         :default-expand-all="defaultExpandAll"
         :no-clear-selection="noClearSelection"
+        :show-summary="showSummary"
+        :sum-text="sumText"
+        :summary-method="summaryMethod"
       >
         <!-- 多选 -->
         <el-table-column v-if="multiple" fixed="left" align="center" type="selection" width="55" />
@@ -251,7 +254,13 @@ export default {
     /**是否默认展开所有行，当 Table 包含展开行存在或者为树形表格时有效 */
     defaultExpandAll: Boolean,
     /**当刷新时不清空已选择数据 */
-    noClearSelection: Boolean
+    noClearSelection: Boolean,
+    /**是否显示合计行 */
+    showSummary: Boolean,
+    /**合计行文本 */
+    sumText: String,
+    /**合计行自定义逻辑方法 */
+    summaryMethod: Function
   },
   computed: {
     ...mapState('app/loading', { loadingText_: 'text', loadingBackground: 'background', loadingSpinner: 'spinner' }),
@@ -273,8 +282,7 @@ export default {
     /** 查询方法 */
     query() {
       if (this.$refs.querybar) {
-        this.$refs.querybar.validate(async valid => {
-          if (!valid) return
+        this.$refs.querybar.validate(() => {
           this.doQuery()
         })
       } else {
