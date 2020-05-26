@@ -151,6 +151,7 @@ export default {
       window.addEventListener('resize', this.resize)
     },
     close() {
+      this.fullscreen_ = false
       this.$emit('update:visible', false)
     },
     resize() {
