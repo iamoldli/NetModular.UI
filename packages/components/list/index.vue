@@ -94,7 +94,7 @@
             </template>
 
             <template slot-scope="{ row }">
-              <slot :name="'col-' + col.name" :row="row" :rows="rows">{{ col.format ? $dayjs(row[col.name]).format(col.format) : row[col.name] }}</slot>
+              <slot :name="'col-' + col.name" :row="row" :rows="rows">{{ col.format && row[col.name] ? $dayjs(row[col.name]).format(col.format) : row[col.name] }}</slot>
             </template>
           </el-table-column>
         </template>
