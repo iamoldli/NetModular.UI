@@ -128,3 +128,146 @@
     color: $pretty-dialog-icon-color;
   }
 }
+
+.el-pagination.is-background .el-pager li:not(.disabled).active {
+  background-color: $pretty-theme-color;
+}
+.el-date-table td.today span {
+  color: $pretty-theme-color;
+}
+.el-date-table td.end-date span,
+.el-date-table td.start-date span {
+  background-color: $pretty-theme-color;
+  color: #ffffff;
+}
+.el-range-editor.is-active,
+.el-range-editor.is-active:hover {
+  border-color: $pretty-theme-color;
+}
+.el-input.is-active .el-input__inner,
+.el-input__inner:focus {
+  border-color: $pretty-theme-color;
+  outline: 0;
+}
+.el-select-dropdown__item.selected {
+  color: $pretty-theme-color;
+}
+.el-button--primary {
+  color: #fff;
+  background-color: $pretty-theme-color;
+  border-color: $pretty-theme-color;
+}
+.el-tabs__item.is-active {
+  color: $pretty-theme-color;
+}
+.el-tabs__active-bar {
+  background-color: $pretty-theme-color;
+}
+.el-switch.is-checked .el-switch__core {
+  border-color: $pretty-theme-color;
+  background-color: $pretty-theme-color;
+}
+.el-radio__input.is-checked .el-radio__inner {
+  border-color: $pretty-theme-color;
+  background: $pretty-theme-color;
+}
+.el-radio__input.is-checked + .el-radio__label {
+  color: $pretty-theme-color;
+}
+.el-checkbox__input.is-checked .el-checkbox__inner,
+.el-checkbox__input.is-indeterminate .el-checkbox__inner {
+  background-color: $pretty-theme-color;
+  border-color: $pretty-theme-color;
+}
+.el-checkbox__input.is-focus .el-checkbox__inner {
+  border-color: $pretty-theme-color;
+}
+.el-checkbox__input.is-checked + .el-checkbox__label {
+  color: $pretty-theme-color;
+}
+.el-checkbox.is-bordered.is-checked {
+  border-color: $pretty-theme-color;
+}
+.el-radio.is-bordered.is-checked {
+  border-color: $pretty-theme-color;
+}
+.el-button--text {
+  color: $pretty-theme-color;
+}
+.nm-list-select-column > span:focus {
+  border-color: $pretty-theme-color;
+}
+.el-checkbox__inner:hover {
+  border-color: $pretty-theme-color;
+}
+.el-select .el-input.is-focus .el-input__inner {
+  border-color: $pretty-theme-color;
+}
+.el-select .el-input .el-input__inner:hover {
+  border-color: $pretty-theme-color;
+}
+.nm-admin-config-library .el-tabs__item.is-active {
+  color: $pretty-theme-color !important;
+}
+.nm-admin-config-library .el-tabs__item:hover {
+  color: $pretty-theme-color !important;
+}
+.el-tabs__item.is-active {
+  color: $pretty-theme-color !important;
+}
+.el-textarea.is-active .el-textarea__inner,
+.el-textarea__inner:focus {
+  border-color: $pretty-theme-color;
+  outline: 0;
+}
+.nm-tabnav-contextmenu li:hover {
+  background-color: $pretty-theme-color-transpart;
+  color: $pretty-theme-color !important;
+}
+.el-dropdown-menu__item:hover {
+  background-color: $pretty-theme-color-transpart;
+  color: $pretty-theme-color !important;
+}
+.advanced-arrow {
+  border-bottom-color: $pretty-theme-color;
+}
+.nm-list-querybar-advanced {
+  -webkit-box-shadow: 0 0 1px 1px $pretty-theme-color;
+  box-shadow: 0 0 1px 1px $pretty-theme-color;
+  border-color: $pretty-theme-color;
+}
+.el-loading-spinner .el-loading-text {
+  color: $pretty-theme-color;
+}
+.el-loading-spinner i {
+  color: $pretty-theme-color;
+}
+.el-table__body tr.current-row > td {
+  background-color: $pretty-theme-color-transpart;
+}
+.el-table__body tr.hover-row > td {
+  background-color: $pretty-theme-color-transpart;
+}
+.nm-file-upload-img:hover {
+  border: 2px dashed $pretty-theme-color;
+}
+.el-select-dropdown__item.hover,
+.el-select-dropdown__item:hover {
+  background-color: $pretty-theme-color-transpart;
+  color: $pretty-theme-color;
+}
+.el-date-table td.in-range div,
+.el-date-table td.in-range div:hover,
+.el-date-table.is-week-mode .el-date-table__row.current div,
+.el-date-table.is-week-mode .el-date-table__row:hover div {
+  background-color: $pretty-theme-color-transpart;
+}
+.el-tree-node__content:hover {
+  background-color: $pretty-theme-color-transpart;
+}
+.el-pagination.is-background .btn-next,
+.el-pagination.is-background .btn-prev,
+.el-pagination.is-background .el-pager li:hover {
+  color: $pretty-theme-color;
+  background-color: $pretty-theme-color-transpart;
+}

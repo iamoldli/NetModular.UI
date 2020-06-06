@@ -23,6 +23,8 @@ export default {
   namespaced: true,
   state: {
     cacheKey: 'tabnav',
+    // 页面列表
+    pages: [],
     // 已打开的页面
     opened: [],
     // 当前页面信息
@@ -38,12 +40,12 @@ export default {
      * @param {Object} config 配置信息
      * @param {Object} routes 路由列表
      */
-    async load({ rootState, commit, dispatch }) {
+    async load({ rootState, commit, dispatch }, { pages }) {
       let opened = await dispatch('cacheLoad')
 
       // 初始
       if (opened) {
-        commit('init', opened)
+        commit('init', { opened, pages })
         // 缓存刷新
         commit('keepAliveRefresh')
       }
@@ -292,8 +294,9 @@ export default {
      * @description 初始化
      * @param {*} opened 已打开的页面
      */
-    init(state, opened) {
+    init(state, { opened, pages }) {
       state.opened = opened
+      state.pages = pages
     },
     /**
      * @description 设置默认页

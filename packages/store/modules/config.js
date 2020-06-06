@@ -86,10 +86,10 @@ export default {
     }
   },
   actions: {
-    async init({ commit, dispatch }, { config, system }) {
+    async init({ commit, dispatch }, { config, system, pages }) {
       commit('init', config)
       // 配置页面信息
-      await dispatch('app/system/init', system, { root: true })
+      await dispatch('app/system/init', { system, pages }, { root: true })
     }
   },
   mutations: {

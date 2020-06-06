@@ -26,10 +26,10 @@ export default {
     }
   },
   actions: {
-    async init({ commit, dispatch }, system) {
+    async init({ commit, dispatch }, { system, pages }) {
       commit('init', system)
       // 配置页面信息
-      await dispatch('app/page/load', null, { root: true })
+      await dispatch('app/page/load', { pages }, { root: true })
     },
     login({ state }, params) {
       return state.actions.login(params)

@@ -140,14 +140,14 @@ export default {
           })
         }
       }
-      this.$parent.$emit('select-all', selection)
+      this.$parent.$emit('select-all', this.$parent.selection)
     },
     /** 当选择项发生变化时会触发该事件 */
     onSelectionChange(selection) {
       if (!this.noClearSelection) {
         this.$parent.selection = selection
       }
-      this.$parent.$emit('selection-change', selection)
+      this.$parent.$emit('selection-change', this.$parent.selection)
     },
     /** 当单元格 hover 进入时会触发该事件 */
     onCellMouseEnter(row, column, cell, event) {

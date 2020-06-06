@@ -96,12 +96,28 @@ export default {
     let customToolbars = []
     // 回调方法
     let callbacks = []
+    //页面集合
+    let pages = []
 
     // 加载模块信息
     modules.forEach(m => {
       // 注入路由信息
       if (m.routes) {
-        m.routes.forEach(r => routes.push(r))
+        m.routes.forEach(r => {
+          routes.push(r)
+          pages.push({
+            moduleCode: m.module.code,
+            name: r.meta.title || '',
+            icon: r.meta.icon || '',
+            code: r.name.toLowerCase(),
+            frameIn: typeof r.meta.frameIn === 'undefined' ? true : r.meta.frameIn,
+            cache: typeof r.meta.cache === 'undefined' ? true : r.meta.cache,
+            noPermission: typeof r.meta.noPermission === 'undefined' ? false : r.meta.noPermission,
+            path: r.path,
+            permissions: r.meta.permissions,
+            buttons: r.meta.buttons
+          })
+        })
       }
 
       // 注入状态信息
@@ -154,7 +170,7 @@ export default {
     })
 
     // 加载页面数据
-    await store.dispatch('app/config/init', { config, system }, { root: true })
+    await store.dispatch('app/config/init', { config, system, pages }, { root: true })
 
     // 加载本地令牌
     store.commit('app/token/load', null, { root: true })

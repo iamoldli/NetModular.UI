@@ -1,8 +1,8 @@
 /**
- * 单个页面配置信息转为路由信息
+ * 单个页面转为路由信息
  * @param {Object} config 配置信息
  */
-const loadPage = config => {
+const Page2Route = config => {
   const { page, component } = config
   return {
     path: page.path,
@@ -12,8 +12,9 @@ const loadPage = config => {
     meta: {
       title: page.title,
       icon: page.icon,
-      frameIn: page.frameIn,
-      cache: page.cache,
+      frameIn: page.frameIn, //是否框架内
+      cache: page.cache, //是否缓存
+      noPermission: page.noPermission, //是否不走权限验证
       buttons: page.buttons,
       permissions: page.permissions
     }
@@ -29,7 +30,7 @@ export default pages => {
   let routes = []
   pages.forEach(item => {
     if (item) {
-      routes.push(loadPage(item))
+      routes.push(Page2Route(item))
     }
   })
   return routes

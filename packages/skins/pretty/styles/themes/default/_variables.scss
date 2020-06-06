@@ -1,6 +1,6 @@
 /*主题色*/
 $pretty-theme-color: #03a9f4;
-
+$pretty-theme-color-transpart: #ecf5ff;
 /*header*/
 $pretty-header-background-color: $pretty-theme-color;
 $pretty-header-color: #fff;
@@ -27,7 +27,7 @@ $pretty-menus-menu-color: rgba(255, 255, 255, 0.7);
 $pretty-menus-menu-active-background-color: $pretty-theme-color;
 $pretty-menus-menu-active-color: #fff;
 
-$pretty-menus-menu-hover-background-color: #1e282c;
+$pretty-menus-menu-hover-background-color: $pretty-theme-color;
 $pretty-menus-menu-hover-color: #fff;
 
 /*树*/

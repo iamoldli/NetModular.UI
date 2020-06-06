@@ -60,7 +60,13 @@
         width: 30px;
         height: 30px;
 
-        &:hover {
+        &.is-disabled {
+          cursor: not-allowed;
+          span {
+            color: #c0c4cc;
+          }
+        }
+        &:not(.is-disabled):hover {
           color: $text-color1;
           transform: scale(1.2);
         }

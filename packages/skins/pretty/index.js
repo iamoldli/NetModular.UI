@@ -36,7 +36,7 @@ export default {
       },
       {
         name: 'pink',
-        color: '#eac4db'
+        color: 'rgb(114, 46, 209)'
       },
       {
         name: 'pink-light',

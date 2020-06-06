@@ -1,5 +1,5 @@
 <template>
-  <nm-box ref="page" class="nm-form-page" page :title="title" :icon="icon" :header="header" :footer="!noFooter" :fullscreen="fullscreen" :loading="!noLoading && loading">
+  <nm-box ref="page" class="nm-form-page" no-scrollbar :title="title" :icon="icon" :header="header" :footer="!noFooter" :fullscreen="fullscreen" :loading="!noLoading && loading">
     <!--标题-->
     <template v-slot:title>
       <slot name="title"></slot>

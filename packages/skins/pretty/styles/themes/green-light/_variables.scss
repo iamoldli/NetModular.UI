@@ -1,6 +1,6 @@
 /*主题色*/
-$pretty-theme-color: #00a65a;
-
+$pretty-theme-color: rgb(0, 166, 90);
+$pretty-theme-color-transpart: #ccedde;
 /*header*/
 $pretty-header-background-color: $pretty-theme-color;
 $pretty-header-color: #fff;
@@ -24,11 +24,11 @@ $pretty-logo-text-color: #fff;
 $pretty-menus-background-color: #fff;
 $pretty-menus-menu-color: #444;
 
-$pretty-menus-menu-active-background-color: $pretty-theme-color;
-$pretty-menus-menu-active-color: #fff;
+$pretty-menus-menu-active-background-color: $pretty-theme-color-transpart;
+$pretty-menus-menu-active-color: $pretty-theme-color;
 
-$pretty-menus-menu-hover-background-color: rgba(76, 175, 80, 0.3);
-$pretty-menus-menu-hover-color: #444;
+$pretty-menus-menu-hover-background-color: $pretty-theme-color-transpart;
+$pretty-menus-menu-hover-color: $pretty-theme-color;
 
 /*树*/
 $pretty-tree-color: #fff;

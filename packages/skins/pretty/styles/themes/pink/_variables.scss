@@ -1,16 +1,16 @@
 /*主题色*/
-$pretty-theme-color: #eac4db;
-
+$pretty-theme-color: rgb(114, 46, 209);
+$pretty-theme-color-transpart: #f9f0ff;
 /*header*/
 $pretty-header-background-color: $pretty-theme-color;
-$pretty-header-color: #000;
+$pretty-header-color: #fff;
 
-$pretty-sidebar-toggle-btn-color: #000;
+$pretty-sidebar-toggle-btn-color: #fff;
 
 /*面包屑*/
-$pretty-breadcrumb-color: #606266;
-$pretty-breadcrumb-separator-color: #606266;
-$pretty-breadcrumb-link-color: #000;
+$pretty-breadcrumb-color: #e4e7ed;
+$pretty-breadcrumb-separator-color: #dcdfe6;
+$pretty-breadcrumb-link-color: #fff;
 
 /*main*/
 $pretty-main-background-color: #f0f0f0;
@@ -20,20 +20,20 @@ $pretty-sidebar-background-color: #222d32;
 
 /*logo*/
 $pretty-logo-box-background-color: $pretty-theme-color;
-$pretty-logo-text-color: #000;
+$pretty-logo-text-color: #fff;
 
 /*menus*/
 $pretty-menus-background-color: $pretty-sidebar-background-color;
 $pretty-menus-menu-color: rgba(255, 255, 255, 0.7);
 
 $pretty-menus-menu-active-background-color: $pretty-theme-color;
-$pretty-menus-menu-active-color: #000;
+$pretty-menus-menu-active-color: #fff;
 
 $pretty-menus-menu-hover-background-color: #1e282c;
 $pretty-menus-menu-hover-color: #fff;
 
 /*树*/
-$pretty-tree-color: #000;
+$pretty-tree-color: #fff;
 $pretty-tree-background-color: $pretty-theme-color;
 
 /*对话框*/

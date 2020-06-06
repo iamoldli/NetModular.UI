@@ -1,51 +1,48 @@
 //容器
 #{$prefix}form-page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  height: 100%;
+
+  #{$prefix}box-content {
+    overflow: hidden;
+    padding: 0 !important;
+  }
+
+  &-body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    flex-grow: 1;
+    overflow: hidden;
+    box-sizing: border-box;
+
+    &-scrollbar {
+      position: absolute;
+      padding: 10px 0;
+      width: 100%;
+      height: 100%;
+
+      .el-scrollbar__wrap {
+        overflow-x: hidden;
+      }
+    }
+  }
+
+  &-footer {
     position: relative;
     display: flex;
-    flex-direction: column;
     align-items: stretch;
-    height: 100%;
 
-    #{$prefix}box-content {
-        overflow: hidden;
-        padding: 0;
+    &-left {
+      flex-grow: 1;
     }
 
-    &-body {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        flex-grow: 1;
-        overflow: hidden;
-
-        &-scrollbar {
-            position: absolute;
-            padding: 10px 0;
-            width: 100%;
-            height: 100%;
-
-            .el-scrollbar__wrap {
-                overflow-x: hidden;
-            }
-        }
+    &-right {
+      padding-left: 10px;
+      flex-shrink: 0;
     }
-
-    &-main {
-        padding: 10px 20px;
-    }
-
-    &-footer {
-        position: relative;
-        display: flex;
-        align-items: stretch;
-
-        &-left {
-            flex-grow: 1;
-        }
-
-        &-right {
-            padding-left: 10px;
-            flex-shrink: 0;
-        }
-    }
+  }
 }
