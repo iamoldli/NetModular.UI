@@ -41,11 +41,13 @@ export default {
      * @param {Object} routes 路由列表
      */
     async load({ rootState, commit, dispatch }, { pages }) {
+      commit('setPages', pages)
+
       let opened = await dispatch('cacheLoad')
 
       // 初始
       if (opened) {
-        commit('init', { opened, pages })
+        commit('setOpended', opened)
         // 缓存刷新
         commit('keepAliveRefresh')
       }
@@ -80,7 +82,6 @@ export default {
         })
         return
       }
-
       //判断是否超出最大可打开页面数，如果超出，从前面删除超出的页面
       const maxOpenCount = rootState.app.config.component.tabnav.maxOpenCount
       if (maxOpenCount > 0 && state.opened.length > maxOpenCount - 1) {
@@ -251,7 +252,7 @@ export default {
      * @param {Object} router 路由对象
      */
     closeAll({ commit, dispatch }, { router }) {
-      commit('init', [])
+      commit('clearOpened')
       commit('keepAliveClean')
       dispatch('cacheInsert')
       // 跳转到首页
@@ -291,11 +292,25 @@ export default {
   },
   mutations: {
     /**
-     * @description 初始化
+     * @description 设置已打开页面
      * @param {*} opened 已打开的页面
      */
-    init(state, { opened, pages }) {
+    setOpended(state, opened) {
       state.opened = opened
+    },
+    /**
+     * @description 清空已打开页面
+     * @param {*} state
+     */
+    clearOpened(state) {
+      state.opened = []
+    },
+    /**
+     * @description 设置页面
+     * @param {*} state
+     * @param {*} pages
+     */
+    setPages(state, pages) {
       state.pages = pages
     },
     /**
