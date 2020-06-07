@@ -88,3 +88,12 @@
     border-bottom-right-radius: #{$i}px !important;
   }
 }
+
+//边框样式
+#{$prefix}b-solid {
+  border-style: solid !important;
+}
+
+#{$prefix}b-dotted {
+  border-style: dotted !important;
+}
