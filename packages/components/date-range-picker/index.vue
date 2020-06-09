@@ -1,5 +1,5 @@
 <template>
-  <div :style="{ display: 'inline-block', width }">
+  <div class="nm-date-range-picker" :style="{ display: 'inline-block', width }">
     <el-date-picker
       v-model="value"
       :size="this.size || this.fontSize"
