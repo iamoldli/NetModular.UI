@@ -1,9 +1,10 @@
 <template>
-  <div :style="{ display: 'inline-block', width }">
+  <div :style="{ display: 'inline-block', width }" :class="className">
     <el-date-picker
       v-model="value"
       :size="this.size || this.fontSize"
       type="daterange"
+      :class="className"
       range-separator="至"
       start-placeholder="开始日期"
       end-placeholder="结束日期"
@@ -19,7 +20,7 @@ export default {
   name: 'DateRangePicker',
   data() {
     return {
-      value: []
+      value: [],
     }
   },
   props: {
@@ -33,12 +34,14 @@ export default {
     clearable: Boolean,
     width: {
       type: String,
-      default: '240px'
+      default: '240px',
     },
     /**当前时间日期选择器特有的选项 */
     pickerOptions: Object,
     /**是否显示日期快捷键 */
-    showPickerOptions: Boolean
+    showPickerOptions: Boolean,
+    /**样式 */
+    className: String,
   },
   computed: {
     pickerOptions_() {
@@ -52,7 +55,7 @@ export default {
                   const start = new Date()
                   start.setTime(start.getTime() - 3600 * 1000 * 24 * 7)
                   picker.$emit('pick', [start, end])
-                }
+                },
               },
               {
                 text: '最近一个月',
@@ -61,7 +64,7 @@ export default {
                   const start = new Date()
                   start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
                   picker.$emit('pick', [start, end])
-                }
+                },
               },
               {
                 text: '最近三个月',
@@ -70,12 +73,12 @@ export default {
                   const start = new Date()
                   start.setTime(start.getTime() - 3600 * 1000 * 24 * 90)
                   picker.$emit('pick', [start, end])
-                }
-              }
-            ]
+                },
+              },
+            ],
           }
         : null
-    }
+    },
   },
   methods: {
     onChange(val) {
@@ -87,7 +90,7 @@ export default {
       this.$emit('update:start', val[0])
       this.$emit('update:end', val[1])
       this.$emit('change', val)
-    }
+    },
   },
   created() {
     var mow = new Date()
@@ -111,7 +114,7 @@ export default {
     },
     end(val) {
       this.value = [this.start, val]
-    }
-  }
+    },
+  },
 }
 </script>
