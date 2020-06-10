@@ -72,10 +72,10 @@
         </el-table-column>
 
         <!-- 自动生成列 -->
-        <template v-for="(col, i) in columns">
+        <template v-for="col in columns">
           <el-table-column
             v-if="col.show"
-            :key="i"
+            :key="col.uid"
             :prop="col.name"
             :width="col.width"
             :sortable="col.sortable"
@@ -452,6 +452,13 @@ export default {
           break
         }
       }
+    },
+    genID(length) {
+      return Number(
+        Math.random()
+          .toString()
+          .substr(3, length) + Date.now()
+      ).toString(36)
     }
   },
   mounted() {
@@ -464,6 +471,7 @@ export default {
   created() {
     if (this.cols) {
       this.columns = this.cols.map(col => {
+          col.uid = this.genID(16)
         return this.$_.assignIn({}, def.columnInfo, col)
       })
     }
