@@ -174,8 +174,13 @@
 .el-radio__input.is-checked + .el-radio__label {
   color: $pretty-theme-color;
 }
+.el-radio.is-bordered.is-checked {
+  border-color: $pretty-theme-color;
+}
 .el-checkbox__input.is-checked .el-checkbox__inner,
-.el-checkbox__input.is-indeterminate .el-checkbox__inner {
+.el-checkbox__input.is-indeterminate .el-checkbox__inner,
+.el-checkbox-button.is-checked .el-checkbox-button__inner,
+.el-radio-button__orig-radio:checked + .el-radio-button__inner {
   background-color: $pretty-theme-color;
   border-color: $pretty-theme-color;
 }
@@ -186,9 +191,6 @@
   color: $pretty-theme-color;
 }
 .el-checkbox.is-bordered.is-checked {
-  border-color: $pretty-theme-color;
-}
-.el-radio.is-bordered.is-checked {
   border-color: $pretty-theme-color;
 }
 .el-button--text {
@@ -269,5 +271,8 @@
 .el-pagination.is-background .btn-prev,
 .el-pagination.is-background .el-pager li:hover {
   color: $pretty-theme-color;
+  background-color: $pretty-theme-color-transpart;
+}
+.el-tree--highlight-current .el-tree-node.is-current > .el-tree-node__content {
   background-color: $pretty-theme-color-transpart;
 }
