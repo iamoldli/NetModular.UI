@@ -26,7 +26,7 @@
           :action="action"
           :label-width="labelWidth"
           :label-position="labelPosition"
-          :validate="validate"
+          :customValidate="validate"
           :success-msg="successMsg"
           :success-msg-text="successMsgText"
           :disabled="disabled"

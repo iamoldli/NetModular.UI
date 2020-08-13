@@ -85,13 +85,12 @@ export default {
             if (this.successMsg === true) {
               this._success(this.successMsgText)
             }
-
             this.$emit('success', data)
-
-            this.closeLoading()
           })
           .catch(() => {
             this.$emit('error')
+          })
+          .finally(() => {
             this.closeLoading()
           })
       })
