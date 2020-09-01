@@ -24,10 +24,10 @@ const openLink = (router, menu) => {
     window.open(menu.url, '_self')
   } else if (target === 2) {
     // Dialog模式
-    store.dispatch("app/dialog-menu/open", {
+    store.dispatch('app/dialog-menu/open', {
       title: menu.name,
       icon: menu.icon,
-      url: menu.url,
+      url: menu.url
       // width: menu.dialogWidth,
       // height: menu.dialogHeight,
       // fullscreen: menu.dialogFullscreen

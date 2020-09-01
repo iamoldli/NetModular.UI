@@ -196,6 +196,11 @@
 .el-button--text {
   color: $pretty-theme-color;
 }
+
+.el-button--text.is-disabled {
+  color: #c0c4cc;
+}
+
 .nm-list-select-column > span:focus {
   border-color: $pretty-theme-color;
 }

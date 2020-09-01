@@ -11,6 +11,9 @@
     :close-on-click-modal="closeOnClickModal"
     :loading="showLoading"
     :footer-close-button="footerCloseButton"
+    :draggable="draggable"
+    :drag-out-page="dragOutPage"
+    :drag-min-width="dragMinWidth"
     v-on="dialogOn"
     :visible.sync="visible_"
   >
@@ -156,7 +159,16 @@ export default {
       default: true
     },
     /** 是否显示底部关闭按钮 */
-    footerCloseButton: Boolean
+    footerCloseButton: Boolean,
+    /** 可拖拽的 */
+    draggable: {
+      type: Boolean,
+      default: null
+    },
+    /** 是否可拖出页面 */
+    dragOutPage: Boolean,
+    /** 拖拽出页面后保留的最小宽度 */
+    dragMinWidth: Number
   },
   computed: {
     showLoading() {
