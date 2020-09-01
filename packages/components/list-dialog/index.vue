@@ -9,8 +9,10 @@
     :fullscreen="fullscreen"
     :close-on-click-modal="closeOnClickModal"
     :draggable="draggable"
-    v-on="on"
+    :drag-out-page="dragOutPage"
+    :drag-min-width="dragMinWidth"
     :visible.sync="visible_"
+    v-on="on"
   >
     <template v-slot:title>
       <slot name="title" />
@@ -68,8 +70,12 @@ export default {
     /** 是否可拖拽 */
     draggable: {
       type: Boolean,
-      default: false
-    }
+      default: null
+    },
+    /** 是否可拖出页面 */
+    dragOutPage: Boolean,
+    /** 拖拽出页面后保留的最小宽度 */
+    dragMinWidth: Number
   },
   methods: {
     refresh() {

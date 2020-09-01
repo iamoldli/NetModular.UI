@@ -44,6 +44,7 @@ export default {
         header: true,
         title: '新增',
         icon: 'add',
+        draggable: true,
         model: {
           name: '',
           age: 0

@@ -14,8 +14,8 @@
     :draggable="draggable"
     :drag-out-page="dragOutPage"
     :drag-min-width="dragMinWidth"
-    v-on="dialogOn"
     :visible.sync="visible_"
+    v-on="dialogOn"
   >
     <nm-form
       ref="form"
