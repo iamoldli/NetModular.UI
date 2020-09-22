@@ -151,7 +151,7 @@ export default {
       // 分页数据
       page: {
         index: 1,
-        size: 15,
+        size: this.pageSizes[0],
         sort: []
       },
       // 数据列表

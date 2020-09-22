@@ -46,6 +46,7 @@ export default {
   },
   methods: {
     onSizeChange(size) {
+      console.log(size)
       const page = Object.assign({}, this.value, { size, index: 1 })
       this.$emit('input', page)
       this.$parent.query()

@@ -31,6 +31,7 @@ export default {
         advanced: {
           enabled: true
         },
+        pageSizes: [50, 100, 200],
         cols: [
           {
             name: 'id',
