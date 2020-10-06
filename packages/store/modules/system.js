@@ -1,5 +1,8 @@
 import _ from 'lodash'
 import token from '../../utils/token'
+import { MessageBox } from 'element-ui'
+import { router } from '../../router'
+
 export default {
   namespaced: true,
   state: {
@@ -37,12 +40,26 @@ export default {
     /**
      * @description 退出
      */
-    async logout({ dispatch }) {
-      // 删除令牌
-      token.remove()
+    logout({ commit }) {
+      MessageBox.confirm('您确认要退出登录吗', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        // 删除令牌
+        token.remove()
 
-      // 账号退出
-      dispatch('app/account/logout', null, { root: true })
+        // 账户清除
+        commit('app/account/clear', null, { root: true })
+
+        // 跳转到登录页面
+        router.push({
+          name: 'login',
+          query: {
+            redirect: router.currentRoute.fullPath
+          }
+        })
+      })
     }
   },
   mutations: {

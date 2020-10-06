@@ -3,7 +3,6 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import SkinsRoutes from './routes'
 import NProgress from 'nprogress'
-import token from '../utils/token'
 
 // 路由实例
 let router
@@ -51,8 +50,8 @@ export default (store, config) => {
     }
 
     // 验证是否已登录，根据本地是否存在token判断
-    const _token = token.get()
-    if (!_token && to.name !== 'login') {
+    const token = store.state.app.token.accessToken
+    if (!token && to.name !== 'login') {
       next({ name: 'login', query: { redirect: to.fullPath } })
     } else {
       if (to.name === 'login') {

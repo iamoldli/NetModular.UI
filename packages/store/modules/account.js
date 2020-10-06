@@ -94,12 +94,6 @@ export default {
         dispatch('app/system/logout', null, { root: true })
       }
     },
-    /**
-     * @description 退出
-     */
-    logout({ commit }) {
-      commit('reset')
-    },
     cacheGet() {
       return db.get('accountId')
     },
@@ -108,6 +102,7 @@ export default {
     },
     /** 初始化路由菜单数组 */
     initRouteMenus({ commit }, account) {
+      routeMenus = new Map()
       account.menus.map(m => {
         resolveRouteMenus(m, m.id)
       })
@@ -130,7 +125,7 @@ export default {
     initRouteMenus(state, routeMenus) {
       state.routeMenus = routeMenus
     },
-    reset(state) {
+    clear(state) {
       state.id = ''
       state.name = ''
     }

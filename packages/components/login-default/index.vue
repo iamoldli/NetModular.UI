@@ -147,13 +147,11 @@ export default {
                 redirect = '/'
               }
 
-              this.loading = false
-
               this.$router.push({
                 path: redirect
               })
             })
-            .catch(() => {
+            .finally(() => {
               this.loading = false
             })
         } else {
