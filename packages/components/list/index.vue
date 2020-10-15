@@ -94,7 +94,7 @@
             </template>
 
             <template slot-scope="{ row }">
-              <slot :name="'col-' + col.name" :row="row" :rows="rows">{{ col.format && row[col.name] ? $dayjs(row[col.name]).format(col.format) : row[col.name] }}</slot>
+              <slot :name="'col-' + col.name" :row="row" :rows="rows">{{ format(row, col) }}</slot>
             </template>
           </el-table-column>
         </template>
@@ -452,6 +452,31 @@ export default {
           break
         }
       }
+    },
+    /** 格式化 */
+    format(row, col) {
+      const val = row[col.name]
+      if (!col.format) return val
+
+      const format = col.format
+
+      //性别
+      if (format === 'sex') {
+        return val === 0 ? '男' : '女'
+      }
+
+      //日期
+      if (format === 'date') {
+        return this.$dayjs(val).format('YYYY-MM-DD')
+      }
+
+      //自定义函数
+      if (typeof format === 'function') {
+        return format(val, row)
+      }
+
+      //日期
+      return this.$dayjs(val).format(col.format)
     }
   },
   mounted() {
