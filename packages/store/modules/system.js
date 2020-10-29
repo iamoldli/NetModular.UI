@@ -41,24 +41,18 @@ export default {
      * @description 退出
      */
     logout({ commit }) {
-      MessageBox.confirm('您确认要退出登录吗', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(() => {
-        // 删除令牌
-        token.remove()
+      // 删除令牌
+      token.remove()
 
-        // 账户清除
-        commit('app/account/clear', null, { root: true })
+      // 账户清除
+      commit('app/account/clear', null, { root: true })
 
-        // 跳转到登录页面
-        router.push({
-          name: 'login',
-          query: {
-            redirect: router.currentRoute.fullPath
-          }
-        })
+      // 跳转到登录页面
+      router.push({
+        name: 'login',
+        query: {
+          redirect: router.currentRoute.fullPath
+        }
       })
     }
   },

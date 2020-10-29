@@ -10,7 +10,7 @@
     :action="updatePassword"
     :visible.sync="visible_"
     success-msg-text="修改成功"
-    @success="success"
+    @success="logout"
   >
     <el-alert title="提示" type="warning" description="密码修改成功后，需要重新登录" show-icon :closable="false"></el-alert>
     <el-row>
@@ -66,10 +66,7 @@ export default {
     ...mapState('app/system', { updatePassword: s => s.actions.updatePassword })
   },
   methods: {
-    ...mapActions('app/system', ['logout']),
-    success() {
-      this.logout()
-    }
+    ...mapActions('app/system', ['logout'])
   }
 }
 </script>
