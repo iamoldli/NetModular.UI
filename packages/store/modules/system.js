@@ -1,6 +1,5 @@
 import _ from 'lodash'
 import token from '../../utils/token'
-import { MessageBox } from 'element-ui'
 import { router } from '../../router'
 
 export default {
