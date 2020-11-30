@@ -48,7 +48,6 @@ export default (store, config) => {
       NProgress.done()
       return
     }
-
     // 验证是否已登录，根据本地是否存在token判断
     const token = store.state.app.token.accessToken
     if (!token && to.name !== 'login') {

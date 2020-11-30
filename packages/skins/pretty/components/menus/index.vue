@@ -36,9 +36,9 @@ export default {
     ...mapState('app/skins/pretty/sidebar', ['collapse']),
     active: {
       get() {
-        if (this.current.name && this.routeMenus) {
-          let routeMenu = this.routeMenus.get(this.current.name)
-
+        const { current, routeMenus } = this
+        if (current.name && routeMenus) {
+          let routeMenu = routeMenus.get(current.code)
           if (routeMenu) {
             return routeMenu.menu.id
           }

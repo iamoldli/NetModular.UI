@@ -112,6 +112,14 @@ export default {
         params: route.params,
         tabName: route.params.tn_ || route.query.tn_ || route.meta.title
       }
+
+      if (!page.code) {
+        var params = Object.assign({}, page.params)
+        //从路由参数中移除tn_参数，方便比对查找对应菜单
+        delete params.tn_
+
+        page.code = page.name + '|' + JSON.stringify(params)
+      }
       //设置菜单图表
       const menu = rootState.app.account.routeMenus.get(route.name)
       if (menu) {
