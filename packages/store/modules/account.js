@@ -10,7 +10,7 @@ const resolveRouteMenus = (menu, rootId, bc) => {
       route: ''
     })
     menu.rootId = rootId
-    routeMenus.set(menu.routeName + '|' + menu.routeParams, { menu, breadcrumb: bc_ })
+    routeMenus.set(menu.routeName + '|' + (menu.routeParams || '{}'), { menu, breadcrumb: bc_ })
   } else if (menu.type === 0) {
     bc_.push({
       title: menu.name,
