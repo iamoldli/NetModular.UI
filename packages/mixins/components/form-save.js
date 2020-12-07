@@ -20,7 +20,7 @@ export default {
       allRefresh: true,
       on: {
         success: this.onSuccess,
-        open: this.onOpen
+        opened: this.onOpened
       },
       //文本标签
       labels: {
@@ -88,7 +88,7 @@ export default {
     onSuccess(data) {
       this.$emit('success', this.form.model, data, this.isAdd_)
     },
-    onOpen() {
+    onOpened() {
       //设置图标
       this.setInfo()
 
