@@ -121,7 +121,7 @@ export default {
         page.code = page.name + '|' + JSON.stringify(params)
       }
       //设置菜单图表
-      const menu = rootState.app.account.routeMenus.get(route.name)
+      const menu = rootState.app.account.routeMenus.get(page.code)
       if (menu) {
         page.icon = menu.menu.icon
       }
