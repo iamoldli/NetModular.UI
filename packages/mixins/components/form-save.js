@@ -77,6 +77,12 @@ export default {
         .edit(id)
         .then(data => {
           this.model_ = this.$_.merge({}, data)
+
+          //打开后执行的方法
+          if (this.afterEdit) {
+            this.afterEdit()
+          }
+
           //重置
           this.$refs.form.reset()
           form.loading = false

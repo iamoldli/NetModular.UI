@@ -32,6 +32,7 @@
       :inline="inline"
       :customResetFunction="customResetFunction"
       v-on="formOn"
+      @validate="onValidate"
     >
       <slot />
     </nm-form>
@@ -235,6 +236,9 @@ export default {
     },
     onClosed() {
       this.$emit('closed')
+    },
+    onValidate(prop, valid, msg) {
+      this.$emit('validate', prop, valid, msg)
     }
   }
 }

@@ -13,6 +13,7 @@
     :element-loading-text="loadingText"
     :element-loading-background="loadingBackground"
     :element-loading-spinner="loadingSpinner"
+    @validate="onValidate"
   >
     <slot />
   </el-form>
@@ -143,6 +144,9 @@ export default {
       if (!this.noLoading) {
         this.loading_ = false
       }
+    },
+    onValidate(prop, valid, msg) {
+      this.$emit('validate', prop, valid, msg)
     }
   }
 }
