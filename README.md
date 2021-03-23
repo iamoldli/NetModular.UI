@@ -13,3 +13,11 @@ Password: admin
 ## Documentation(文档)
 
 For full documentation please see [https://docs.17mkh.com/frendEnd/DevEnvironment.html](https://docs.17mkh.com/frendEnd/DevEnvironment.html)
+
+## 启动
+
+```js
+npm i
+
+npm run serve
+```
