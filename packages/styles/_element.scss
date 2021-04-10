@@ -82,3 +82,16 @@ body {
     font-size: 1.4em;
   }
 }
+
+/*自定义浏览器滚动条样式*/
+/*Element Plus中的Table组件是通过计算默认滚动条的宽度来设置表格头的最右侧滚动条宽度的*/
+/* https://github.com/element-plus/element-plus/blob/dev/packages/utils/scrollbar-width.ts */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(144, 147, 153, 0.3);
+  border: 3px solid transparent;
+}
